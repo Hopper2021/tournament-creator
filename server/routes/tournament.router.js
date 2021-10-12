@@ -9,14 +9,13 @@ const {
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('User - ', req.user.id);
     
-    const sqlText = `
+    pool.query(`
         SELECT * FROM "tournament" 
-        WHERE "user_id" = $1;`;
-    pool.query(sqlText, [req.user.id])
-    .then((results) =>
-        res.send(results.rows))
+        WHERE "user_id" = $1`, [req.user.id])
+    .then((results) => {
+        res.send(results.rows)})
     .catch((error) => {
-        console.log('Error in GET all user\'s tournaments', error);
+        console.log('Error in GET user tournaments', error);
         res.sendStatus(500);
     });
 });
