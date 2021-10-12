@@ -5,16 +5,16 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
+
 router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log('User - ', req.user);
+    console.log('User - ', req.user.id);
     
-    const sqlText = `SELECT * FROM "tournament" WHERE "user_id" = $1`
-    pool.query(sqlText, [req.user])
-    .then((results) => {
-        res.send(results.rows)})
+    const sqlText = `
+        SELECT * FROM "tournament" 
+        WHERE "user_id" = $1;`;
+    pool.query(sqlText, [req.user.id])
+    .then((results) =>
+        res.send(results.rows))
     .catch((error) => {
         console.log('Error in GET all user\'s tournaments', error);
         res.sendStatus(500);
