@@ -110,3 +110,31 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+/* --------------------------------------------------------------------------------
+My Tournaments Paper
+-------------------------------------------------------------------------------- */
+
+#my-tournament-paper {
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+#my-tournament-name {
+  text-align: center;
+  background-color: maroon;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: white;
+  margin: 0;
+  padding: 10px;
+}
+
+#my-tournament-details {
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+
+#my-tournaments-header {
+  text-align: center;
+}

@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import TournamentDetail from '../TournamentDetail/TournamentDetail';
 
 import './App.css';
 
@@ -105,8 +106,21 @@ function App() {
               // redirect them to the /user page
               <Redirect to="/user" />
               :
-              // Otherwise, show the Landing page
-              <LandingPage />
+              // Otherwise, show the Detail page
+              <TournamentDetail />
+            }
+          </Route>
+          <Route
+            exact
+            path="/detail/:id"
+          >
+            {user.id ?
+              // If the user is already logged in, 
+              // redirect to the /user page
+              <Redirect to="/user" />
+              :
+              // Otherwise, show the login page
+              <LoginPage />
             }
           </Route>
 
