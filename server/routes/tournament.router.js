@@ -10,10 +10,14 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('User - ', req.user.id);
     
     pool.query(`
-        SELECT * FROM "tournament" 
-        WHERE "user_id" = $1`, [req.user.id])
-    .then((results) => {
-        res.send(results.rows)})
+        SELECT "tournament"."id","tournament"."name" AS "tournament_name","tournament"."date","kingdom"."name" AS "kingdom_name",
+        "user"."persona" AS "organizer_persona", "tournament_type"."name" AS "type" FROM "tournament"
+        JOIN "tournament_type" ON "tournament_type"."id" = "tournament"."type_id"
+        JOIN "kingdom" ON "kingdom"."id" = "tournament"."kingdom_id"
+        JOIN "user" ON "user"."id" = "tournament"."user_id"
+        WHERE "tournament"."user_id" = $1`, [req.user.id])
+    .then((results) => 
+        res.send(results.rows))
     .catch((error) => {
         console.log('Error in GET user tournaments', error);
         res.sendStatus(500);

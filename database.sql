@@ -6,8 +6,7 @@ CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
-    "kingdom_id" integer REFERENCES "kingdom",
-    "park_id" integer REFERENCES "park"
+    "persona" VARCHAR (80)
 );
 
 CREATE TABLE "kingdom" (

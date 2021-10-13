@@ -1,22 +1,33 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import useReduxStore from '../../hooks/useReduxStore';
+
 
 function MyTournaments(){
-    const myTournaments = useSelector( store => store.tournamentReducer )
+    const store = useReduxStore();
     const dispatch = useDispatch();
-    
+
+    const getDate = () => {
+        const newDate = getDate(tournament.date)
+        console.log('New date - ', newDate);
+    }
+
     useEffect(() => {
         dispatch({ type: 'FETCH_MY_TOURNAMENTS' });
     }, [dispatch]);
 
     return(
         <>
-        {/* <p>{JSON.stringify(myTournaments)}</p> */}
+        <p>{JSON.stringify(store.tournaments)}</p>
         <div>
-            {myTournaments.map((tournament) => (
-                <p>{tournament.name}</p>
+            {store.tournaments.map((tournament) => (
+                <div key={tournament.id}>
+                    <h4>Name: {tournament.tournament_name}</h4>
+                    <p>Date: {tournament.date}</p>
+                    <p>Kingdom: {tournament.kingdom_name}</p>
+                    <p>Organizer: {tournament.organizer_persona}</p>
+                    <p>Type: {tournament.type}</p>
+                </div>
             ))}
         </div>
         </>
