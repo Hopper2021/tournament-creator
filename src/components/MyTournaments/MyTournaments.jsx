@@ -7,11 +7,6 @@ function MyTournaments(){
     const store = useReduxStore();
     const dispatch = useDispatch();
 
-    const getDate = () => {
-        const newDate = getDate(tournament.date)
-        console.log('New date - ', newDate);
-    }
-
     useEffect(() => {
         dispatch({ type: 'FETCH_MY_TOURNAMENTS' });
     }, [dispatch]);
