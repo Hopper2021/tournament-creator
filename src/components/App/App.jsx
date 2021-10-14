@@ -53,26 +53,18 @@ function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
+          
+          {/* logged in shows UserPage else shows LoginPage */}
+          <ProtectedRoute exact path="/user" >
             <UserPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
+          {/* logged in shows InfoPage else shows LoginPage */}
+          <ProtectedRoute exact path="/info">
             <InfoPage />
           </ProtectedRoute>
 
-          <Route
-            exact
-            path="/login"
-          >
+          <Route exact path="/login">
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /user page
@@ -83,10 +75,7 @@ function App() {
             }
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
+          <Route exact path="/registration">
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
@@ -97,31 +86,19 @@ function App() {
             }
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
+          <Route exact path="/home" >
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
               <Redirect to="/user" />
               :
-              // Otherwise, show the Detail page
-              <TournamentDetail />
+              // Otherwise, show the Landing page
+              <LandingPage />
             }
           </Route>
-          <Route
-            exact
-            path="/detail/:id"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the login page
-              <LoginPage />
-            }
+
+          <Route exact path="/details/:id">
+            <TournamentDetail />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

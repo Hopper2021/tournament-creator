@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 const tournamentReducer = (state = [], action) => {
     switch ( action.type ) {
         case 'SET_MY_TOURNAMENTS':
@@ -7,4 +9,16 @@ const tournamentReducer = (state = [], action) => {
     }
 }
 
-export default tournamentReducer;
+const selectedTournament = (state = {}, action) => {
+    switch ( action.type ) {
+        case 'SET_TOURNAMENT_DETAILS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export default combineReducers({
+    tournamentReducer,
+    selectedTournament, 
+});
