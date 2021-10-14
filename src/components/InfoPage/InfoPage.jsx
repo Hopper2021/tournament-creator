@@ -9,7 +9,7 @@ import MyTournaments from '../MyTournaments/MyTournaments'
 function InfoPage() {
   return (
     <div className="container">
-      <p>Info Page</p>
+      <h2 id="my-tournaments-header">My Tournaments</h2>
       <MyTournaments />
     </div>
   );
