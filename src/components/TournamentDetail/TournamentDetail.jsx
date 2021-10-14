@@ -37,8 +37,8 @@ function tournamentDetail() {
     }
 
     return(
-        <div>
-            {/* {JSON.stringify(store.tournaments.tournamentReducer)} */}
+        <div class="container">
+            {/* {JSON.stringify(entrants)} */}
             <Paper key={tournament.id} id="my-tournament-paper" elevation={8}>
                 <h4 id="my-tournament-name">{tournament.tournament_name}</h4>
                 <div id="my-tournament-details">
@@ -48,20 +48,22 @@ function tournamentDetail() {
                     <p><u>Type:</u> {tournament.type}</p>
                 </div>
             </Paper>
-            <Paper id="my-tournament-paper">
+            <Paper id="my-tournament-paper" elevation={8}>
                 <div>
                     <h4 id="my-tournament-name"> Placements </h4>
                     <table id="my-tournament-details">
                         <tr>
-                            <th>Placement</th>
+                            <th>Place</th>
                             <th>Name</th>
                             <th>Score</th>
+                            <th>Warriors</th>
                         </tr>
                         {entrants.map((entrant, index) => (
                         <tr>
                             <td>{placement( index + 1 )}</td>
                             <td>{entrant.persona}</td>
                             <td>{entrant.score}</td>
+                            <td>{entrant.warriors}</td>
                         </tr>
                         ))}
                     </table>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -36,7 +37,9 @@ function Nav() {
               Search
             </Link>
             
-            <LogOutButton className="navLink" />
+            <LogOutButton className="navLink">
+              <Redirect to="/login"/>
+            </LogOutButton>
           </>
         )}
       </div>
