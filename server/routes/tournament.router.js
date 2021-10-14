@@ -64,7 +64,7 @@ router.post('/create', (req, res) => {
     const tournament = req.body;
     console.log('req.body in create tournament POST - ', req.body);
   
-    const sqlText - `
+    const sqlText = `
         INSERT INTO "tournament" ("name", "kingdom_id", "user_id", "type_id")
         VALUES ($1, $2, $3, $4);`;
     pool.query( sqlText, 
