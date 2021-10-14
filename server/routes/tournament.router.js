@@ -5,7 +5,7 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
-
+// Get all tournaments and their base information based on the user ID passed ( My Tournaments Page )
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('User - ', req.user.id);
     
@@ -24,6 +24,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// Get all base tournament information associate with a passed tournament ID ( Detail Page )
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id - ', req.params.id);
     const sqlText = `
@@ -41,6 +42,7 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
         })
 })
 
+// Get all tournament Entrants associated with a tournament Id ( Detail Page )
 router.get('/details/entrants/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id - ', req.params.id);
     const sqlText = `
@@ -57,11 +59,23 @@ router.get('/details/entrants/:id', rejectUnauthenticated, (req, res) => {
         })
 })
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+// Create new tournament
+router.post('/create', (req, res) => {
+    const tournament = req.body;
+    console.log('req.body in create tournament POST - ', req.body);
+  
+    const sqlText - `
+        INSERT INTO "tournament" ("name", "kingdom_id", "user_id", "type_id")
+        VALUES ($1, $2, $3, $4);`;
+    pool.query( sqlText, 
+        [tournament.name, tournament.kingdom_id, tournament.user_id, tournament.type_id] )
+    .then((result) => {
+        console.log('Tournament Created - ', tournament.name);
+        res.sendStatus(200) })
+    .catch((error) => {
+        console.log('Error in POST new tournament - ', error);
+        res.sendStatus(500);
+    }) 
 });
 
 module.exports = router;

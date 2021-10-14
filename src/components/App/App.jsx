@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TournamentDetail from '../TournamentDetail/TournamentDetail';
+import CreateTournament from '../CreateTournament/CreateTournament';
 
 import './App.css';
 
@@ -99,6 +100,10 @@ function App() {
 
           <Route exact path="/details/:id">
             <TournamentDetail />
+          </Route>
+
+          <Route exact path="/create">
+            <CreateTournament />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

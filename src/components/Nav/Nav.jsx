@@ -43,7 +43,9 @@ function Nav() {
             </LogOutButton>
           </>
         )} */}
-        <Drawer />
+        <div id="drawer">
+          <Drawer/>
+        </div>
       </div>
     </div>
   );
