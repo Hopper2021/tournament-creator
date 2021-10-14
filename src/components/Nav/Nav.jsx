@@ -4,6 +4,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Drawer from '../../components/Drawer/Drawer';
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -23,7 +24,7 @@ function Nav() {
         }
 
         {/* If a user is logged in, show these links */}
-        {user.id && (
+        {/* {user.id && (
           <>
             <Link className="navLink" to="/user">
               Profile
@@ -41,7 +42,8 @@ function Nav() {
               <Redirect to="/login"/>
             </LogOutButton>
           </>
-        )}
+        )} */}
+        <Drawer />
       </div>
     </div>
   );

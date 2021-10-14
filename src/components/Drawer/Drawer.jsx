@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -10,25 +12,17 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CreateIcon from '@mui/icons-material/Create';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SearchIcon from '@mui/icons-material/Search';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useHistory } from 'react-router-dom';
-import { HashRouter as Router, Route } from 'react-router-dom';
 
 export default function TemporaryDrawer() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [state, setState] = React.useState({
     right: false,
   });
-
-  const navigateTo = (event) => {
-    event.preventDefault();
-    if ( itemList.text == 'Profile' ){
-      history.push('/');
-    } else if ( itemList.text == 'My Tournaments') {
-      history.push('/details')
-    }
-  }
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -44,6 +38,14 @@ export default function TemporaryDrawer() {
     { text: 'Create Tournament', icon: <PlaylistAddIcon />}, 
     { text: 'Search', icon: <SearchIcon /> }];
 
+    const navigateTo = () => {
+        if ( itemList.text === 'Profile' ){
+          history.push('/user');
+        } else if ( itemList.text == 'My Tournaments') {
+          history.push('/details')
+        }
+      }
+
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -52,25 +54,57 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {itemList.map((item, index) => {
-          const { text, icon, onClick } = item;
-          return (
-          <ListItem button key={text} onClick={(event) => navigateTo(event)}>
-            { icon && <ListItemIcon>{icon}</ListItemIcon> }
-            <ListItemText primary={text} />
-          </ListItem>
-        )})}
+        {/* {itemList.map((item, index) => { 
+            const { text, icon, onClick } = item;
+            return (
+            <ListItem button key={text} onClick={(event) => navigateTo(event)}>
+                { icon && <ListItemIcon>{icon}</ListItemIcon> }
+                <ListItemText primary={text} />
+            </ListItem>
+        )})} */}
+        <Link to="/user">
+            <ListItem>
+                <ListItemIcon>
+                    {<AccountCircleIcon />}
+                </ListItemIcon>
+                <ListItemText>Profile</ListItemText>
+            </ListItem>
+        </Link>
+        <Link to="/info">
+            <ListItem>
+                <ListItemIcon>
+                    {<MenuBookIcon />}
+                </ListItemIcon>
+                <ListItemText>My Tournaments</ListItemText>
+            </ListItem>
+        </Link>
+        <Link to="/">
+            <ListItem>
+                <ListItemIcon>
+                    {<PlaylistAddIcon />}
+                </ListItemIcon>
+                <ListItemText>Create Tournament</ListItemText>
+            </ListItem>
+        </Link>
+        <Link to="/about">
+            <ListItem>
+                <ListItemIcon>
+                    {<SearchIcon />}
+                </ListItemIcon>
+                <ListItemText>Search</ListItemText>
+            </ListItem>
+        </Link>
       </List>
       <Divider />
-      <List>
-        {<ListItem id="logout" button key={'Logout'}
-          onClick={navigateTo}>
-          <ListItemIcon>
-            {<LogoutIcon/>}
-          </ListItemIcon>
-          <ListItemText primary={'Logout'} />
-        </ListItem>}
-      </List>
+        <List> 
+            {<ListItem id="logout" button key={'Logout'}
+            onClick={() => dispatch({ type: 'LOGOUT' })}>
+                <ListItemIcon>
+                    {<LogoutIcon/>}
+                </ListItemIcon>
+                <ListItemText primary={'Logout'} />
+            </ListItem>}
+        </List>
     </Box>
   );
 
