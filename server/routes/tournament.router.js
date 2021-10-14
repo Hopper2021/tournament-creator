@@ -41,6 +41,22 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
         })
 })
 
+router.get('/details/entrants/:id', rejectUnauthenticated, (req, res) => {
+    console.log('req.params.id - ', req.params.id);
+    const sqlText = `
+        SELECT "entrant"."persona" AS "persona", "tournament_entrant"."score" FROM "tournament_entrant"
+        JOIN "tournament" ON "tournament_entrant"."tournament_id" = "tournament"."id"
+        JOIN "entrant" on "entrant"."id" = "tournament_entrant"."entrant_id"
+        WHERE "tournament"."id" = $1
+        ORDER BY "score" DESC;`;
+    pool.query( sqlText, [req.params.id] )
+        .then((result) => {
+            res.send(result.rows); })
+        .catch((error) => {
+            console.log('Error in SELECT tournament query - ', error);
+        })
+})
+
 /**
  * POST route template
  */

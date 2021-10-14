@@ -24,9 +24,23 @@ function* fetchTournamentDetails(action) {
     }
 }
 
+function* fetchTournamentEntrants(action) {
+    try {
+        const tournament = action.payload;
+        console.log('tournament id in saga - ', tournament.id)
+        const tournamentDetails = yield axios.get( `/api/tournament/details/entrants/${tournament.id}` )
+        console.log('response - ', tournamentDetails);
+        yield put({ type: 'SET_TOURNAMENT_ENTRANTS', payload: tournamentDetails.data })
+    } catch (error) {
+        console.log('Tournament details GET failed - ', error);
+        alert('Something went wrong! Please try again later.')
+    }
+}
+
 function* tournamentSaga() {
     yield takeLatest( 'FETCH_MY_TOURNAMENTS', fetchMyTournaments ),
     yield takeLatest( 'FETCH_TOURNAMENT_DETAILS', fetchTournamentDetails )
+    yield takeLatest( 'FETCH_TOURNAMENT_ENTRANTS', fetchTournamentEntrants )
 }
 
 export default tournamentSaga;
