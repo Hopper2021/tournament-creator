@@ -29,10 +29,10 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: rgb(75, 1, 1);
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: maroon;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -55,8 +55,12 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: maroon;
   text-decoration: none;
+}
+
+.Button {
+  color:rgb(75, 1, 1)
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
@@ -148,3 +152,20 @@ Drawer
   color: white;
   font-size: larger;
 }
+
+/* --------------------------------------------------------------------------------
+Tournament Form
+-------------------------------------------------------------------------------- */
+
+.create-tournament-form, .create-tournament-header {
+  text-align: center;
+}
+
+.create-tournament-input {
+  font-size: x-large;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------------
+Button
+-------------------------------------------------------------------------------- */

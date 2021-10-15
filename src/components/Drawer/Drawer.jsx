@@ -31,20 +31,6 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
-  
-  const itemList = [
-    { text: 'Profile', icon: <AccountCircleIcon />,}, 
-    { text: 'My Tournaments', icon: <CreateIcon /> }, 
-    { text: 'Create Tournament', icon: <PlaylistAddIcon />}, 
-    { text: 'Search', icon: <SearchIcon /> }];
-
-    const navigateTo = () => {
-        if ( itemList.text === 'Profile' ){
-          history.push('/user');
-        } else if ( itemList.text == 'My Tournaments') {
-          history.push('/details')
-        }
-      }
 
   const list = (anchor) => (
     <Box
@@ -54,14 +40,6 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {/* {itemList.map((item, index) => { 
-            const { text, icon, onClick } = item;
-            return (
-            <ListItem button key={text} onClick={(event) => navigateTo(event)}>
-                { icon && <ListItemIcon>{icon}</ListItemIcon> }
-                <ListItemText primary={text} />
-            </ListItem>
-        )})} */}
         <Link to="/user">
             <ListItem>
                 <ListItemIcon>

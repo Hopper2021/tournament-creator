@@ -35,8 +35,8 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
         JOIN "user" ON "user"."id" = "tournament"."user_id"
         WHERE "tournament"."id" = $1;`;
     pool.query( sqlText, [req.params.id] )
-        .then((result) => {
-            res.send(result.rows[0]); })
+        .then((results) => {
+            res.send(results.rows[0]); })
         .catch((error) => {
             console.log('Error in SELECT tournament query - ', error);
         })
@@ -52,15 +52,39 @@ router.get('/details/entrants/:id', rejectUnauthenticated, (req, res) => {
         WHERE "tournament"."id" = $1
         ORDER BY "score" DESC;`;
     pool.query( sqlText, [req.params.id] )
-        .then((result) => {
-            res.send(result.rows); })
+        .then((results) => {
+            res.send(results.rows); })
         .catch((error) => {
             console.log('Error in SELECT tournament query - ', error);
         })
 })
 
+// Select all kingdoms ( kingdom drop down )
+router.get('/kingdoms', rejectUnauthenticated, (req, res) => {
+    const sqlText = `SELECT * FROM "kingdom";`;
+    pool.query(sqlText)
+        .then((results) => {
+            res.send(results.rows); }) 
+        .catch((error) => {
+            console.log('Error in getting all kingdoms - ', error);
+            res.sendStatus(500);
+        })
+})
+
+// Select all tournament types
+router.get('/types', rejectUnauthenticated, (req, res) => {
+    const sqlText = `SELECT * FROM "tournament_type";`;
+    pool.query(sqlText)
+        .then((results) => {
+            res.send(results.rows); }) 
+        .catch((error) => {
+            console.log('Error in getting all kingdoms - ', error);
+            res.sendStatus(500);
+        })
+})
+
 // Create new tournament
-router.post('/create', (req, res) => {
+router.post('/create', rejectUnauthenticated, (req, res) => {
     const tournament = req.body;
     console.log('req.body in create tournament POST - ', req.body);
   
@@ -71,7 +95,7 @@ router.post('/create', (req, res) => {
         [tournament.name, tournament.kingdom_id, tournament.user_id, tournament.type_id] )
     .then((result) => {
         console.log('Tournament Created - ', tournament.name);
-        res.sendStatus(200) })
+        res.sendStatus(201) })
     .catch((error) => {
         console.log('Error in POST new tournament - ', error);
         res.sendStatus(500);
