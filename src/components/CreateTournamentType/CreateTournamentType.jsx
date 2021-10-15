@@ -7,33 +7,35 @@ function CreateTournamentType() {
     const dispatch = useDispatch();
     const history = useHistory();
     const types = useSelector(store => store.types)
-    const [newType, setNewType] = useState({ type_id: '' })
+    const [newType, setNewType] = useState('')
 
     useEffect(() => {
         dispatch({ type: 'FETCH_TYPES' })
     },[])
 
     const handleClick = (event) => {
-        console.log('Type Id in handle-click - ', event.target.value);
-        setNewType(event.target.value)
+        event.preventDefault();
+        console.log('newType in handle-click - ', newType);
         dispatch({ type: 'SET_NEW_TYPE', payload: newType });
         history.push('/create/data')
     }
 
-    return(
+    return (
         <div >
             <h2 className="create-tournament-header">Tournament Type</h2>
-            {/* {JSON.stringify(types)} */}
+            {JSON.stringify(types)}
             <div className="grid">
                 {types.map((type) => (
-                    <div className="grid-col grid-col_6">
+                    <form className="grid-col grid-col_6"
+                        onSubmit={handleClick}>
                         <Button className="type-button" variant="contained"
+                            type="submit"
                             key={type.id}
                             value={type.id} 
-                            onClick={(event) => handleClick(event)}>
+                            onClick={(event) => setNewType(event.target.value)}>
                                 {type.name}
                         </Button>
-                    </div>
+                    </form>
                 ))}
             </div>
         </div>

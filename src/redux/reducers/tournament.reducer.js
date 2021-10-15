@@ -20,20 +20,20 @@ const selectedTournament = (state = {}, action) => {
     }
 }
 
-const defaultTournament = {
+const blankTournament = {
     name: '',
     kingdom_id: '',
     type_id: ''
 };
 
-const newTournament = (state = defaultTournament, action) => {
+const newTournament = (state = blankTournament, action) => {
     switch ( action.type ) {
         case 'SET_NEW_TYPE':
-            return {...state, type_id: action.payload.type_id};
+            return {...state, type_id: action.payload};
         case 'SET_NEW_NAME':
-            return {...state, name: action.payload.name};
+            return {...state, name: action.payload};
         case 'SET_NEW_KINGDOM':
-            return {...state, kingdom_id: action.payload.kingdom_id};
+            return {...state, kingdom_id: action.payload};
         default:
             return state;
     }    

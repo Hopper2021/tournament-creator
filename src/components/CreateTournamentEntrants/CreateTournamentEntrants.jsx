@@ -15,9 +15,9 @@ function CreateTournamentEntrants() {
 
     return (
         <div className="container">
+        {JSON.stringify(store.tournaments.newTournament)}
         <h2 className="create-tournament-header">Entrant #: 4</h2>
         <form className="create-tournament-form">
-            {/* {JSON.stringify(store.tournaments.newTournament)} */}
             <input required type="text" className="create-tournament-input"
                 value={newEntrant.persona}
                 placeholder="Persona"
