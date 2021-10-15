@@ -21,8 +21,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TournamentDetail from '../TournamentDetail/TournamentDetail';
 import CreateTournament from '../CreateTournament/CreateTournament';
-import CreateTournamentType from '../CreateTournamentType/CreateTournamentType';
-import CreateTournamentEntrants from '../CreateTournamentEntrants/CreateTournamentEntrants';
+import CreateType from '../CreateType/CreateType';
+import CreateEntrants from '../CreateEntrants/CreateEntrants';
+import CreateScores from '../CreateScores/CreateScores';
 
 import './App.css';
 
@@ -105,7 +106,7 @@ function App() {
           </Route>
 
           <Route exact path="/create/type">
-            <CreateTournamentType />
+            <CreateType />
           </Route>
 
           <Route exact path="/create/data">
@@ -113,7 +114,11 @@ function App() {
           </Route>
 
           <Route exact path="/create/entrants">
-            <CreateTournamentEntrants />
+            <CreateEntrants />
+          </Route>
+
+          <Route exact path='/create/scores'>
+            <CreateScores />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
