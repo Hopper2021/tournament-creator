@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import { red } from '@mui/material/colors';
 
 function CreateTournament() {
     const store = useSelector(store => store)
@@ -34,8 +35,8 @@ function CreateTournament() {
     return(
         <div className="container"> {/* Create Tournament Form */}
             {/* {JSON.stringify(newData)} */}
-            {JSON.stringify(store.tournaments.newTournament)}
-            <h2 className="create-tournament-header">Create Tournament</h2>
+            {/* {JSON.stringify(store.tournaments.newTournament)} */}
+            <h2 className="create-tournament-header">Complete Base Information</h2>
             <form className="create-tournament-form" onSubmit={addNewData}>
                 {/* Tournament Name Input */}
                 <input required text="text" className="create-tournament-input"
@@ -68,6 +69,7 @@ function CreateTournament() {
 
                 <br/>
                 <Button type="submit" className="Button"
+                    sx={{bgcolor: red[900]}}
                     variant="contained"> 
                     Next
                 </Button>

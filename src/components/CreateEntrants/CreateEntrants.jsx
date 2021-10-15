@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import { array } from 'prop-types';
+import { red } from '@mui/material/colors';
 
 function CreateTournamentEntrants() {
     const dispatch = useDispatch();
@@ -37,8 +37,11 @@ function CreateTournamentEntrants() {
 
     return (
         <div className="container">
-        {JSON.stringify(entrants)}
-        {JSON.stringify(newEntrant)}
+        {/* {JSON.stringify(entrants)}
+        {JSON.stringify(newEntrant)} */}
+        <h1 className="create-tournament-header">
+            {store.tournaments.newTournament.name}
+        </h1>
         <h2 className="create-tournament-header">Entrant # {counter}</h2>
         <form className="create-tournament-form"
             onSubmit={addEntrant}>
@@ -61,7 +64,9 @@ function CreateTournamentEntrants() {
                 onChange={(event) => setNewEntrant({...newEntrant, warriors: event.target.value})}
             />
             <br />
-            <Button variant="contained"
+            <Button 
+                sx={{bgcolor: red[900]}}
+                variant="contained"
                 type="submit">
                     Add Entrant
             </Button>
@@ -83,6 +88,7 @@ function CreateTournamentEntrants() {
             ))}
         </table>
         <Button onClick={createTournament}
+            sx={{bgcolor: red[900]}}
             id="create-tournament-button"
             variant="contained">
                 Create Tournament

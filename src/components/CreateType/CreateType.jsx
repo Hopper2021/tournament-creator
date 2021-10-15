@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import { grey } from '@mui/material/colors';
 
 function CreateTournamentType() {
     const dispatch = useDispatch();
@@ -22,13 +23,14 @@ function CreateTournamentType() {
 
     return (
         <div >
-            <h2 className="create-tournament-header">Tournament Type</h2>
-            {JSON.stringify(types)}
+            <h2 className="create-tournament-header">Select Type</h2>
+            {/* {JSON.stringify(types)} */}
             <div className="grid">
                 {types.map((type) => (
                     <form className="grid-col grid-col_6"
                         onSubmit={handleClick}>
                         <Button className="type-button" variant="contained"
+                            sx={{ bgcolor: grey[400], color: grey[900] }} 
                             type="submit"
                             key={type.id}
                             value={type.id} 

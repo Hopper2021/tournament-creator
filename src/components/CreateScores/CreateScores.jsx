@@ -1,7 +1,7 @@
 function CreateScores () {
     return (
         <>
-            <h2>Coming Soon!</h2>
+            <h2 className="create-tournament-header">Coming Soon!</h2>
         </>
     )
 }
