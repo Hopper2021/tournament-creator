@@ -44,7 +44,9 @@ function* fetchTournamentEntrants(action) {
 function* postNewTournament(action) {
     try {
         const tournament = action.payload;
-        axios.post( 'api/tournament/create', tournament )
+        console.log('Tournament in post new Tournament saga - ', tournament );
+        
+        axios.post( '/api/tournament/create', tournament )
         yield put({ type: 'FETCH_MY_TOURNAMENTS' })
     } catch (error) {
         console.log('Error in POST new tournament - ', error);

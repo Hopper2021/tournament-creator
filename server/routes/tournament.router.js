@@ -86,13 +86,15 @@ router.get('/types', rejectUnauthenticated, (req, res) => {
 // Create new tournament
 router.post('/create', rejectUnauthenticated, (req, res) => {
     const tournament = req.body;
+    console.log('req.user.id - ', req.user.id);
+    
     console.log('req.body in create tournament POST - ', req.body);
   
     const sqlText = `
         INSERT INTO "tournament" ("name", "kingdom_id", "user_id", "type_id")
         VALUES ($1, $2, $3, $4);`;
     pool.query( sqlText, 
-        [tournament.name, tournament.kingdom_id, tournament.user_id, tournament.type_id] )
+        [tournament.name, tournament.kingdom_id, req.user.id, tournament.type_id] )
     .then((result) => {
         console.log('Tournament Created - ', tournament.name);
         res.sendStatus(201) })

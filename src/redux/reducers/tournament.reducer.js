@@ -6,8 +6,8 @@ const tournamentReducer = (state = [], action) => {
             return action.payload;
         case 'SET_TOURNAMENT_ENTRANTS':
             return action.payload;
-        case 'POST_NEW_TOURNAMENT':
-            return [...state, action.payload]
+        // case 'SET_NEW_TOURNAMENT':
+        //     return [...state, action.payload]
         default:
             return state;
     }

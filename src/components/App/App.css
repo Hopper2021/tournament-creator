@@ -60,7 +60,7 @@ Button
 }
 
 .Button {
-  color:rgb(75, 1, 1)
+  color:rgb(75, 1, 1);
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
@@ -164,8 +164,17 @@ Tournament Form
 .create-tournament-input {
   font-size: x-large;
   text-align: center;
+  padding: 5px;
+}
+
+.create-tournament-select {
+  font-size: x-large;
+  text-align: center;
+  padding: 5px;
+  width: 260px;
+  margin: 10px;
 }
 
 /* --------------------------------------------------------------------------------
-Button
+
 -------------------------------------------------------------------------------- */
