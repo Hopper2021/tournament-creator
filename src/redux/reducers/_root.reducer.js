@@ -4,6 +4,7 @@ import user from './user.reducer';
 import tournaments from './tournament.reducer';
 import kingdoms from './kingdom.reducer'
 import types from './type.reducer';
+import entrants from './entrant.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   tournaments,
   kingdoms,
   types, 
+  entrants,
 });
 
 export default rootReducer;

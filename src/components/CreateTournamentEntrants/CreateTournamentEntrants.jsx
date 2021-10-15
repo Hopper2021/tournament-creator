@@ -2,22 +2,46 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import { array } from 'prop-types';
 
 function CreateTournamentEntrants() {
     const dispatch = useDispatch();
     const history = useHistory();
     const store = useSelector(store => store);
     const kingdoms = store.kingdoms;
-    const [entrantList, setEntrantList] = useState([]);
+    const entrants = store.entrants;
+    const [counter, setCounter] = useState(1);
+
+    useEffect(() => {
+        console.log('Fetching kingdoms in create tournament');
+        dispatch({ type: 'FETCH_KINGDOMS' })
+    }, [])
+
     const [newEntrant, setNewEntrant] = useState({
         persona: '', kingdom_id: '', warriors: ''
     });
 
+    const addEntrant = (event) => {
+        event.preventDefault();
+        setCounter(counter + 1); // displays entrant number, which is one more than the index
+        console.log(newEntrant); 
+        dispatch({ type: 'ADD_ENTRANT', payload: newEntrant })
+        setNewEntrant({
+            persona: '', kingdom_id: '', warriors: ''
+        })
+    }
+
+    const createTournament = () => {
+        history.push('/create/scores');
+    }
+
     return (
         <div className="container">
-        {JSON.stringify(store.tournaments.newTournament)}
-        <h2 className="create-tournament-header">Entrant #: 4</h2>
-        <form className="create-tournament-form">
+        {JSON.stringify(entrants)}
+        {JSON.stringify(newEntrant)}
+        <h2 className="create-tournament-header">Entrant # {counter}</h2>
+        <form className="create-tournament-form"
+            onSubmit={addEntrant}>
             <input required type="text" className="create-tournament-input"
                 value={newEntrant.persona}
                 placeholder="Persona"
@@ -49,29 +73,19 @@ function CreateTournamentEntrants() {
                 <th>Kingdom</th>
                 <th>Warriors</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Hopper</td>
-                <td>Celestial Kingdom</td>
-                <td>6</td>
+            {entrants.map((entrant, index) => (
+            <tr key={entrant.id}>
+                <td>{index + 1}</td>
+                <td>{entrant.persona}</td>
+                <td>{entrant.kingdom_id}</td>
+                <td>{entrant.warriors}</td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Sunshine</td>
-                <td>Polaris</td>
-                <td>10</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Morpheous</td>
-                <td>Dragonspine</td>
-                <td>8</td>
-            </tr>
+            ))}
         </table>
-        <Button 
+        <Button onClick={createTournament}
             id="create-tournament-button"
             variant="contained">
-            Create Tournament
+                Create Tournament
         </Button>
         </div>
     )
