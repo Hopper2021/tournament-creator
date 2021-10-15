@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TournamentDetail from '../TournamentDetail/TournamentDetail';
 import CreateTournament from '../CreateTournament/CreateTournament';
+import CreateTournamentType from '../CreateTournamentType/CreateTournamentType';
 
 import './App.css';
 
@@ -102,7 +103,11 @@ function App() {
             <TournamentDetail />
           </Route>
 
-          <Route exact path="/create">
+          <Route exact path="/create/type">
+            <CreateTournamentType />
+          </Route>
+
+          <Route exact path="/create/data">
             <CreateTournament />
           </Route>
 

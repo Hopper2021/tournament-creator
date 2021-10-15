@@ -87,7 +87,6 @@ router.get('/types', rejectUnauthenticated, (req, res) => {
 router.post('/create', rejectUnauthenticated, (req, res) => {
     const tournament = req.body;
     console.log('req.user.id - ', req.user.id);
-    
     console.log('req.body in create tournament POST - ', req.body);
   
     const sqlText = `

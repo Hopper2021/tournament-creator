@@ -12,28 +12,25 @@ function CreateTournament() {
     const history = useHistory();
 
     let [newTournament, setNewTournament] = useState({
-        name: '', kingdom_id: '', type_id: ''
+        name: '', kingdom_id: ''
     })
 
     // Fetches kingdoms and types on page load for dropdowns
     useEffect(() => {
-        console.log('Fetiching kingdoms in create tournament');
+        console.log('Fetching kingdoms in create tournament');
         dispatch({ type: 'FETCH_KINGDOMS' })
         dispatch({ type: 'FETCH_TYPES' })
     }, [])
 
     // Post new tournament to database
     const addNewTournament = () => {
-        console.log('In add new tournament - ', newTournament);
-        dispatch({ type: 'POST_NEW_TOURNAMENT ', payload: newTournament })
+        console.log('In add new tournament - ', newTournament.name);
+        dispatch({ type: 'SET_NEW_NAME', payload: newTournament.name })
+        dispatch({ type: 'SET_NEW_KINGDOM', payload: newTournament.kingdom_id })
         history.push('/create/entrants');
         setNewTournament({
-            name: '', kingdom_id: '', type_id: ''
+            name: '', kingdom_id: ''
         })
-    }
-
-    const addTournamentData = () => {
-        dispatch({ type: 'SET_NEW_TOURNAMENT_DATA',  payload: newTournament})
     }
 
     return(
@@ -56,14 +53,7 @@ function CreateTournament() {
                         <option value={kingdom.id}>{kingdom.name}</option>
                     ))}
                 </select>
-                {/* Tournament Persona Text input // TODO: REMOVE
-                <input required text="text" className="create-tournament-input"
-                    placeholder="Organizer Persona"
-                    value={newTournament.user_id}
-                    onChange={(event) => setNewTournament({...newTournament, user_id: event.target.value})}
-                /> */} 
-                {/* Tournament Type Drop Down Select */}
-                <select required
+                {/* <select
                     className="create-tournament-select"
                     value={newTournament.type_id}
                     onChange={(event) => setNewTournament({...newTournament, type_id: event.target.value})}>
@@ -71,7 +61,7 @@ function CreateTournament() {
                     {types.map((type) => ( 
                         <option value={type.id}>{type.name}</option> 
                     ))}
-                </select>
+                </select> */}
 
                 <br/>
                 <Button type="submit" className="Button"

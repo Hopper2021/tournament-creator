@@ -56,7 +56,7 @@ export default function TemporaryDrawer() {
                 <ListItemText>My Tournaments</ListItemText>
             </ListItem>
         </Link>
-        <Link to="/create">
+        <Link to="/create/type">
             <ListItem>
                 <ListItemIcon>
                     {<PlaylistAddIcon />}
