@@ -29,10 +29,10 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: rgb(75, 1, 1);
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: maroon;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -55,8 +55,16 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: maroon;
   text-decoration: none;
+}
+
+.Button {
+  color:rgb(75, 1, 1);
+}
+
+#create-tournament-button {
+  float: right;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
@@ -74,6 +82,12 @@ Button
   background-color: transparent;
   border-color: #008183;
   color: #008183;
+}
+
+.type-button {
+  height: 165px;
+  width: 165px;
+  font:x-large;
 }
 
 /* --------------------------------------------------------------------------------
@@ -139,6 +153,69 @@ My Tournaments Paper
   text-align: center;
 }
 
-/* #my-tournament-container:active {
-  background: rgba(black, 0.5);
-} */
+/* --------------------------------------------------------------------------------
+Drawer
+-------------------------------------------------------------------------------- */
+
+#drawer {
+  padding-right: 30px;
+  color: white;
+  font-size: larger;
+}
+
+/* --------------------------------------------------------------------------------
+Tournament Form
+-------------------------------------------------------------------------------- */
+
+.create-tournament-form, .create-tournament-header {
+  text-align: center;
+}
+
+.create-tournament-input {
+  font-size: x-large;
+  text-align: center;
+  padding: 5px;
+}
+
+.create-tournament-select {
+  font-size: x-large;
+  text-align: center;
+  padding: 5px;
+  width: 260px;
+  margin: 10px;
+}
+
+/* --------------------------------------------------------------------------------
+Table
+-------------------------------------------------------------------------------- */
+
+#entrants {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#entrants td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#entrants tr:nth-child(even){background-color: #f2f2f2;}
+
+#entrants tr:hover {background-color: #ddd;}
+
+#entrants th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* --------------------------------------------------------------------------------
+User Page
+-------------------------------------------------------------------------------- */
+

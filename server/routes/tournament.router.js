@@ -5,7 +5,7 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
-
+// Get all tournaments and their base information based on the user ID passed ( My Tournaments Page )
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('User - ', req.user.id);
     
@@ -24,6 +24,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// Get all base tournament information associate with a passed tournament ID ( Detail Page )
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id - ', req.params.id);
     const sqlText = `
@@ -34,13 +35,14 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
         JOIN "user" ON "user"."id" = "tournament"."user_id"
         WHERE "tournament"."id" = $1;`;
     pool.query( sqlText, [req.params.id] )
-        .then((result) => {
-            res.send(result.rows[0]); })
+        .then((results) => {
+            res.send(results.rows[0]); })
         .catch((error) => {
             console.log('Error in SELECT tournament query - ', error);
         })
 })
 
+// Get all tournament Entrants associated with a tournament Id ( Detail Page )
 router.get('/details/entrants/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id - ', req.params.id);
     const sqlText = `
@@ -50,18 +52,55 @@ router.get('/details/entrants/:id', rejectUnauthenticated, (req, res) => {
         WHERE "tournament"."id" = $1
         ORDER BY "score" DESC;`;
     pool.query( sqlText, [req.params.id] )
-        .then((result) => {
-            res.send(result.rows); })
+        .then((results) => {
+            res.send(results.rows); })
         .catch((error) => {
             console.log('Error in SELECT tournament query - ', error);
         })
 })
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+// Select all kingdoms ( kingdom drop down )
+router.get('/kingdoms', rejectUnauthenticated, (req, res) => {
+    const sqlText = `SELECT * FROM "kingdom";`;
+    pool.query(sqlText)
+        .then((results) => {
+            res.send(results.rows); }) 
+        .catch((error) => {
+            console.log('Error in getting all kingdoms - ', error);
+            res.sendStatus(500);
+        })
+})
+
+// Select all tournament types
+router.get('/types', rejectUnauthenticated, (req, res) => {
+    const sqlText = `SELECT * FROM "tournament_type";`;
+    pool.query(sqlText)
+        .then((results) => {
+            res.send(results.rows); }) 
+        .catch((error) => {
+            console.log('Error in getting all kingdoms - ', error);
+            res.sendStatus(500);
+        })
+})
+
+// Create new tournament
+router.post('/create', rejectUnauthenticated, (req, res) => {
+    const tournament = req.body;
+    console.log('req.user.id - ', req.user.id);
+    console.log('req.body in create tournament POST - ', req.body);
+  
+    const sqlText = `
+        INSERT INTO "tournament" ("name", "kingdom_id", "user_id", "type_id")
+        VALUES ($1, $2, $3, $4);`;
+    pool.query( sqlText, 
+        [tournament.name, tournament.kingdom_id, req.user.id, tournament.type_id] )
+    .then((result) => {
+        console.log('Tournament Created - ', tournament.name);
+        res.sendStatus(201) })
+    .catch((error) => {
+        console.log('Error in POST new tournament - ', error);
+        res.sendStatus(500);
+    }) 
 });
 
 module.exports = router;
