@@ -11,7 +11,7 @@ function CreateTournament() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    let [newTournament, setNewTournament] = useState({
+    let [newData, setNewData] = useState({
         name: '', kingdom_id: ''
     })
 
@@ -22,36 +22,41 @@ function CreateTournament() {
         dispatch({ type: 'FETCH_TYPES' })
     }, [])
 
-    // Post new tournament to database
-    const addNewTournament = () => {
-        console.log('In add new tournament - ', newTournament.name);
-        dispatch({ type: 'SET_NEW_NAME', payload: newTournament.name })
-        dispatch({ type: 'SET_NEW_KINGDOM', payload: newTournament.kingdom_id })
+    // Dispatch new tournament data to tournament reducer
+    const addNewData = () => {
+        console.log('In add new tournament - ', newData.name);
+        dispatch({ type: 'SET_NEW_NAME', payload: newData.name })
+        dispatch({ type: 'SET_NEW_KINGDOM', payload: newData.kingdom_id })
         history.push('/create/entrants');
-        setNewTournament({
+        setNewData({
             name: '', kingdom_id: ''
         })
     }
 
     return(
-        <> {/* Create Tournament Form */}
-            {JSON.stringify(newTournament)}
+        <div className="container"> {/* Create Tournament Form */}
+            {JSON.stringify(newData)}
+            {JSON.stringify(store.tournaments.newTournament)}
             <h2 className="create-tournament-header">Create Tournament</h2>
-            <form className="create-tournament-form" onSubmit={addNewTournament}>
+            <form className="create-tournament-form" onSubmit={addNewData}>
                 {/* Tournament Name Input */}
                 <input required text="text" className="create-tournament-input"
                     placeholder="Tournament Name"
-                    value={newTournament.name}
-                    onChange={(event) => setNewTournament({...newTournament, name: event.target.value})}
+                    value={newData.name}
+                    onChange={(event) => setNewData({...newData, name: event.target.value})}
                 />
                 {/* Tournament Kingdom Drop Down Select */}
                 <select required className="create-tournament-select"
-                    value={newTournament.kingdom_id}
-                    onChange={(event) => setNewTournament({...newTournament, kingdom_id: event.target.value})}>
-                <option value="" disabled selected>Tournament Location</option>
-                    {kingdoms.map((kingdom) => (
-                        <option value={kingdom.id}>{kingdom.name}</option>
-                    ))}
+                    value={newData.kingdom_id}
+                    onChange={(event) => setNewData({...newData, kingdom_id: event.target.value})}>
+                    <option value="" disabled selected>Tournament Location</option>
+                        {kingdoms.map((kingdom) => (
+                            <option 
+                                key={kingdom.id}
+                                value={kingdom.id}>
+                                    {kingdom.name}
+                            </option>
+                        ))}
                 </select>
                 {/* <select
                     className="create-tournament-select"
@@ -69,7 +74,7 @@ function CreateTournament() {
                     Next
                 </Button>
             </form>
-        </>
+        </div>
     )
 }
 

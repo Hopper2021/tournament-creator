@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import TournamentDetail from '../TournamentDetail/TournamentDetail';
 import CreateTournament from '../CreateTournament/CreateTournament';
 import CreateTournamentType from '../CreateTournamentType/CreateTournamentType';
+import CreateTournamentEntrants from '../CreateTournamentEntrants/CreateTournamentEntrants';
 
 import './App.css';
 
@@ -109,6 +110,10 @@ function App() {
 
           <Route exact path="/create/data">
             <CreateTournament />
+          </Route>
+
+          <Route exact path="/create/entrants">
+            <CreateTournamentEntrants />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

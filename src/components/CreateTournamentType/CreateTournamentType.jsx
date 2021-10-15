@@ -7,7 +7,7 @@ function CreateTournamentType() {
     const dispatch = useDispatch();
     const history = useHistory();
     const types = useSelector(store => store.types)
-    const [tournamentType, setTournamentType] = useState({ type_id: '' })
+    const [newType, setNewType] = useState({ type_id: '' })
 
     useEffect(() => {
         dispatch({ type: 'FETCH_TYPES' })
@@ -15,28 +15,28 @@ function CreateTournamentType() {
 
     const handleClick = (event) => {
         console.log('Type Id in handle-click - ', event.target.value);
-        setTournamentType(event.target.value)
-        dispatch({ type: 'SET_NEW_TYPE', payload: tournamentType });
+        setNewType(event.target.value)
+        dispatch({ type: 'SET_NEW_TYPE', payload: newType });
         history.push('/create/data')
     }
 
     return(
-        <>
-            <h3>Tournament Type</h3>
-            {JSON.stringify(types)}
+        <div >
+            <h2 className="create-tournament-header">Tournament Type</h2>
+            {/* {JSON.stringify(types)} */}
             <div className="grid">
                 {types.map((type) => (
-                    <div className="grid-col grid-col_5">
-                        <button
-                            className="type-button"
+                    <div className="grid-col grid-col_6">
+                        <Button className="type-button" variant="contained"
+                            key={type.id}
                             value={type.id} 
                             onClick={(event) => handleClick(event)}>
-                            {type.name}
-                        </button>
+                                {type.name}
+                        </Button>
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 
