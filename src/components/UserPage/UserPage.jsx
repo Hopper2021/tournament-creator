@@ -4,14 +4,22 @@ import { useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import PersonIcon from '@mui/icons-material/Person';
 import Button from '@mui/material/Button';
+import { red } from '@mui/material/colors';
+import { useHistory } from 'react-router-dom';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector( (store) => store.user );
   const store = useSelector(store => store)
+  const history = useHistory();
+
+  const moveToEdit = () => {
+    history.push('/user/edit');
+  }
+
   return (
     <div className="container">
-      <h2 className="create-tournament-header">Welcome, {user.username}!</h2>
+      <h2 className="create-tournament-header">Welcome, {user.persona}!</h2>
       <div id="avatar-div">
         <Avatar 
           id="avatar"
@@ -19,17 +27,14 @@ function UserPage() {
           <PersonIcon sx={{ width: 200, height: 200 }}/>
         </Avatar>
       </div>
-      <Button variant='contained' sx={{ float: 'right', mb: 2 }}>
+      <Button variant='contained' sx={{ float: 'right', mb: 2, bgcolor: red[900] }}
+        onClick={moveToEdit}>
         Edit
       </Button>
       <table id="entrants">
         <tr>
-          <td>Id:</td>
-          <td>{user.id}</td>
-        </tr>
-        <tr>
-          <td>Persona:</td>
-          <td>{user.persona}</td>
+          <td>Username:</td>
+          <td>{user.username}</td>
         </tr>
         <tr>
           <td>Kingdom:</td>
@@ -38,6 +43,10 @@ function UserPage() {
         <tr>
           <td>Park:</td>
           <td>Stoneborn Keep</td>
+        </tr>
+        <tr>
+          <td>Tournaments:</td>
+          <td>4</td>
         </tr>
       </table>
       <LogOutButton className="btn" />

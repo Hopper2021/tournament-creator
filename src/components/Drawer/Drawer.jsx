@@ -92,7 +92,7 @@ export default function TemporaryDrawer() {
     <>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <DehazeIcon sx={{ width: 30, height: 30 }} onClick={toggleDrawer(anchor, true)}>{anchor}</DehazeIcon>
+          <DehazeIcon sx={{ width: 40, height: 40, ml: 1, mr: 1 }} onClick={toggleDrawer(anchor, true)}>{anchor}</DehazeIcon>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

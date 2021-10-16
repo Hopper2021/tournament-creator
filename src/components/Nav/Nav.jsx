@@ -11,6 +11,7 @@ function Nav() {
 
   return (
     <div className="nav">
+      <img id="symbol" src="symbol.jpeg"/>
       <Link to="/home">
         <h2 className="nav-title">Tournament Creator</h2>
       </Link>
