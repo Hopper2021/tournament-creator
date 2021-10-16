@@ -158,7 +158,7 @@ Drawer
 -------------------------------------------------------------------------------- */
 
 #drawer {
-  padding-right: 30px;
+  padding-right: 20px;
   color: white;
   font-size: larger;
 }
@@ -167,8 +167,13 @@ Drawer
 Tournament Form
 -------------------------------------------------------------------------------- */
 
-.create-tournament-form, .create-tournament-header {
+.create-tournament-form {
   text-align: center;
+}
+
+.create-tournament-header {
+  text-align: center;
+  margin-top: 0;
 }
 
 .create-tournament-input {

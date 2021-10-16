@@ -10,7 +10,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CreateIcon from '@mui/icons-material/Create';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SearchIcon from '@mui/icons-material/Search';
@@ -28,7 +27,6 @@ export default function TemporaryDrawer() {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setState({ ...state, [anchor]: open });
   };
 
@@ -41,46 +39,50 @@ export default function TemporaryDrawer() {
     >
       <List>
         <Link to="/user">
-            <ListItem>
+            <ListItem sx={{ mt: 1 }}>
+            {/* <ListItemText sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>Profile</ListItemText> */}
                 <ListItemIcon>
-                    {<AccountCircleIcon />}
+                    {<AccountCircleIcon sx={{ width: 50, height: 50 }}/>}
                 </ListItemIcon>
-                <ListItemText>Profile</ListItemText>
+            <ListItemText sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>Profile</ListItemText>
             </ListItem>
         </Link>
         <Link to="/info">
-            <ListItem>
+            <ListItem sx={{ mt: 1 }}>
+            {/* <ListItemText sx={{ textAlign: 'center' }}>My Tournaments</ListItemText> */}
                 <ListItemIcon>
-                    {<MenuBookIcon />}
+                    {<MenuBookIcon sx={{ width: 50, height: 50 }}/>}
                 </ListItemIcon>
-                <ListItemText>My Tournaments</ListItemText>
+            <ListItemText sx={{ textAlign: 'center' }}>My Tournaments</ListItemText>
             </ListItem>
         </Link>
         <Link to="/create/type">
-            <ListItem>
+            <ListItem sx={{ mt: 1 }}>
+            {/* <ListItemText sx={{ textAlign: 'center' }}>Create Tournament</ListItemText> */}
                 <ListItemIcon>
-                    {<PlaylistAddIcon />}
+                    {<PlaylistAddIcon sx={{ width: 50, height: 50 }}/>}
                 </ListItemIcon>
-                <ListItemText>Create Tournament</ListItemText>
+            <ListItemText sx={{ textAlign: 'center' }}>Create Tournament</ListItemText>
             </ListItem>
         </Link>
         <Link to="/about">
-            <ListItem>
+            <ListItem sx={{ mt: 1 }}>
+            {/* <ListItemText sx={{ textAlign: 'center' }}>Search</ListItemText> */}
                 <ListItemIcon>
-                    {<SearchIcon />}
+                    {<SearchIcon sx={{ width: 50, height: 50 }}/>}
                 </ListItemIcon>
-                <ListItemText>Search</ListItemText>
+            <ListItemText sx={{ textAlign: 'center' }}>Search</ListItemText>
             </ListItem>
         </Link>
       </List>
       <Divider />
         <List> 
-            {<ListItem id="logout" button key={'Logout'}
+            {<ListItem id="logout" button key={'Logout'} sx={{ mt: 2 }}
             onClick={() => dispatch({ type: 'LOGOUT' })}>
                 <ListItemIcon>
-                    {<LogoutIcon/>}
+                    {<LogoutIcon sx={{ width: 50, height: 50 }}/>}
                 </ListItemIcon>
-                <ListItemText primary={'Logout'} />
+            <ListItemText primary={'Logout'} sx={{ textAlign: 'center' }} />
             </ListItem>}
         </List>
     </Box>
@@ -90,7 +92,7 @@ export default function TemporaryDrawer() {
     <>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <DehazeIcon onClick={toggleDrawer(anchor, true)}>{anchor}</DehazeIcon>
+          <DehazeIcon sx={{ width: 30, height: 30 }} onClick={toggleDrawer(anchor, true)}>{anchor}</DehazeIcon>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

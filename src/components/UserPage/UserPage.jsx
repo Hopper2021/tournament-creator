@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import PersonIcon from '@mui/icons-material/Person';
+import Button from '@mui/material/Button';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -18,13 +19,27 @@ function UserPage() {
           <PersonIcon sx={{ width: 200, height: 200 }}/>
         </Avatar>
       </div>
-      {/* <p>Your ID is: {user.id}</p> */}
-      {/* <p className="profile-data">
-        Persona Name: {user.persona}
-      </p> */}
-      <p className="profile-data">
-        Under construction!
-      </p>
+      <Button variant='contained' sx={{ float: 'right', mb: 2 }}>
+        Edit
+      </Button>
+      <table id="entrants">
+        <tr>
+          <td>Id:</td>
+          <td>{user.id}</td>
+        </tr>
+        <tr>
+          <td>Persona:</td>
+          <td>{user.persona}</td>
+        </tr>
+        <tr>
+          <td>Kingdom:</td>
+          <td>Polaris</td>
+        </tr>
+        <tr>
+          <td>Park:</td>
+          <td>Stoneborn Keep</td>
+        </tr>
+      </table>
       <LogOutButton className="btn" />
     </div>
   );

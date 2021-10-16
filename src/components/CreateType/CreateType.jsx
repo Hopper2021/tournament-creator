@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
+import DataUsageIcon from '@mui/icons-material/DataUsage';
+import GridOffIcon from '@mui/icons-material/GridOff';
+import ViewStreamOutlinedIcon from '@mui/icons-material/ViewStreamOutlined';
 
 function CreateTournamentType() {
     const dispatch = useDispatch();
@@ -30,12 +33,15 @@ function CreateTournamentType() {
                     <form className="grid-col grid-col_6"
                         onSubmit={handleClick}>
                         <Button className="type-button" variant="contained"
-                            sx={{ bgcolor: grey[400], color: grey[900] }} 
+                            sx={{ bgcolor: grey[400], color: grey[900],
+                                fontSize: 18, fontWeight: 'heavy' }} 
                             type="submit"
                             key={type.id}
                             value={type.id} 
                             onClick={(event) => setNewType(event.target.value)}>
                                 {type.name}
+                            <br/>
+                            {/* TODO CONDITIONAL RENDERING FOR ICONS */}
                         </Button>
                     </form>
                 ))}

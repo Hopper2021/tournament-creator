@@ -10,6 +10,7 @@ function CreateTournamentEntrants() {
     const store = useSelector(store => store);
     const kingdoms = store.kingdoms;
     const entrants = store.entrants;
+    const kingdom_id = store.entrants.kingdom_id;
     const [counter, setCounter] = useState(1);
 
     useEffect(() => {
@@ -35,8 +36,21 @@ function CreateTournamentEntrants() {
         history.push('/create/scores');
     }
 
+    // const displayKingdomName = (kingdom_id) => {
+    //     let result;
+    //     for ( let k=0; k<kingdoms.length; k++) {
+    //         for ( let e=0; e<entrants.length; e++) {
+    //             if ( k.id == e.kingdom_id ) {
+    //                 return result = k.name;
+    //             }
+    //         }
+    //     }
+    //     return result;
+    // }
+
     return (
         <div className="container">
+            {JSON.stringify(kingdom_id)}
         {/* {JSON.stringify(entrants)}
         {JSON.stringify(newEntrant)} */}
         <h1 className="create-tournament-header">
@@ -82,7 +96,7 @@ function CreateTournamentEntrants() {
             <tr key={entrant.id}>
                 <td>{index + 1}</td>
                 <td>{entrant.persona}</td>
-                <td>{entrant.kingdom_id}</td>
+                <td>{displayKingdomName(entrant.kingdom_id)}</td>
                 <td>{entrant.warriors}</td>
             </tr>
             ))}
