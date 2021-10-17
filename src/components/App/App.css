@@ -158,7 +158,7 @@ Drawer
 -------------------------------------------------------------------------------- */
 
 #drawer {
-  padding-right: 30px;
+  padding-right: 20px;
   color: white;
   font-size: larger;
 }
@@ -167,8 +167,13 @@ Drawer
 Tournament Form
 -------------------------------------------------------------------------------- */
 
-.create-tournament-form, .create-tournament-header {
+.create-tournament-form, .header {
   text-align: center;
+}
+
+.create-tournament-header {
+  text-align: center;
+  margin-top: 0;
 }
 
 .create-tournament-input {
@@ -186,7 +191,7 @@ Tournament Form
 }
 
 /* --------------------------------------------------------------------------------
-Table
+Tables
 -------------------------------------------------------------------------------- */
 
 #entrants {
@@ -198,7 +203,7 @@ Table
   text-align: center;
 }
 
-#entrants td, #customers th {
+#entrants td, #entrants th {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -215,7 +220,41 @@ Table
   color: white;
 }
 
+#scores {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#scores td, #scores th {
+  border: 1px solid #ddd;
+  padding: 0px;
+}
+
+#scores tr:nth-child(even){background-color: #f2f2f2;}
+
+#scores tr:hover {background-color: #ddd;}
+
+#scores th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+}
+
 /* --------------------------------------------------------------------------------
 User Page
 -------------------------------------------------------------------------------- */
 
+.score-table-data {
+  margin: 0px;
+  padding: 0px;
+}
+
+.score {
+  padding: 0px;
+}

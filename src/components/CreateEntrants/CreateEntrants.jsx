@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { red } from '@mui/material/colors';
+import DisplayKingdomName from '../DisplayKingdomName/DisplayKingdomName';
 
 function CreateTournamentEntrants() {
     const dispatch = useDispatch();
@@ -10,6 +11,7 @@ function CreateTournamentEntrants() {
     const store = useSelector(store => store);
     const kingdoms = store.kingdoms;
     const entrants = store.entrants;
+    const kingdom_id = store.entrants.kingdom_id;
     const [counter, setCounter] = useState(1);
 
     useEffect(() => {
@@ -34,11 +36,28 @@ function CreateTournamentEntrants() {
     const createTournament = () => {
         history.push('/create/scores');
     }
+    
+    // TODO Trying to show kingdom name to table instead of kingdom id
+    const displayKingdomName = (kingdom_id) => {
+        let result;
+        for ( let i=0; i<kingdoms.length; i++) {
+            if ( kingdoms[i].id == kingdom_id ) {
+                let result = kingdoms[i].name;
+            }
+            // for ( let i=0; i<entrants.length; i++) {
+            //     if ( kingdoms[i].id == entrants[i].kingdom_id ) {
+            //         return result = kingdoms[i].name;
+            //     }
+            // }
+        }
+        return result;
+        console.log('Result - ', result);
+    }
 
     return (
         <div className="container">
-        {/* {JSON.stringify(entrants)}
-        {JSON.stringify(newEntrant)} */}
+        {JSON.stringify(store.tournaments.newTournament)}
+        {JSON.stringify(store.entrants)}
         <h1 className="create-tournament-header">
             {store.tournaments.newTournament.name}
         </h1>
@@ -53,7 +72,7 @@ function CreateTournamentEntrants() {
             <select required className="create-tournament-select"
                 value={newEntrant.kingdom_id}
                 onChange={(event) => setNewEntrant({...newEntrant, kingdom_id: event.target.value})}>
-                <option value="" disabled selected>Tournament Location</option>
+                <option value="" disabled selected>Kingdom</option>
                     {kingdoms.map((kingdom) => (
                         <option value={kingdom.id}>{kingdom.name}</option>
                     ))}
@@ -82,7 +101,7 @@ function CreateTournamentEntrants() {
             <tr key={entrant.id}>
                 <td>{index + 1}</td>
                 <td>{entrant.persona}</td>
-                <td>{entrant.kingdom_id}</td>
+                <DisplayKingdomName entrant={entrant} />
                 <td>{entrant.warriors}</td>
             </tr>
             ))}
@@ -91,7 +110,7 @@ function CreateTournamentEntrants() {
             sx={{bgcolor: red[900]}}
             id="create-tournament-button"
             variant="contained">
-                Create Tournament
+                Start Tournament
         </Button>
         </div>
     )
