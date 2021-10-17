@@ -26,7 +26,7 @@ function CreateTournamentType() {
 
     return (
         <div >
-            <h2 className="create-tournament-header">Select Type</h2>
+            <h2 className="header">Select Type</h2>
             {/* {JSON.stringify(types)} */}
             <div className="grid">
                 {types.map((type) => (

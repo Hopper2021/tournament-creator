@@ -23,7 +23,7 @@ function Nav() {
             Login / Register
           </Link>
         }
-
+        
         {/* If a user is logged in, show these links */}
         {/* {user.id && (
           <>
@@ -44,6 +44,9 @@ function Nav() {
             </LogOutButton>
           </>
         )} */}
+
+        {/* TODO If user is NOT logged in, all links in drawer should bring them to the login screen */}
+
         <div id="drawer">
           <Drawer/>
         </div>
