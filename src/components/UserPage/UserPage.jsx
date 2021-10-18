@@ -30,10 +30,18 @@ function UserPage() {
           <PersonIcon sx={{ width: 200, height: 200 }}/>
         </Avatar>
       </div>
+      { !editPage && 
       <Button variant='contained' sx={{ float: 'right', mb: 2, bgcolor: red[900] }}
         onClick={toggleEdit}>
         Edit
       </Button>
+      }
+      { editPage && 
+      <Button variant='contained' sx={{ float: 'right', mb: 2, bgcolor: red[900] }}
+        onClick={toggleEdit}>
+        Done
+      </Button>
+      }
 
       { !editPage && 
       <div>
