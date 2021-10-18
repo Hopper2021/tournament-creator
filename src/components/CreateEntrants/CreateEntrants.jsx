@@ -5,8 +5,10 @@ import Button from '@mui/material/Button';
 import { red } from '@mui/material/colors';
 import DisplayKingdomName from '../DisplayKingdomName/DisplayKingdomName';
 import CreateScoresItem from '../CreateScoresItem/CreateScoresItem';
+import { useParams } from 'react-router-dom';
 
 function CreateTournamentEntrants() {
+    const allParams = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
     const store = useSelector(store => store);
@@ -41,8 +43,7 @@ function CreateTournamentEntrants() {
 
     return (
         <div className="container">
-        {/* {JSON.stringify(store.tournaments.newTournament)}
-        {JSON.stringify(store.entrants)} */}
+        {JSON.stringify(allParams)}
         { !scorePage &&
         <div>
             <h1 className="create-tournament-header">
