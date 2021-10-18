@@ -220,7 +220,9 @@ Tables
   color: white;
 }
 
-#scores {
+/* ---------------------------------------- */
+
+.scores {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -229,28 +231,57 @@ Tables
   text-align: center;
 }
 
-#scores td, #scores th {
+.scores td, .scores th {
   border: 1px solid #ddd;
-  padding: 0px;
+  padding: 10px;
 }
 
-#scores tr:nth-child(even){background-color: #f2f2f2;}
+.scores tr:nth-child(even){background-color: #f2f2f2;}
 
-#scores tr:hover {background-color: #ddd;}
+.scores tr:hover {background-color: #ddd;}
 
-#scores th {
+#th-number {
   padding-top: 12px;
   padding-bottom: 12px;
+  width: 5px;
   text-align: center;
   background-color: #04AA6D;
   color: white;
 }
 
-/* --------------------------------------------------------------------------------
-User Page
--------------------------------------------------------------------------------- */
+#th-persona {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 200px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+}
 
-.score-table-data {
+#th-score {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 300px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+}
+
+#index-table-data {
+  padding: 10px;
+}
+
+/* #persona-table-data {
+  padding: 10px;
+} */
+
+#score-counter {
+  margin: 10px; 
+  text-align: center;
+  font-size:x-large;
+}
+
+#score-table-data {
   margin: 0px;
   padding: 0px;
 }
@@ -258,3 +289,13 @@ User Page
 .score {
   padding: 0px;
 }
+
+/* --------------------------------------------------------------------------------
+User Page
+-------------------------------------------------------------------------------- */
+
+.user-edit-input {
+  font-size: x-large;
+  width: 200px;
+}
+

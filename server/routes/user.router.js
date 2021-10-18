@@ -47,4 +47,15 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.put('/edit', (req, res) => {
+  const userInfo = req.body;
+  console.log('Req.body - ', userInfo);
+  
+  // const sqlText = `UPDATE 
+  //   "user" SET "persona" = $1, 
+  //   "kingdom_id" = $2, 
+  //   "park" = $3
+  //   WHERE "id" = $4`
+})
+
 module.exports = router;

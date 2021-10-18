@@ -29,6 +29,7 @@ function CreateTournament() {
         console.log('Add new Kingdom - ', newKingdom );
         dispatch({ type: 'SET_NEW_NAME', payload: newName })
         dispatch({ type: 'SET_NEW_KINGDOM', payload: newKingdom })
+        // dispatch({ type: 'CREATE_TOURNAMENT' })
         history.push('/create/entrants');
     }
 

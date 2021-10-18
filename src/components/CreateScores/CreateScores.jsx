@@ -14,11 +14,11 @@ function CreateScores () {
             <h2 className="create-tournament-header">{tournamentName}</h2>
             {/* {JSON.stringify(store.tournaments.newTouranment)}
             {JSON.stringify(store.entrants)} */}
-            <table id="scores">
+            <table className="scores">
                 <tr>
-                    <th>#</th>
-                    <th>Persona</th>
-                    <th>Score</th>
+                    <th id="th-number">#</th>
+                    <th id="th-persona">Persona</th>
+                    <th id="th-score">Score</th>
                     {/* <th>Highest Streak</th> */}
                 </tr>
                 {entrants.map((entrant, index) => (

@@ -8,6 +8,8 @@ function LoginPage() {
   return (
     <div className="container">
       <h2>Welcome</h2>
+      <p>This tournament creator is meant to assist in live score tracking and provide an easy reference place for tournaments.</p>
+      <p>Happy Creating!</p>
       <LoginForm />
 
       <center>
