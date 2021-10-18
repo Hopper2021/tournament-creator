@@ -76,7 +76,7 @@ export default function TemporaryDrawer() {
         </Link>
       </List>
       <Divider />
-        <List> 
+        <List > 
             {<ListItem id="logout" button key={'Logout'} sx={{ mt: 2 }}
             onClick={() => dispatch({ type: 'LOGOUT' })}>
                 <ListItemIcon>

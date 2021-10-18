@@ -33,6 +33,14 @@ function UserPage() {
     dispatch({ type: 'UPDATE_USER', payload: userInfo })
     setEditPage(!editPage); 
   }
+  
+  const displayName = () => {
+    for (let i=0; i<kingdoms.length; i++) {
+        if ( kingdoms[i].id == user.kingdom_id ) {
+            return kingdoms[i].name;
+        }
+    }
+  }
 
   return (
     <div className="container">
@@ -60,11 +68,11 @@ function UserPage() {
           </tr>
           <tr>
             <td>Kingdom:</td>
-            <td>Polaris</td>
+            <td>{displayName(user.kingdom_id)}</td> 
           </tr>
           <tr>
             <td>Park:</td>
-            <td>Stoneborn Keep</td>
+            <td>{user.park}</td>
           </tr>
           <tr>
             <td>Tournaments:</td>
@@ -82,7 +90,7 @@ function UserPage() {
             type="submit">
                 Done
           </Button>
-            {JSON.stringify(userInfo)}
+            {/* {JSON.stringify(userInfo)} */}
           <table id="entrants">
             <tr>
                 <td>Persona:</td>
@@ -114,7 +122,7 @@ function UserPage() {
                 <td>Park:</td>
                 <td>
                     <input className="user-edit-input"
-                        placeholder="Park Name"
+                        placeholder={user.park}
                         onChange={(event) => setUserInfo({...userInfo, park: event.target.value})}
                     />
                 </td>

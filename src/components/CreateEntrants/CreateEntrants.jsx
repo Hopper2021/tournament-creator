@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { red } from '@mui/material/colors';
 import DisplayKingdomName from '../DisplayKingdomName/DisplayKingdomName';
+import CreateScoresItem from '../CreateScoresItem/CreateScoresItem';
 
 function CreateTournamentEntrants() {
     const dispatch = useDispatch();
@@ -11,16 +12,16 @@ function CreateTournamentEntrants() {
     const store = useSelector(store => store);
     const kingdoms = store.kingdoms;
     const entrants = store.entrants;
+    const [scorePage, setScorePage] = useState(false);
     const [counter, setCounter] = useState(1);
-
+    const [newEntrant, setNewEntrant] = useState({
+        id: '', persona: '', kingdom_id: '', warriors: '', score: ''
+    });
+    
     useEffect(() => {
         console.log('Fetching kingdoms in create tournament');
         dispatch({ type: 'FETCH_KINGDOMS' })
     }, [])
-
-    const [newEntrant, setNewEntrant] = useState({
-        id: '', persona: '', kingdom_id: '', warriors: '', score: ''
-    });
 
     const addEntrant = (event) => {
         event.preventDefault();
@@ -33,19 +34,21 @@ function CreateTournamentEntrants() {
         })
     }
 
-    const createTournament = () => {
-        history.push('/create/scores');
+    const toggleScores = () => {
+        setScorePage(!scorePage);
+        // history.push('/create/scores');
     }
 
     return (
         <div className="container">
-        {JSON.stringify(store.tournaments.newTournament)}
-        {JSON.stringify(store.entrants)}
-
+        {/* {JSON.stringify(store.tournaments.newTournament)}
+        {JSON.stringify(store.entrants)} */}
+        { !scorePage &&
+        <div>
             <h1 className="create-tournament-header">
                 {store.tournaments.newTournament.name}
             </h1>
-            <h2 className="create-tournament-header" >
+            <h2 className="create-tournament-header">
                 Entrant # {counter}
             </h2>
             <form 
@@ -93,17 +96,37 @@ function CreateTournamentEntrants() {
                 <tr key={entrant.id}>
                     <td>{index + 1}</td>
                     <td>{entrant.persona}</td>
-                    <DisplayKingdomName entrant={entrant} />
+                    <DisplayKingdomName entrant={entrant} setNewEntrant={setNewEntrant}/>
                     <td>{entrant.warriors}</td>
                 </tr>
                 ))}
             </table>
-            <Button onClick={createTournament}
+            <Button onClick={toggleScores}
                 sx={{ bgcolor: red[900] }}
                 id="create-tournament-button"
                 variant="contained">
                     Start Tournament
             </Button>
+        </div>
+        }
+        { scorePage && 
+        <div>
+            <h2 className="create-tournament-header">{store.tournaments.newTournament.name}</h2>
+            {/* {JSON.stringify(store.tournaments.newTouranment)}
+            {JSON.stringify(store.entrants)} */}
+            <table className="scores">
+                <tr>
+                    <th id="th-number">#</th>
+                    <th id="th-persona">Persona</th>
+                    <th id="th-score">Score</th>
+                    {/* <th>Highest Streak</th> */}
+                </tr>
+                {entrants.map((entrant, index) => (
+                    <CreateScoresItem entrant={entrant} index={index} setNewEntrant={setNewEntrant}/>
+                ))}
+            </table>
+        </div>
+        }
         </div>
     )
 }

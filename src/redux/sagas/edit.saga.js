@@ -5,7 +5,8 @@ function* updateUser(action) {
     try {
       const userInfo = action.payload;
       console.log('User info in user saga - ', userInfo);
-      axios.post( '/api/user/edit', userInfo )
+      yield axios.post( '/api/user/edit', userInfo )
+      yield put({ type: 'SET_USER' })
     } catch (error) {
       console.log('Error in updateUser in user saga - ', error);
       alert('Unable to update user info.')

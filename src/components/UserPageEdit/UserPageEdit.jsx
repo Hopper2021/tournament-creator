@@ -31,7 +31,7 @@ function UserPageEdit () {
         <div>
         { editPage && 
         <form onSubmit={submitInfo}>
-            <Button variant='contained' sx={{ float: 'right', mb: 2, bgcolor: red[900] }}
+            <Button variant='contained' sx={{ float: 'right', mb: 2 }}
             type="submit"
             onClick={toggleEdit}>
                 Done
