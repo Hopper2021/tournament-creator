@@ -261,22 +261,22 @@ Tables
 #th-score {
   padding-top: 12px;
   padding-bottom: 12px;
-  width: 200px;
+  width: 300px;
   text-align: center;
   background-color: #04AA6D;
   color: white;
 }
 
 #index-table-data {
-  padding: 50px;
+  padding: 10px;
 }
 
 #persona-table-data {
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 #score-counter {
-  padding: 10px;
+  margin: 10px; 
   text-align: center;
   font-size:x-large;
 }
