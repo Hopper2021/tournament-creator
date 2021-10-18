@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
@@ -6,15 +6,18 @@ import PersonIcon from '@mui/icons-material/Person';
 import Button from '@mui/material/Button';
 import { red } from '@mui/material/colors';
 import { useHistory } from 'react-router-dom';
+import UserPageEdit from '../UserPageEdit/UserPageEdit';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector( (store) => store.user );
   const store = useSelector(store => store)
   const history = useHistory();
+  const [editPage, setEditPage] = useState(false);
 
-  const moveToEdit = () => {
-    history.push('/user/edit');
+  const toggleEdit = () => {
+    console.log('Clicked toggleEdit! Value - ', editPage);
+    setEditPage(!editPage); 
   }
 
   return (
@@ -28,28 +31,39 @@ function UserPage() {
         </Avatar>
       </div>
       <Button variant='contained' sx={{ float: 'right', mb: 2, bgcolor: red[900] }}
-        onClick={moveToEdit}>
+        onClick={toggleEdit}>
         Edit
       </Button>
-      <table id="entrants">
-        <tr>
-          <td>Username:</td>
-          <td>{user.username}</td>
-        </tr>
-        <tr>
-          <td>Kingdom:</td>
-          <td>Polaris</td>
-        </tr>
-        <tr>
-          <td>Park:</td>
-          <td>Stoneborn Keep</td>
-        </tr>
-        <tr>
-          <td>Tournaments:</td>
-          <td>4</td>
-        </tr>
-      </table>
-      <LogOutButton className="btn" />
+
+      { !editPage && 
+      <div>
+        <table id="entrants"> 
+          <tr>
+            <td>Username:</td>
+            <td>{user.username}</td>
+          </tr>
+          <tr>
+            <td>Kingdom:</td>
+            <td>Polaris</td>
+          </tr>
+          <tr>
+            <td>Park:</td>
+            <td>Stoneborn Keep</td>
+          </tr>
+          <tr>
+            <td>Tournaments:</td>
+            <td>4</td>
+          </tr>
+        </table>
+        <LogOutButton className="btn" /> 
+      </div>
+      }
+
+      { editPage && 
+      <div>
+        <UserPageEdit />
+      </div>
+      }
     </div>
   );
 }
