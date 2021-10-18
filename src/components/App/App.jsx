@@ -24,6 +24,7 @@ import CreateTournament from '../CreateTournament/CreateTournament';
 import CreateType from '../CreateType/CreateType';
 import CreateEntrants from '../CreateEntrants/CreateEntrants';
 import CreateScores from '../CreateScores/CreateScores';
+import UserPageEdit from '../UserPageEdit/UserPageEdit';
 
 import './App.css';
 
@@ -62,6 +63,10 @@ function App() {
           <ProtectedRoute exact path="/user" >
             <UserPage />
           </ProtectedRoute>
+
+          <Route exact path="/user/edit">
+            <UserPageEdit />
+          </Route>
 
           {/* logged in shows InfoPage else shows LoginPage */}
           <ProtectedRoute exact path="/info">
