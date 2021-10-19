@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 
 function CreateTournamentEntrants() {
     const allParams = useParams();
+    const tournamentId = allParams.id;
     const dispatch = useDispatch();
     const history = useHistory();
     const store = useSelector(store => store);
@@ -21,7 +22,7 @@ function CreateTournamentEntrants() {
     });
     
     useEffect(() => {
-        console.log('Fetching kingdoms in create tournament');
+        console.log('Fetching new tournament in useEffect - ', allParams.id);
         dispatch({ type: 'FETCH_KINGDOMS' })
     }, [])
 
@@ -32,23 +33,24 @@ function CreateTournamentEntrants() {
         console.log(newEntrant); 
         dispatch({ type: 'ADD_ENTRANT', payload: newEntrant })
         setNewEntrant({
-            id: '', persona: '', kingdom_id: '', warriors: '', score: ''
+            persona: '', kingdom_id: '', warriors: '', score: ''
         })
     }
 
     const toggleScores = () => {
         setScorePage(!scorePage);
+        console.log('Score page boolean - ', scorePage);
         // history.push('/create/scores');
     }
 
     return (
         <div className="container">
-        {JSON.stringify(allParams)}
+            {JSON.stringify(store.tournaments.newTournament)}
+        <h2 className="create-tournament-header">
+            {store.tournaments.newTournament.name}
+        </h2>
         { !scorePage &&
         <div>
-            <h1 className="create-tournament-header">
-                {store.tournaments.newTournament.name}
-            </h1>
             <h2 className="create-tournament-header">
                 Entrant # {counter}
             </h2>

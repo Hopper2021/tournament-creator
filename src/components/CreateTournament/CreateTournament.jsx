@@ -8,6 +8,7 @@ function CreateTournament() {
     const store = useSelector(store => store)
     const types = store.types;
     const kingdoms = store.kingdoms;
+    const tournaments = store.tournaments; 
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -26,13 +27,16 @@ function CreateTournament() {
     const addNewData = (event) => {
         event.preventDefault();
         dispatch({ type: 'POST_NEW_TOURNAMENT', payload: newTournament })
-        history.push('/create/entrants');
+        console.log('Post');
+        dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
+        history.push(`/create/entrants`);
     }
 
     return(
         <div className="container">
             {/* Base Tournament Information Form */}
             {JSON.stringify(newTournament)}
+            {JSON.stringify(tournaments.selectedTournament)}
             <h2 className="create-tournament-header">Complete Base Information</h2>
             <form className="create-tournament-form" onSubmit={addNewData}>
                 {/* Tournament Name Input */}

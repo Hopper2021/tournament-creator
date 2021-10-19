@@ -15,6 +15,8 @@ const selectedTournament = (state = {}, action) => {
     switch ( action.type ) {
         case 'SET_TOURNAMENT_DETAILS':
             return action.payload;
+        case 'SET_NEW_TOURNAMENT':
+                return action.payload;
         default:
             return state;
     }

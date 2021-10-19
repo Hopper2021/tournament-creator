@@ -46,7 +46,7 @@ function* postNewTournament(action) {
         const tournament = action.payload;
         console.log('Tournament in post new Tournament saga - ', tournament );
         
-        axios.post( '/api/tournament/create', tournament )
+        yield axios.post( '/api/tournament/create', tournament )
         yield put({ type: 'FETCH_MY_TOURNAMENTS' })
     } catch (error) {
         console.log('Error in POST new tournament - ', error);
@@ -54,10 +54,22 @@ function* postNewTournament(action) {
     }
 }
 
+function* fetchNewTournament() {
+    try {
+        const newestTournament = yield axios.get( 'api/tournament/new');
+        yield put({ type: 'SET_NEW_TOURNAMENT', payload: newestTournament.data })
+        console.log('Newest Tournament data - ', newestTournament.data);
+    } catch (error) {
+        console.log('Error in GET new tournament - ', error);
+        alert('Something went wrong! Unable to fetch new tournament.')
+    }
+}
+
 function* tournamentSaga() {
     yield takeLatest( 'FETCH_MY_TOURNAMENTS', fetchMyTournaments ),
     yield takeLatest( 'FETCH_TOURNAMENT_DETAILS', fetchTournamentDetails )
     yield takeLatest( 'FETCH_TOURNAMENT_ENTRANTS', fetchTournamentEntrants )
+    yield takeLatest( 'FETCH_NEW_TOURNAMENT', fetchNewTournament )
     yield takeLatest( 'POST_NEW_TOURNAMENT', postNewTournament )
 }
 

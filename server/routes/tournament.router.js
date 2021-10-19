@@ -103,4 +103,19 @@ router.post('/create', rejectUnauthenticated, (req, res) => {
     }) 
 });
 
+// Get newest tournament
+router.get('/new', rejectUnauthenticated, (req, res) => {
+    const sqlText = `
+        SELECT * FROM "tournament"
+        ORDER BY "tournament"."id" DESC LIMIT 1;`;
+    pool.query(sqlText)
+    .then((result) => {
+        console.log('Newest tournament GET - ', result.rows[0]);
+        res.send(result.rows[0]); }) 
+    .catch((error) => {
+        console.log('Error in getting newest tournament - ', error);
+        res.sendStatus(500);
+    })
+})
+
 module.exports = router;
