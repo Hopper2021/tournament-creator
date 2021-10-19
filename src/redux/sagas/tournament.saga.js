@@ -56,7 +56,7 @@ function* postNewTournament(action) {
 
 function* fetchNewTournament() {
     try {
-        const newestTournament = yield axios.get( 'api/tournament/new');
+        const newestTournament = yield axios.get( 'api/tournament/new' );
         yield put({ type: 'SET_NEW_TOURNAMENT', payload: newestTournament.data })
         console.log('Newest Tournament data - ', newestTournament.data);
     } catch (error) {

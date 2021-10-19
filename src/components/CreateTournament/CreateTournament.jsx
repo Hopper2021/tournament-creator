@@ -27,8 +27,6 @@ function CreateTournament() {
     const addNewData = (event) => {
         event.preventDefault();
         dispatch({ type: 'POST_NEW_TOURNAMENT', payload: newTournament })
-        console.log('Post');
-        dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
         history.push(`/create/entrants`);
     }
 
@@ -36,7 +34,7 @@ function CreateTournament() {
         <div className="container">
             {/* Base Tournament Information Form */}
             {JSON.stringify(newTournament)}
-            {JSON.stringify(tournaments.selectedTournament)}
+            {JSON.stringify(tournaments.newTournament)}
             <h2 className="create-tournament-header">Complete Base Information</h2>
             <form className="create-tournament-form" onSubmit={addNewData}>
                 {/* Tournament Name Input */}

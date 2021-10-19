@@ -9,43 +9,46 @@ import { useParams } from 'react-router-dom';
 
 function CreateTournamentEntrants() {
     const allParams = useParams();
-    const tournamentId = allParams.id;
     const dispatch = useDispatch();
     const history = useHistory();
     const store = useSelector(store => store);
     const kingdoms = store.kingdoms;
     const entrants = store.entrants;
+    const tournamentId = store.tournaments.newTournament.id;
     const [scorePage, setScorePage] = useState(false);
     const [counter, setCounter] = useState(1);
     const [newEntrant, setNewEntrant] = useState({
-        id: '', persona: '', kingdom_id: '', warriors: '', score: ''
+        tourny_id: tournamentId, persona: '', kingdom_id: '', warriors: '', score: ''
     });
     
     useEffect(() => {
         console.log('Fetching new tournament in useEffect - ', allParams.id);
         dispatch({ type: 'FETCH_KINGDOMS' })
-    }, [])
+        dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
+        setNewEntrant({ tourny_id: tournamentId })
+    }, [tournamentId])
 
     const addEntrant = (event) => {
         event.preventDefault();
         const index = setCounter(counter + 1); // displays entrant number, which is one more than the index
-        setNewEntrant({...newEntrant, id: index})
-        console.log(newEntrant); 
+        setNewEntrant({ tourny_id: tournamentId })
         dispatch({ type: 'ADD_ENTRANT', payload: newEntrant })
+        // dispatch({ type: 'SET_TOURNAMENT_ID', payload: tournamentId })
         setNewEntrant({
-            persona: '', kingdom_id: '', warriors: '', score: ''
+            tourny_id: tournamentId, persona: '', kingdom_id: '', warriors: '', score: ''
         })
     }
 
     const toggleScores = () => {
         setScorePage(!scorePage);
         console.log('Score page boolean - ', scorePage);
-        // history.push('/create/scores');
+        history.push('/create/scores');
     }
 
     return (
         <div className="container">
             {JSON.stringify(store.tournaments.newTournament)}
+            {JSON.stringify(store.entrants)}
         <h2 className="create-tournament-header">
             {store.tournaments.newTournament.name}
         </h2>
