@@ -15,33 +15,32 @@ function CreateTournamentEntrants() {
     const kingdoms = store.kingdoms;
     const entrants = store.entrants;
     const tournamentId = store.tournaments.newTournament.id;
-    const [scorePage, setScorePage] = useState(false);
     const [counter, setCounter] = useState(1);
     const [newEntrant, setNewEntrant] = useState({
         tourny_id: tournamentId, persona: '', kingdom_id: '', warriors: '', score: ''
     });
     
     useEffect(() => {
-        console.log('Fetching new tournament in useEffect - ', allParams.id);
         dispatch({ type: 'FETCH_KINGDOMS' })
-        dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
+        dispatch({ type: 'FETCH_NEW_TOURNAMENT' }) // Grabs most recently created tournament // TODO BY THIS USER
         setNewEntrant({ tourny_id: tournamentId })
-    }, [tournamentId])
+    }, [tournamentId]) // Attaches current tournament Id to entrant for database use
 
     const addEntrant = (event) => {
         event.preventDefault();
         const index = setCounter(counter + 1); // displays entrant number, which is one more than the index
         setNewEntrant({ tourny_id: tournamentId })
+        // post the entrant to the server
+        dispatch({ type: 'POST_ENTRANT', payload: newEntrant });
+
         dispatch({ type: 'ADD_ENTRANT', payload: newEntrant })
-        // dispatch({ type: 'SET_TOURNAMENT_ID', payload: tournamentId })
         setNewEntrant({
             tourny_id: tournamentId, persona: '', kingdom_id: '', warriors: '', score: ''
         })
     }
 
-    const toggleScores = () => {
-        setScorePage(!scorePage);
-        console.log('Score page boolean - ', scorePage);
+    const moveToScores = () => {
+        // dispatch({ type: 'POST_ENTRANT', payload: entrant });
         history.push('/create/scores');
     }
 
@@ -52,8 +51,6 @@ function CreateTournamentEntrants() {
         <h2 className="create-tournament-header">
             {store.tournaments.newTournament.name}
         </h2>
-        { !scorePage &&
-        <div>
             <h2 className="create-tournament-header">
                 Entrant # {counter}
             </h2>
@@ -107,32 +104,12 @@ function CreateTournamentEntrants() {
                 </tr>
                 ))}
             </table>
-            <Button onClick={toggleScores}
+            <Button onClick={moveToScores}
                 sx={{ bgcolor: red[900] }}
                 id="create-tournament-button"
                 variant="contained">
                     Start Tournament
             </Button>
-        </div>
-        }
-        { scorePage && 
-        <div>
-            <h2 className="create-tournament-header">{store.tournaments.newTournament.name}</h2>
-            {/* {JSON.stringify(store.tournaments.newTouranment)}
-            {JSON.stringify(store.entrants)} */}
-            <table className="scores">
-                <tr>
-                    <th id="th-number">#</th>
-                    <th id="th-persona">Persona</th>
-                    <th id="th-score">Score</th>
-                    {/* <th>Highest Streak</th> */}
-                </tr>
-                {entrants.map((entrant, index) => (
-                    <CreateScoresItem entrant={entrant} index={index} setNewEntrant={setNewEntrant}/>
-                ))}
-            </table>
-        </div>
-        }
         </div>
     )
 }

@@ -4,7 +4,8 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import tournamentSaga from './tournament.saga';
 import kingdomSaga from './kingdom.saga';
-import typeSaga from './type.saga'
+import typeSaga from './type.saga';
+import entrantSaga from './entrant.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     tournamentSaga(),
     kingdomSaga(),
     typeSaga(),
+    entrantSaga()
   ]);
 }

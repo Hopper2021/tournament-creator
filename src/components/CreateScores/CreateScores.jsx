@@ -1,7 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import DoDisturbOnIcon from '@mui/icons-material/DoDisturbOn';
 import CreateScoresItem from '../CreateScoresItem/CreateScoresItem';
 
 function CreateScores () {

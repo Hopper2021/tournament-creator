@@ -118,4 +118,34 @@ router.get('/new', rejectUnauthenticated, (req, res) => {
     })
 })
 
+router.post( '/create/entrant', rejectUnauthenticated, (req, res) => {
+    console.log('Req.body in post entrants - ', req.body);
+    
+    const entrant = req.body;
+    const sqlText = `
+        INSERT INTO "entrant" ("persona", "kingdom_id", "warriors")
+        VALUES ($1, $2, $3)
+        RETURNING id;`;
+    // First create the entrant in the entrant table
+    pool.query(sqlText, 
+        [entrant.persona, entrant.kingdom_id, entrant.warriors])
+    .then((result) => {
+        // Receive back the created entrants id in the "entrants" table
+        console.log('The entrant id is - ', result.rows[0].id); // Logs undefined
+        const createdEntrantId = result.rows[0].id;
+
+        // Post the entrant and the tournament they're participating in
+        const assignToTournament = `
+            INSERT INTO "tournament_entrant" ("tournament_id", "entrant_id")
+            VALUES ($1, $2);`;
+
+        pool.query(assignToTournament, [entrant.tourny_id, createdEntrantId]) })
+    .then((result) => {
+        res.sendStatus(200); })
+    .catch((error) => {
+        console.log('Error in POST new entrants - ', error);
+        res.sendStatus(500);
+    })
+})
+
 module.exports = router;
