@@ -36,7 +36,7 @@ The user's profile can be edited by clicking the edit button. The inputs can the
 
 ### Navigation
 
-The user can navigate throughout the app by clicking on the drawer icon in the upper right hand corner to open the menu.
+The user can navigate throughout the app by clicking on the drawer icon in the upper right hand corner to open the menu. Clicking on any of the options inside of the menu will close the drawer and navigate to that page, otherwise the user can click outside of the drawer to return to the current page.
 
 ![navigation](public/images/navigation2.png)
 
