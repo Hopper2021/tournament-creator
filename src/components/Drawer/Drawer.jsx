@@ -38,42 +38,42 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <Link to="/user">
-            <ListItem sx={{ mt: 1 }}>
-            {/* <ListItemText sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>Profile</ListItemText> */}
+            <ListItem sx={{ mt: 1 }}
+            onClick={() => history.push('/user')}>
                 <ListItemIcon>
                     {<AccountCircleIcon sx={{ width: 50, height: 50 }}/>}
                 </ListItemIcon>
-            <ListItemText sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>Profile</ListItemText>
+                <ListItemText sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>
+                    Profile
+                </ListItemText>
             </ListItem>
-        </Link>
-        <Link to="/info">
-            <ListItem sx={{ mt: 1 }}>
-            {/* <ListItemText sx={{ textAlign: 'center' }}>My Tournaments</ListItemText> */}
+            <ListItem sx={{ mt: 1 }}
+            onClick={() => history.push('/info')}>
                 <ListItemIcon>
                     {<MenuBookIcon sx={{ width: 50, height: 50 }}/>}
                 </ListItemIcon>
-            <ListItemText sx={{ textAlign: 'center' }}>My Tournaments</ListItemText>
+                <ListItemText sx={{ textAlign: 'center' }}>
+                    My Tournaments
+                </ListItemText>
             </ListItem>
-        </Link>
-        <Link to="/create/data">
-            <ListItem sx={{ mt: 1 }}>
-            {/* <ListItemText sx={{ textAlign: 'center' }}>Create Tournament</ListItemText> */}
+            <ListItem sx={{ mt: 1 }}
+            onClick={() => history.push('/create/data')}>
                 <ListItemIcon>
                     {<PlaylistAddIcon sx={{ width: 50, height: 50 }}/>}
                 </ListItemIcon>
-            <ListItemText sx={{ textAlign: 'center' }}>Create Tournament</ListItemText>
-            </ListItem>
-        </Link>
-        <Link to="/about">
-            <ListItem sx={{ mt: 1 }}>
-            {/* <ListItemText sx={{ textAlign: 'center' }}>Search</ListItemText> */}
+                <ListItemText sx={{ textAlign: 'center' }}>
+                    Create Tournament
+                </ListItemText>
+            </ListItem> 
+            <ListItem sx={{ mt: 1 }}
+            onClick={() => history.push('/about')}>
                 <ListItemIcon>
                     {<SearchIcon sx={{ width: 50, height: 50 }}/>}
                 </ListItemIcon>
-            <ListItemText sx={{ textAlign: 'center' }}>Search</ListItemText>
+                <ListItemText sx={{ textAlign: 'center' }}>
+                    Search
+                </ListItemText>
             </ListItem>
-        </Link>
       </List>
       <Divider />
         <List > 

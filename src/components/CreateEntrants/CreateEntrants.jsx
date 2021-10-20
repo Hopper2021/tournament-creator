@@ -25,6 +25,7 @@ function CreateTournamentEntrants() {
         dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
         // Grabs entrants associated with most recently made tournament
         dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
+        fetchEntrants();
         setNewEntrant({ tourny_id: tournament.id })
     }, [tournament.id]) // Attaches current tournament Id to entrant for database use
 
@@ -55,8 +56,8 @@ function CreateTournamentEntrants() {
 
     return (
         <div className="container">
-            {JSON.stringify(store.tournaments.newTournament)}
-            {JSON.stringify(store.entrants.entrantList)}
+            {/* {JSON.stringify(store.tournaments.newTournament)} */}
+            {/* {JSON.stringify(store.entrants.entrantList)} */}
             {/* {JSON.stringify(store.tournaments.selectedEntrants)} */}
         <h2 className="create-tournament-header">
             {store.tournaments.newTournament.name}

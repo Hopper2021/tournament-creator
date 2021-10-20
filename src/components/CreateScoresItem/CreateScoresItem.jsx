@@ -22,14 +22,14 @@ function CreateScoresItem({ entrant, index }) {
         if ( newScore > 0 ) {
             setNewScore(newScore - 1);
         }
-        // dispatch({ type: 'SET_ENTRANT_SCORE', payload: entrantScore })
+        dispatch({ type: 'SET_ENTRANT_SCORE', payload: entrantScore })
     }
 
     const handlePlus = () => {
         if ( newScore >= 0 ) {
             setNewScore(newScore + 1); 
         }
-        // dispatch({ type: 'SET_ENTRANT_SCORE', payload: entrantScore })
+        dispatch({ type: 'SET_ENTRANT_SCORE', payload: entrantScore })
     }
 
     return(

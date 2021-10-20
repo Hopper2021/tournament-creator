@@ -38,8 +38,8 @@ function CreateTournament() {
     return(
         <div className="container">
             {/* Base Tournament Information Form */}
-            {JSON.stringify(newTournament)}
-            {JSON.stringify(tournaments.newTournament)}
+            {/* {JSON.stringify(newTournament)}
+            {JSON.stringify(tournaments.newTournament)} */}
             <h2 className="create-tournament-header">Complete Base Information</h2>
             <form className="create-tournament-form" onSubmit={addNewData}>
                 {/* Tournament Name Input */}
