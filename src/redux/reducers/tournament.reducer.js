@@ -4,6 +4,13 @@ const tournamentReducer = (state = [], action) => {
     switch ( action.type ) {
         case 'SET_MY_TOURNAMENTS':
             return action.payload;
+        default:
+            return state;
+    }
+}
+
+const selectedEntrants = (state = [], action) => {
+    switch ( action.type ) {
         case 'SET_TOURNAMENT_ENTRANTS':
             return action.payload;
         default:
@@ -40,5 +47,6 @@ const newTournament = (state = {}, action) => {
 export default combineReducers({
     tournamentReducer,
     selectedTournament, 
+    selectedEntrants,
     newTournament,
 });

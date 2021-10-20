@@ -46,7 +46,8 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
 router.get('/details/entrants/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id - ', req.params.id);
     const sqlText = `
-        SELECT "entrant"."persona" AS "persona", "tournament_entrant"."score", "entrant"."warriors" FROM "tournament_entrant"
+        SELECT "entrant"."id", "entrant"."persona" AS "persona", "tournament_entrant"."score", 
+        "entrant"."warriors", "entrant"."kingdom_id" FROM "tournament_entrant"
         JOIN "tournament" ON "tournament_entrant"."tournament_id" = "tournament"."id"
         JOIN "entrant" on "entrant"."id" = "tournament_entrant"."entrant_id"
         WHERE "tournament"."id" = $1
@@ -105,10 +106,13 @@ router.post('/create', rejectUnauthenticated, (req, res) => {
 
 // Get newest tournament
 router.get('/new', rejectUnauthenticated, (req, res) => {
+    console.log('Req.user id - ', req.user.id);
+    
     const sqlText = `
         SELECT * FROM "tournament"
+        WHERE "tournament"."user_id" = $1
         ORDER BY "tournament"."id" DESC LIMIT 1;`;
-    pool.query(sqlText)
+    pool.query(sqlText, [req.user.id])
     .then((result) => {
         console.log('Newest tournament GET - ', result.rows[0]);
         res.send(result.rows[0]); }) 
@@ -147,5 +151,21 @@ router.post( '/create/entrant', rejectUnauthenticated, (req, res) => {
         res.sendStatus(500);
     })
 })
+
+// router.get( '/fetchSelectedEntrants', rejectUnauthenticated, (req, res) => {
+//     const tournamentId = req.body;
+//     console.log('req.body in fetchSelected - ', tournamentId);
+    
+//     const sqlText = `
+//         SELECT * FROM "entrant"
+//         JOIN "tournament_entrant" ON "tournament_entrant"."entrant_id" = "entrant"."id"
+//         WHERE "tournament_id" = $1`;
+//     pool.query(sqlText, [tournamentId])
+//     .then((results) => {
+//         res.send(results.rows) })
+//     .catch((error) => {
+//         res.sendStatus(500)
+//     })
+// })
 
 module.exports = router;

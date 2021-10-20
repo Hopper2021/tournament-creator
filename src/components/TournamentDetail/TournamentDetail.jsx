@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function tournamentDetail() {
     const tournament = useSelector(store => store.tournaments.selectedTournament);
-    const entrants = useSelector(store => store.tournaments.tournamentReducer)
+    const entrants = useSelector(store => store.tournaments.selectedEntrants)
     const store = useReduxStore();
     const dispatch = useDispatch();
     // This destructured param matched the /:id listed on the route in App.jsx

@@ -4,38 +4,44 @@ import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { red } from '@mui/material/colors';
 import DisplayKingdomName from '../DisplayKingdomName/DisplayKingdomName';
-import CreateScoresItem from '../CreateScoresItem/CreateScoresItem';
 import { useParams } from 'react-router-dom';
 
 function CreateTournamentEntrants() {
-    const allParams = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
     const store = useSelector(store => store);
     const kingdoms = store.kingdoms;
-    const entrants = store.entrants;
-    const tournamentId = store.tournaments.newTournament.id;
+    const entrants = store.tournaments.selectedEntrants;
+    const selectedEntrants = store.entrants.selectedEntrants;
+    const tournament = store.tournaments.newTournament;
     const [counter, setCounter] = useState(1);
     const [newEntrant, setNewEntrant] = useState({
-        tourny_id: tournamentId, persona: '', kingdom_id: '', warriors: '', score: ''
+        tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
     });
     
     useEffect(() => {
+        // Grabs all kingdoms to display the name each time the id is referenced
         dispatch({ type: 'FETCH_KINGDOMS' })
-        dispatch({ type: 'FETCH_NEW_TOURNAMENT' }) // Grabs most recently created tournament // TODO BY THIS USER
-        setNewEntrant({ tourny_id: tournamentId })
-    }, [tournamentId]) // Attaches current tournament Id to entrant for database use
+        // Grabs most recently created tournament // TODO BY THIS USER
+        dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
+        // Grabs entrants associated with most recently made tournament
+        dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
+        setNewEntrant({ tourny_id: tournament.id })
+    }, [tournament.id]) // Attaches current tournament Id to entrant for database use
 
     const addEntrant = (event) => {
         event.preventDefault();
-        const index = setCounter(counter + 1); // displays entrant number, which is one more than the index
-        setNewEntrant({ tourny_id: tournamentId })
+        // displays entrant number, which is one more than the index
+        const index = setCounter(counter + 1);
+        setNewEntrant({ tourny_id: tournament.id })
         // post the entrant to the server
         dispatch({ type: 'POST_ENTRANT', payload: newEntrant });
-
-        dispatch({ type: 'ADD_ENTRANT', payload: newEntrant })
+        // Add entrant to entrants reducer
+        console.log('tournament in addEntrant button - ', tournament);
+        // Grabs entrants associated with most recently made tournament
+        dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
         setNewEntrant({
-            tourny_id: tournamentId, persona: '', kingdom_id: '', warriors: '', score: ''
+            tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
         })
     }
 
@@ -47,7 +53,8 @@ function CreateTournamentEntrants() {
     return (
         <div className="container">
             {JSON.stringify(store.tournaments.newTournament)}
-            {JSON.stringify(store.entrants)}
+            {JSON.stringify(store.entrants.entrantList)}
+            {/* {JSON.stringify(store.tournaments.selectedEntrants)} */}
         <h2 className="create-tournament-header">
             {store.tournaments.newTournament.name}
         </h2>

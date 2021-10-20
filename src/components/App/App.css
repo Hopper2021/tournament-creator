@@ -176,6 +176,10 @@ Tournament Form
   margin-top: 0;
 }
 
+#type-display {
+  text-align: center;
+}
+
 .create-tournament-input {
   font-size: x-large;
   text-align: center;

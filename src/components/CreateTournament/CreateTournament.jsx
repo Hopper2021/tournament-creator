@@ -27,6 +27,7 @@ function CreateTournament() {
     const addNewData = (event) => {
         event.preventDefault();
         dispatch({ type: 'POST_NEW_TOURNAMENT', payload: newTournament })
+        dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
         history.push(`/create/entrants`);
     }
 
