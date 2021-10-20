@@ -10,7 +10,7 @@ This application is intended to fill a technology gap for the international non-
 
 Amtgard is an international-non-profit that is also a medival / fantasy L.A.R.P. (Live Action Role Play) Imagine a reneissance festival. A prominant portion of amtgard centers around their games which can include games like `capture-the-flag`, or `ring the bell` all while simulating `medieval combat` with padded, safe and no-where close to real "weapons". Because of the nature of these games the sport frequently hosts tournaments where members face off against each other in 1 vs 1 medieval combat. Winning these tournaments is highly revered by members and many chase the recognition that comes with placing in them.
 
-![amtgard](public/amtgard.png)
+![amtgard](public/images/amtgard.png)
 
 ## How is tournament information currently tracked?
 
@@ -18,14 +18,32 @@ By pen and paper. Tournaments are held in parks or camp grounds far from most ou
 
 An example of official paperwork for live score keeping (`left`) and results (`right`).
 
-![scores](public/images/scores.png) ![results](public/images/results.png)
+![scores](public/images/scores.png =250x250) ![results](public/images/results.png =250x250)
 
 ## Pages
 
 ### Registration / Login
 
-### Profile
+![registration](public/images/registration.png) ![login](public/images/login.png)
 
-### My Tournaments
+### Profile / Edit Profile
 
-### 
+![profile](public/images/profile.png)![editProfile](public/images/edit-profile.png)
+
+### My Tournaments / Tournament Details
+
+![myTournaments](public/images/my-tournaments.png) ![tournamentDetails](public/images/tournament-details.png)
+
+## Create Tournament
+
+### Create Base Information
+
+![createTournament1](public/images/create-tournament-1-blank.png)![createTournament1Filled](public/images/create-tournament-1-filled.png)
+
+### Create Entrants
+
+![createEntrants](public/images/create-tournament-2-entrants.png)
+
+### Create Scores
+
+![createScores](public/images/create-tournament-3-scores.png)
