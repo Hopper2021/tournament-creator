@@ -8,6 +8,8 @@ This application is intended to fill a technology gap for the international non-
 
 ## What is Amtgard?
 
+https://www.amtgard.com/
+
 Amtgard is an international-non-profit that is also a medival / fantasy L.A.R.P. (Live Action Role Play) Imagine a reneissance festival. A prominant portion of amtgard centers around their games ( ex. `capture-the-flag` ), all while simulating `medieval combat` with padded, safe and no-where close to real "weapons". Because of the nature of these games the sport frequently hosts tournaments where members face off against each other in 1 vs 1 medieval combat. Winning these tournaments is highly revered within the community and many chase the recognition that comes with placing in them.
 
 ![amtgard](public/images/amtgard.png)
