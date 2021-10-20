@@ -18,7 +18,7 @@ By pen and paper. Tournaments are held in parks or camp grounds far from most ou
 
 An example of official paperwork for live score keeping (`left`) and results (`right`).
 
-![scores](public/images/scores.png width=40px height=400px) ![results](public/images/results.png width=40px height=400px)
+![scores](public/images/scores.png) ![results](public/images/results.png)
 
 ## Pages
 
