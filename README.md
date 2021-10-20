@@ -16,4 +16,16 @@ Amtgard is an international-non-profit that is also a medival / fantasy L.A.R.P.
 
 By pen and paper. Tournaments are held in parks or camp grounds far from most outlets and sometimes even a stable internet connection. Once the tournament is complete a short announcement is made by word of mouth stating the highest placements. The details of the tournament ( entrants, scores, placements ) are then typed by hand into a laptop or facebook post a few days later by the tournament organizer once they return home from said event.
 
-# More to come!
+An example of official paperwork for live score keeping (`left`) and results (`right`).
+
+![scores](public/images/scores.png) ![results](public/images/results.png)
+
+## Pages
+
+### Registration / Login
+
+### Profile
+
+### My Tournaments
+
+### 

@@ -12,7 +12,6 @@ function CreateTournamentEntrants() {
     const store = useSelector(store => store);
     const kingdoms = store.kingdoms;
     const entrants = store.tournaments.selectedEntrants;
-    const selectedEntrants = store.entrants.selectedEntrants;
     const tournament = store.tournaments.newTournament;
     const [counter, setCounter] = useState(1);
     const [newEntrant, setNewEntrant] = useState({
@@ -26,6 +25,7 @@ function CreateTournamentEntrants() {
         dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
         // Grabs entrants associated with most recently made tournament
         dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
+        fetchEntrants();
         setNewEntrant({ tourny_id: tournament.id })
     }, [tournament.id]) // Attaches current tournament Id to entrant for database use
 
@@ -39,10 +39,14 @@ function CreateTournamentEntrants() {
         // Add entrant to entrants reducer
         console.log('tournament in addEntrant button - ', tournament);
         // Grabs entrants associated with most recently made tournament
-        dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
+        fetchEntrants();
         setNewEntrant({
             tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
         })
+    }
+
+    const fetchEntrants = () => {
+        dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
     }
 
     const moveToScores = () => {
@@ -52,8 +56,8 @@ function CreateTournamentEntrants() {
 
     return (
         <div className="container">
-            {JSON.stringify(store.tournaments.newTournament)}
-            {JSON.stringify(store.entrants.entrantList)}
+            {/* {JSON.stringify(store.tournaments.newTournament)} */}
+            {/* {JSON.stringify(store.entrants.entrantList)} */}
             {/* {JSON.stringify(store.tournaments.selectedEntrants)} */}
         <h2 className="create-tournament-header">
             {store.tournaments.newTournament.name}

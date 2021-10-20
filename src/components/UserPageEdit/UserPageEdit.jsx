@@ -20,6 +20,7 @@ function UserPageEdit () {
     const toggleEdit = () => {
         setEditPage(!editPage); 
         console.log('On edit page? - ', editPage);
+        dispatch({ type: 'FETCH_USER' })
       }
 
     const submitInfo = () => {

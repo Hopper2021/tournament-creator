@@ -27,15 +27,19 @@ function CreateTournament() {
     const addNewData = (event) => {
         event.preventDefault();
         dispatch({ type: 'POST_NEW_TOURNAMENT', payload: newTournament })
-        dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
+        dispatchFetch();
         history.push(`/create/entrants`);
+    }
+
+    const dispatchFetch = () => {
+        dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
     }
 
     return(
         <div className="container">
             {/* Base Tournament Information Form */}
-            {JSON.stringify(newTournament)}
-            {JSON.stringify(tournaments.newTournament)}
+            {/* {JSON.stringify(newTournament)}
+            {JSON.stringify(tournaments.newTournament)} */}
             <h2 className="create-tournament-header">Complete Base Information</h2>
             <form className="create-tournament-form" onSubmit={addNewData}>
                 {/* Tournament Name Input */}
@@ -73,10 +77,10 @@ function CreateTournament() {
                 {/* {JSON.stringify(types)} */}
                 <div className="grid">
                     {types.map((type) => (
-                        <div className="grid-col grid-col_3">
+                        <div className="select-type">
                             <Button className="type-button" variant="contained"
                                 sx={{ bgcolor: grey[400], color: grey[900],
-                                    fontSize: 18, fontWeight: 'heavy' }} 
+                                    fontSize: 16, m: .4, mb: 4 }} 
                                 key={type.id}
                                 value={type.id} 
                                 onClick={(event) => setNewTournament({...newTournament, type_id: event.target.value})}>
