@@ -90,7 +90,7 @@ function UserPage() {
             type="submit">
                 Done
           </Button>
-            {JSON.stringify(userInfo)}
+            {/* {JSON.stringify(userInfo)} */}
           <table id="entrants">
             <tr>
                 <td>Persona:</td>
