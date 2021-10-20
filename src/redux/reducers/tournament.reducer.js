@@ -4,6 +4,13 @@ const tournamentReducer = (state = [], action) => {
     switch ( action.type ) {
         case 'SET_MY_TOURNAMENTS':
             return action.payload;
+        default:
+            return state;
+    }
+}
+
+const selectedEntrants = (state = [], action) => {
+    switch ( action.type ) {
         case 'SET_TOURNAMENT_ENTRANTS':
             return action.payload;
         default:
@@ -26,14 +33,12 @@ const blankTournament = {
     type_id: ''
 };
 
-const newTournament = (state = blankTournament, action) => {
+const newTournament = (state = {}, action) => {
     switch ( action.type ) {
-        case 'SET_NEW_TYPE':
-            return {...state, type_id: action.payload};
-        case 'SET_NEW_NAME':
-            return {...state, name: action.payload};
-        case 'SET_NEW_KINGDOM':
-            return {...state, kingdom_id: action.payload};
+        case 'POST_NEW_TOURNAMENT':
+            return action.payload;
+        case 'SET_NEW_TOURNAMENT':
+            return action.payload;
         default:
             return state;
     }    
@@ -42,5 +47,6 @@ const newTournament = (state = blankTournament, action) => {
 export default combineReducers({
     tournamentReducer,
     selectedTournament, 
+    selectedEntrants,
     newTournament,
 });

@@ -4,50 +4,60 @@ import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { red } from '@mui/material/colors';
 import DisplayKingdomName from '../DisplayKingdomName/DisplayKingdomName';
-import CreateScoresItem from '../CreateScoresItem/CreateScoresItem';
+import { useParams } from 'react-router-dom';
 
 function CreateTournamentEntrants() {
     const dispatch = useDispatch();
     const history = useHistory();
     const store = useSelector(store => store);
     const kingdoms = store.kingdoms;
-    const entrants = store.entrants;
-    const [scorePage, setScorePage] = useState(false);
+    const entrants = store.tournaments.selectedEntrants;
+    const selectedEntrants = store.entrants.selectedEntrants;
+    const tournament = store.tournaments.newTournament;
     const [counter, setCounter] = useState(1);
     const [newEntrant, setNewEntrant] = useState({
-        id: '', persona: '', kingdom_id: '', warriors: '', score: ''
+        tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
     });
     
     useEffect(() => {
-        console.log('Fetching kingdoms in create tournament');
+        // Grabs all kingdoms to display the name each time the id is referenced
         dispatch({ type: 'FETCH_KINGDOMS' })
-    }, [])
+        // Grabs most recently created tournament // TODO BY THIS USER
+        dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
+        // Grabs entrants associated with most recently made tournament
+        dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
+        setNewEntrant({ tourny_id: tournament.id })
+    }, [tournament.id]) // Attaches current tournament Id to entrant for database use
 
     const addEntrant = (event) => {
         event.preventDefault();
-        const index = setCounter(counter + 1); // displays entrant number, which is one more than the index
-        setNewEntrant({...newEntrant, id: index})
-        console.log(newEntrant); 
-        dispatch({ type: 'ADD_ENTRANT', payload: newEntrant })
+        // displays entrant number, which is one more than the index
+        const index = setCounter(counter + 1);
+        setNewEntrant({ tourny_id: tournament.id })
+        // post the entrant to the server
+        dispatch({ type: 'POST_ENTRANT', payload: newEntrant });
+        // Add entrant to entrants reducer
+        console.log('tournament in addEntrant button - ', tournament);
+        // Grabs entrants associated with most recently made tournament
+        dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
         setNewEntrant({
-            id: '', persona: '', kingdom_id: '', warriors: '', score: ''
+            tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
         })
     }
 
-    const toggleScores = () => {
-        setScorePage(!scorePage);
-        // history.push('/create/scores');
+    const moveToScores = () => {
+        // dispatch({ type: 'POST_ENTRANT', payload: entrant });
+        history.push('/create/scores');
     }
 
     return (
         <div className="container">
-        {/* {JSON.stringify(store.tournaments.newTournament)}
-        {JSON.stringify(store.entrants)} */}
-        { !scorePage &&
-        <div>
-            <h1 className="create-tournament-header">
-                {store.tournaments.newTournament.name}
-            </h1>
+            {JSON.stringify(store.tournaments.newTournament)}
+            {JSON.stringify(store.entrants.entrantList)}
+            {/* {JSON.stringify(store.tournaments.selectedEntrants)} */}
+        <h2 className="create-tournament-header">
+            {store.tournaments.newTournament.name}
+        </h2>
             <h2 className="create-tournament-header">
                 Entrant # {counter}
             </h2>
@@ -101,32 +111,12 @@ function CreateTournamentEntrants() {
                 </tr>
                 ))}
             </table>
-            <Button onClick={toggleScores}
+            <Button onClick={moveToScores}
                 sx={{ bgcolor: red[900] }}
                 id="create-tournament-button"
                 variant="contained">
                     Start Tournament
             </Button>
-        </div>
-        }
-        { scorePage && 
-        <div>
-            <h2 className="create-tournament-header">{store.tournaments.newTournament.name}</h2>
-            {/* {JSON.stringify(store.tournaments.newTouranment)}
-            {JSON.stringify(store.entrants)} */}
-            <table className="scores">
-                <tr>
-                    <th id="th-number">#</th>
-                    <th id="th-persona">Persona</th>
-                    <th id="th-score">Score</th>
-                    {/* <th>Highest Streak</th> */}
-                </tr>
-                {entrants.map((entrant, index) => (
-                    <CreateScoresItem entrant={entrant} index={index} setNewEntrant={setNewEntrant}/>
-                ))}
-            </table>
-        </div>
-        }
         </div>
     )
 }

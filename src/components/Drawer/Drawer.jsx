@@ -56,7 +56,7 @@ export default function TemporaryDrawer() {
             <ListItemText sx={{ textAlign: 'center' }}>My Tournaments</ListItemText>
             </ListItem>
         </Link>
-        <Link to="/create/type">
+        <Link to="/create/data">
             <ListItem sx={{ mt: 1 }}>
             {/* <ListItemText sx={{ textAlign: 'center' }}>Create Tournament</ListItemText> */}
                 <ListItemIcon>

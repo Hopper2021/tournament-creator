@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import { red } from '@mui/material/colors';
+import { red, grey } from '@mui/material/colors';
 
 function CreateTournament() {
     const store = useSelector(store => store)
-    const tournament = store.tournaments.tournamentReducer;
     const types = store.types;
     const kingdoms = store.kingdoms;
+    const tournaments = store.tournaments; 
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [newKingdom, setNewKingdom] = useState('');
-    const [newName, setNewName] = useState('');
+    const [newTournament, setNewTournament] = useState({
+        name: '', kingdom_id: '', type_id: ''
+    })
 
     // Fetches kingdoms and types on page load for dropdowns
     useEffect(() => {
@@ -25,30 +26,28 @@ function CreateTournament() {
     // Dispatch new tournament data to tournament reducer
     const addNewData = (event) => {
         event.preventDefault();
-        console.log('Add new Name - ', newName );
-        console.log('Add new Kingdom - ', newKingdom );
-        dispatch({ type: 'SET_NEW_NAME', payload: newName })
-        dispatch({ type: 'SET_NEW_KINGDOM', payload: newKingdom })
-        // dispatch({ type: 'CREATE_TOURNAMENT' })
-        history.push('/create/entrants');
+        dispatch({ type: 'POST_NEW_TOURNAMENT', payload: newTournament })
+        dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
+        history.push(`/create/entrants`);
     }
 
     return(
-        <div className="container"> {/* Create Tournament Form */}
-            {/* {JSON.stringify(newData)} */}
-            {/* {JSON.stringify(store.tournaments.newTournament)} */}
+        <div className="container">
+            {/* Base Tournament Information Form */}
+            {JSON.stringify(newTournament)}
+            {JSON.stringify(tournaments.newTournament)}
             <h2 className="create-tournament-header">Complete Base Information</h2>
             <form className="create-tournament-form" onSubmit={addNewData}>
                 {/* Tournament Name Input */}
                 <input required text="text" className="create-tournament-input"
                     placeholder="Tournament Name"
-                    value={newName}
-                    onChange={(event) => setNewName(event.target.value)}
+                    value={newTournament.name}
+                    onChange={(event) => setNewTournament({...newTournament, name: event.target.value})}
                 />
                 {/* Tournament Kingdom Drop Down Select */}
                 <select required className="create-tournament-select"
-                    value={newKingdom}
-                    onChange={(event) => setNewKingdom(event.target.value)}>
+                    value={newTournament.kingdom_id}
+                    onChange={(event) => setNewTournament({...newTournament, kingdom_id: event.target.value})}>
                     <option value="" disabled selected>Tournament Location</option>
                         {kingdoms.map((kingdom) => (
                             <option 
@@ -69,8 +68,27 @@ function CreateTournament() {
                 </select> */}
 
                 <br/>
+
+                <h2 className="header">Select Type</h2>
+                {/* {JSON.stringify(types)} */}
+                <div className="grid">
+                    {types.map((type) => (
+                        <div className="grid-col grid-col_3">
+                            <Button className="type-button" variant="contained"
+                                sx={{ bgcolor: grey[400], color: grey[900],
+                                    fontSize: 18, fontWeight: 'heavy' }} 
+                                key={type.id}
+                                value={type.id} 
+                                onClick={(event) => setNewTournament({...newTournament, type_id: event.target.value})}>
+                                    {type.name}
+                                <br/>
+                                {/* TODO CONDITIONAL RENDERING FOR ICONS */}
+                            </Button>
+                        </div>
+                    ))}
+                </div>
                 <Button type="submit" className="Button"
-                    sx={{bgcolor: red[900]}}
+                    sx={{ bgcolor: red[900] }}
                     variant="contained"> 
                     Next
                 </Button>

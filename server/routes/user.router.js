@@ -47,15 +47,22 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.put('/edit', (req, res) => {
-  const userInfo = req.body;
-  console.log('Req.body - ', userInfo);
+router.put('/', (req, res) => {
+  const userData = req.body;
+  console.log('Req.body - ', userData);
   
-  // const sqlText = `UPDATE 
-  //   "user" SET "persona" = $1, 
-  //   "kingdom_id" = $2, 
-  //   "park" = $3
-  //   WHERE "id" = $4`
+  const sqlText = `UPDATE 
+      "user" SET "persona" = $1, 
+      "kingdom_id" = $2, 
+      "park" = $3
+      WHERE "id" = $4;`;
+  pool.query(sqlText, [userData.persona, userData.kingdom_id, userData.park, req.user.id])
+    .then((result) => {
+      res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error updating user - ', error);
+      res.sendStatus(500);
+    })
 })
 
 module.exports = router;
