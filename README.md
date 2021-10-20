@@ -24,7 +24,7 @@ An example of official paperwork for live score keeping (`left`) and results (`r
 
 ### Registration / Login
 
-Registration currently only requires a username and password. However some other information can be added through the user profile.
+Registration currently only requires a username and password. However some other information can be added through the user profile. Once the user either creates a profile or logs in, they are redirected to their profile page.
 
 ![registration](public/images/registration.png)  ![login](public/images/login.png)
 
@@ -42,7 +42,8 @@ The user can navigate throughout the app by clicking on the drawer icon in the u
 
 ### My Tournaments / Tournament Details
 
-Tournaments listed on this page are the ones created by the logged in user. Each card can be clicked on to bring you to that tournaments detail page (`right`).
+This page is reached by clicking `My Tournaments` in the nav drawer.
+Tournaments listed on this page are the ones created by the logged in user. Each card can be clicked on to bring you to that tournament's detail page (`right`).
 
 ![myTournaments](public/images/my-tournaments.png)  ![tournamentDetails](public/images/tournament-details.png)
 
@@ -51,7 +52,8 @@ Tournaments listed on this page are the ones created by the logged in user. Each
 
 ### Create Base Information
 
-Base information and 1 of 3 type ( ex. `pits` ) are selected. This information will be used as search criteria in the search page.
+This page is reached by clicking `Create Tournaments` in the nav drawer.
+Base information and 1 of 3 type ( ex. `pits` ) are selected. This information will be used as search criteria in the search page. Clicking on the `next` button will bring you to the `Create Entrants` page.
 
 Future additions: `Categories`
 
@@ -59,13 +61,13 @@ Future additions: `Categories`
 
 ### Create Entrants
 
-Entrants made here are assigned to the tournament created on the previous page. Once all entrants are added, clicking the `start tournament` button will navigate to the live score keeping page.
+Entrants made here are assigned to the tournament created on the previous page. As the entrant is entered with the `Add Entrant` button they are assigned a number ( `left hand column of table` ) that can be used for tracking individuals in a live setting, even if they have the same name. Once all entrants are added, clicking the `start tournament` button will navigate to the live score keeping page.
 
 ![createEntrants](public/images/create-tournament-2-entrants.png)
 
 ### Create Scores
 
-Scores are tracked for each individual entrant. The display below is the score tracking for the `pits` style tournament.
+Scores are tracked for each individual entrant. The image below is the score tracking for the `pits` style tournament. Clicking the `Show Placements!` button will navigate to that tournament's detail page.
 
 Future additions: `Round robin` and `brackets`
 
