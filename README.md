@@ -18,27 +18,27 @@ By pen and paper. Tournaments are held in parks or camp grounds far from most ou
 
 An example of official paperwork for live score keeping (`left`) and results (`right`).
 
-![scores](public/images/scores.png =250x250) ![results](public/images/results.png =250x250)
+![scores](public/images/scores.png) ![results](public/images/results.png)
 
 ## Pages
 
 ### Registration / Login
 
-![registration](public/images/registration.png) ![login](public/images/login.png)
+![registration](public/images/registration.png)  ![login](public/images/login.png)
 
 ### Profile / Edit Profile
 
-![profile](public/images/profile.png)![editProfile](public/images/edit-profile.png)
+![profile](public/images/profile.png)  ![editProfile](public/images/edit-profile.png)
 
 ### My Tournaments / Tournament Details
 
-![myTournaments](public/images/my-tournaments.png) ![tournamentDetails](public/images/tournament-details.png)
+![myTournaments](public/images/my-tournaments.png)  ![tournamentDetails](public/images/tournament-details.png)
 
 ## Create Tournament
 
 ### Create Base Information
 
-![createTournament1](public/images/create-tournament-1-blank.png)![createTournament1Filled](public/images/create-tournament-1-filled.png)
+![createTournament1](public/images/create-tournament-1-blank.png) ![createTournament1Filled](public/images/create-tournament-1-filled.png)
 
 ### Create Entrants
 
