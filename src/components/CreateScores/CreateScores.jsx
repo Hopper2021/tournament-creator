@@ -48,7 +48,7 @@ function CreateScores () {
                     {/* <th>Highest Streak</th> */}
                 </tr>
                 {entrants.map((entrant, index) => (
-                    <CreateScoresItem entrant={entrant} index={index}/>
+                    <CreateScoresItem entrant={entrant} index={index} setEntrantScore={setEntrantScore}/>
                 ))}
             </table>
             <Button variant="contained" sx={{ float: "right", bgcolor: red[900] }}

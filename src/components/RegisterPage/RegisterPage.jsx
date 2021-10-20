@@ -7,9 +7,13 @@ function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="container">
+      <h2 className="welcome-header">Welcome</h2>
+      <p>This tournament creator app is meant to assist in live score tracking and to provide an easy reference point for past tournament information.</p>
+      <p>Fill out the registration form below to get started.</p>
       <RegisterForm />
 
+      <p>Already registered?</p>
       <center>
         <button
           type="button"
@@ -18,7 +22,7 @@ function RegisterPage() {
             history.push('/login');
           }}
         >
-          Login
+          Login Here
         </button>
       </center>
     </div>

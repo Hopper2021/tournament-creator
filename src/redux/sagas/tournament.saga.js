@@ -48,6 +48,7 @@ function* postNewTournament(action) {
         
         yield axios.post( '/api/tournament/create', tournament )
         yield put({ type: 'FETCH_MY_TOURNAMENTS' })
+        yield put({ type: 'FETCH_NEW_TOURNAMENT' })
     } catch (error) {
         console.log('Error in POST new tournament - ', error);
         alert('Something went wrong! Unable to create tournament.')

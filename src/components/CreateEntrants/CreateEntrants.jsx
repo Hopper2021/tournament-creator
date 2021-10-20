@@ -12,7 +12,6 @@ function CreateTournamentEntrants() {
     const store = useSelector(store => store);
     const kingdoms = store.kingdoms;
     const entrants = store.tournaments.selectedEntrants;
-    const selectedEntrants = store.entrants.selectedEntrants;
     const tournament = store.tournaments.newTournament;
     const [counter, setCounter] = useState(1);
     const [newEntrant, setNewEntrant] = useState({
@@ -39,10 +38,14 @@ function CreateTournamentEntrants() {
         // Add entrant to entrants reducer
         console.log('tournament in addEntrant button - ', tournament);
         // Grabs entrants associated with most recently made tournament
-        dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
+        fetchEntrants();
         setNewEntrant({
             tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
         })
+    }
+
+    const fetchEntrants = () => {
+        dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
     }
 
     const moveToScores = () => {
