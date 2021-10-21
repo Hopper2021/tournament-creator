@@ -69,8 +69,10 @@ Entrants made here are assigned to the tournament created on the previous page. 
 
 ### Create Scores
 
-Scores are tracked for each individual entrant. The image below is the score tracking for the `pits` style tournament. Clicking the `Show Placements!` button will navigate to that tournament's detail page.
+Scores are tracked for each individual entrant. The image below is the score tracking for the `Pits` style tournament. Clicking the `Show Placements!` button will navigate to that tournament's detail page.
 
-Future additions: `Round robin` and `brackets`
+Future additions: `Round Robin` and `Brackets`
 
 ![createScores](public/images/create-tournament-3-scores.png)
+
+## More to come!

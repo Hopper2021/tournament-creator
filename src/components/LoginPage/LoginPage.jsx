@@ -7,7 +7,7 @@ function LoginPage() {
 
   return (
     <div className="container">
-      <h2>Welcome Back!</h2>
+      <h2 >Welcome Back!</h2>
       <LoginForm />
 
       <center>

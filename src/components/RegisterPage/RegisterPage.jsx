@@ -9,8 +9,7 @@ function RegisterPage() {
   return (
     <div className="container">
       <h2 className="welcome-header">Welcome</h2>
-      <p>This tournament creator app is meant to assist in live score tracking and to provide an easy reference point for past tournament information.</p>
-      <p>Fill out the registration form below to get started.</p>
+      <p>Please fill out the registration form below to get started.</p>
       <RegisterForm />
 
       <p>Already registered?</p>
