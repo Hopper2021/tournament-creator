@@ -171,7 +171,20 @@ router.delete ( '/delete/:id', rejectUnauthenticated, async (req, res) => {
 })
 
 router.put( '/score', rejectUnauthenticated, (req, res) => {
-    console.log('Req.body in /score PUT - ', req.body);
+    console.log('Req.body in /score PUT - ', req.body); 
+    const entrant = req.body;
+    const sqlText = `
+        UPDATE "tournament_entrant"
+        SET "score" = $1
+        WHERE "tournament_id" = $2 
+            AND "entrant_id" = $3;`;
+    pool.query(sqlText, [entrant.score, entrant.tournament_id, entrant.entrant_id])
+    .then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('Error in score PUT - ', error);
+        res.sendStatus(500);
+    })
 })
 
 module.exports = router;
