@@ -21,7 +21,6 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TournamentDetail from '../TournamentDetail/TournamentDetail';
 import CreateTournament from '../CreateTournament/CreateTournament';
-import CreateType from '../CreateType/CreateType';
 import CreateEntrants from '../CreateEntrants/CreateEntrants';
 import CreateScores from '../CreateScores/CreateScores';
 import UserPageEdit from '../UserPageEdit/UserPageEdit';

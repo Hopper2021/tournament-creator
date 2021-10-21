@@ -10,7 +10,7 @@ import UserPageEdit from '../UserPageEdit/UserPageEdit';
 
 function UserPage() {
   const dispatch = useDispatch();
-  const user = useSelector( (store) => store.user);
+  const user = useSelector(store => store.user);
   const kingdoms = useSelector(store => store.kingdoms);
   const [editPage, setEditPage] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -47,7 +47,9 @@ function UserPage() {
 
   return (
     <div className="container">
-      <h2 className="create-tournament-header">Welcome, {user.persona}!</h2>
+      <h2 className="create-tournament-header">
+        Welcome, {user.persona}!
+      </h2>
       <div id="avatar-div">
         <Avatar 
           id="avatar"
