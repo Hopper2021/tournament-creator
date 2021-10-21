@@ -7,7 +7,13 @@ import './Footer.css';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return <footer>&copy; Hopper Applications</footer>;
+  return (
+    <div className="push">
+      <footer>
+        &copy; Hopper Applications
+      </footer>
+    </div>
+  )
 }
 
 export default Footer;

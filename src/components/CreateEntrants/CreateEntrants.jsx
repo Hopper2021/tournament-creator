@@ -17,7 +17,7 @@ function CreateTournamentEntrants() {
     const [counter, setCounter] = useState(1);
     // Sets the stage for the information needed by entrant table AND tournament_entrant table
     const [newEntrant, setNewEntrant] = useState({
-        tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
+        tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: 0
     });
     
     useEffect(() => {
@@ -40,7 +40,7 @@ function CreateTournamentEntrants() {
         console.log('tournament in addEntrant button - ', tournament);
         // Resets newEntrant useState
         setNewEntrant({
-            tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
+            tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: 0
         })
     }
 
@@ -81,7 +81,7 @@ function CreateTournamentEntrants() {
                         ))}
                 </select>
                 {/* Warriors input */}
-                <input 
+                <input required
                     type="number" 
                     className="create-tournament-input"
                     placeholder="Orders of the Warrior"

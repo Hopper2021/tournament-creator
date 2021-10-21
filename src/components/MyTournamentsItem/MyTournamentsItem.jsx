@@ -16,7 +16,9 @@ function MyTournamentsItem({ tournament }) {
         <div id="my-tournament-container">
             <Paper id="my-tournament-paper" elevation={8}
                 onClick={viewTournamentDetail}>
-                <h4 id="my-tournament-name">{tournament.tournament_name}</h4>
+                <h4 id="my-tournament-name">
+                    {tournament.tournament_name}
+                </h4>
                 <div id="my-tournament-details">
                     {/* moment is taking in the created date and making it look nice! */}
                     <p><u>Date:</u> {moment(tournament.date).format('MMMM Do YYYY')}</p>

@@ -81,7 +81,7 @@ function tournamentDetail() {
                 </div>
             </Paper>
             <Button variant="contained"
-            sx={{ mt: 5, bgcolor: red[900], float: 'right' }}
+            sx={{ ml: 5, mt: 2, bgcolor: red[900], float: 'right' }}
             onClick={handleDelete}>
                 Delete Tournament
             </Button>

@@ -22,7 +22,7 @@ function UserPage() {
       dispatch({ type: 'FETCH_KINGDOMS' })
   }, [])
 
-  // Toggles conditional rendering of user info edit
+  // Toggles conditional rendering of user info edit from edit button
   const toggleEdit = () => {
     setEditPage(!editPage); 
     console.log('On edit page? - ', editPage);
@@ -48,7 +48,7 @@ function UserPage() {
   return (
     <div className="container">
       <h2 className="create-tournament-header">
-        Welcome, {user.persona}!
+        Welcome, {user.username}!
       </h2>
       <div id="avatar-div">
         <Avatar 
@@ -70,6 +70,10 @@ function UserPage() {
           <tr>
             <td>Username:</td>
             <td>{user.username}</td>
+          </tr>
+          <tr>
+            <td>Persona:</td>
+            <td>{user.persona}</td>
           </tr>
           <tr>
             <td>Kingdom:</td>

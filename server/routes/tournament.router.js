@@ -141,10 +141,10 @@ router.post( '/create/entrant', rejectUnauthenticated, (req, res) => {
 
         // Post the entrant and the tournament they're participating in
         const assignToTournament = `
-            INSERT INTO "tournament_entrant" ("tournament_id", "entrant_id")
-            VALUES ($1, $2);`;
+            INSERT INTO "tournament_entrant" ("tournament_id", "entrant_id", "score")
+            VALUES ($1, $2, $3);`;
 
-        pool.query(assignToTournament, [entrant.tourny_id, createdEntrantId])
+        pool.query(assignToTournament, [entrant.tourny_id, createdEntrantId, 0])
         .then((result) => {
             res.sendStatus(200); })
         .catch((error) => {
