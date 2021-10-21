@@ -8,11 +8,9 @@ import { useHistory } from 'react-router-dom';
 function CreateScores () {
     const dispatch = useDispatch();
     const history = useHistory();
-    const store = useSelector(store => store)
-    const tournament = store.tournaments.newTournament;
-    const entrants = store.tournaments.selectedEntrants;
-    const types = store.types;
-    const tournamentName = useSelector(store => store.tournaments.newTournament.name)
+    const tournament = useSelector(store => store.tournaments.newTournament);
+    const entrants = useSelector(store => store.tournaments.selectedEntrants);
+    const types = useSelector(store => store.types);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_ENTRANTS' })
@@ -22,6 +20,8 @@ function CreateScores () {
         dispatch({ type: 'FETCH_TYPES' })
     }, [])
 
+    /* displays the name of the tournament type based on the 
+       type_id in tournament passed from reduxStore */
     const displayName = () => {
         for (let i=0; i<types.length; i++) {
             if ( types[i].id == tournament.type_id ) {
@@ -30,16 +30,21 @@ function CreateScores () {
         }
     }
 
+    // Moves to detail page for current completed tournament based on params
     const moveToDetails = () => {
         history.push(`/details/${tournament.id}`);
     }
 
     return (
         <div className="container">
-            <h2 className="create-tournament-header">{tournament.name}</h2>
-            {/* <h5 id="create-tournament-header">{displayName(tournament.type_id)}</h5> */}
-            {/* {JSON.stringify(store.tournaments.newTouranment)}
-            {JSON.stringify(entrants)} */}
+            <h2 className="create-tournament-header">
+                {tournament.name}
+            </h2>
+            <h5 id="create-tournament-header">
+                {displayName(tournament.type_id)}
+            </h5>
+            {/* {JSON.stringify(store.tournaments.newTouranment)} */}
+            {/* {JSON.stringify(entrants)} */}
             <table className="scores">
                 <tr>
                     <th id="th-number">#</th>

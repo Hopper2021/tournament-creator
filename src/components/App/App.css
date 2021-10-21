@@ -283,10 +283,6 @@ Tables
   padding: 10px;
 }
 
-/* #persona-table-data {
-  padding: 10px;
-} */
-
 #score-counter {
   margin: 10px; 
   text-align: center;
@@ -300,6 +296,34 @@ Tables
 
 .score {
   padding: 0px;
+}
+
+/*------------------------*/
+
+
+.my-tournament-placements {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.my-tournament-placements th {
+  padding: 10px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-weight: 400;
+}
+
+.my-tournament-placements td {
+  padding: 8px;
+}
+
+#tournament-details-persona {
+  text-align: left;
+}
+
+.my-tournament-placements tr:nth-child(even){
+  background-color: #f2f2f2;
 }
 
 /* --------------------------------------------------------------------------------

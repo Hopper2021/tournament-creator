@@ -1,4 +1,3 @@
-import useReduxStore from '../../hooks/useReduxStore';
 import moment from 'moment';
 import Paper from '@mui/material/Paper';
 // Client side url params
@@ -8,14 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import { red } from '@mui/material/colors';
 import { useHistory } from 'react-router-dom';
-import Modal from '@mui/material/Modal';
 
 function tournamentDetail() {
     const dispatch = useDispatch();
     const history = useHistory();
     const tournament = useSelector(store => store.tournaments.selectedTournament);
     const entrants = useSelector(store => store.tournaments.selectedEntrants)
-    const store = useReduxStore();
     // This destructured param matched the /:id listed on the route in App.jsx
     const allParams = useParams();
     const tournamentId = allParams.id;
@@ -27,10 +24,13 @@ function tournamentDetail() {
     },[tournamentId])
 
     const handleDelete = () => {
+        // Sends id to use as params to delete selected tournament
         dispatch({ type: 'DELETE_TOURNAMENT', payload: tournamentId })
         dispatch({ type: 'FETCH_MY_TOURNAMENTS' });
     }
 
+    /* Takes in the index provided and adds st, nd, or rd 
+        based on the number provided. This is purely for display purposes */
     const placement = (index) => {
         let j = index % 10,
             k = index % 100;
@@ -52,6 +52,7 @@ function tournamentDetail() {
             <Paper key={tournament.id} id="my-tournament-paper" elevation={8}>
                 <h4 id="my-tournament-name">{tournament.tournament_name}</h4>
                 <div id="my-tournament-details">
+                    {/* Moment.js is making the passed in date user friendly and pretty! */}
                     <p><u>Date:</u> {moment(tournament.date).format('MMMM Do YYYY')}</p>
                     <p><u>Kingdom:</u> {tournament.kingdom_name}</p>
                     <p><u>Organizer:</u> {tournament.organizer_persona}</p>
@@ -61,7 +62,7 @@ function tournamentDetail() {
             <Paper id="my-tournament-paper" elevation={8}>
                 <div>
                     <h4 id="my-tournament-name"> Placements </h4>
-                    <table id="my-tournament-details">
+                    <table className="my-tournament-placements">
                         <tr>
                             <th>Place</th>
                             <th>Name</th>
@@ -71,8 +72,8 @@ function tournamentDetail() {
                         {entrants.map((entrant, index) => (
                         <tr>
                             <td>{placement( index + 1 )}</td>
-                            <td>{entrant.persona}</td>
-                            <td>{entrant.score}placeholder</td>
+                            <td id="tournament-details-persona">{entrant.persona}</td>
+                            <td>{entrant.score}</td>
                             <td>{entrant.warriors}</td>
                         </tr>
                         ))}

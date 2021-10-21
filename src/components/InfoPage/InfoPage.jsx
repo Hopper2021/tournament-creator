@@ -10,7 +10,7 @@ function InfoPage() {
   return (
     <div className="container">
       <h2 id="my-tournaments-header">My Tournaments</h2>
-      <MyTournaments />
+        <MyTournaments />
     </div>
   );
 }

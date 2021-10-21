@@ -104,7 +104,7 @@ router.post('/create', rejectUnauthenticated, (req, res) => {
     }) 
 });
 
-// Get newest tournament
+// Get newest tournament created by logged in user
 router.get('/new', rejectUnauthenticated, (req, res) => {
     console.log('Req.user id - ', req.user.id);
     
@@ -122,6 +122,7 @@ router.get('/new', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// Posts new tournament and associated entrants to "tournaments" and "tournament_entrants"
 router.post( '/create/entrant', rejectUnauthenticated, (req, res) => {
     console.log('Req.body in post entrants - ', req.body);
     
@@ -153,6 +154,7 @@ router.post( '/create/entrant', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// Deletes selected tournament
 router.delete ( '/delete/:id', rejectUnauthenticated, async (req, res) => {
     console.log('req.params in delete tournament - ', req.params.id);
     const tournamentId = req.params.id;
@@ -170,6 +172,7 @@ router.delete ( '/delete/:id', rejectUnauthenticated, async (req, res) => {
     })
 })
 
+// Updates score of entrant associated with a specific tournament
 router.put( '/score', rejectUnauthenticated, (req, res) => {
     console.log('Req.body in /score PUT - ', req.body); 
     const entrant = req.body;

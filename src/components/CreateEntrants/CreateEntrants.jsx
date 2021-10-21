@@ -9,12 +9,13 @@ import { useParams } from 'react-router-dom';
 function CreateTournamentEntrants() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const store = useSelector(store => store);
-    const kingdoms = store.kingdoms;
-    const entrants = store.tournaments.selectedEntrants;
-    const selectedEntrants = store.entrants.selectedEntrants;
-    const tournament = store.tournaments.newTournament;
+    const kingdoms = useSelector(store => store.kingdoms);
+    const entrants = useSelector(store => store.tournaments.selectedEntrants);
+    const tournament = useSelector(store => store.tournaments.newTournament);
+    // displays entrant number, which is one more than the index
+    // This is only used for live score keeping
     const [counter, setCounter] = useState(1);
+    // Sets the stage for the information needed by entrant table AND tournament_entrant table
     const [newEntrant, setNewEntrant] = useState({
         tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
     });
@@ -22,7 +23,7 @@ function CreateTournamentEntrants() {
     useEffect(() => {
         // Grabs all kingdoms to display the name each time the id is referenced
         dispatch({ type: 'FETCH_KINGDOMS' })
-        // Grabs most recently created tournament // TODO BY THIS USER
+        // Grabs most recently created tournament
         dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
         // Grabs entrants associated with most recently made tournament
         dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
@@ -30,23 +31,20 @@ function CreateTournamentEntrants() {
     }, [tournament.id]) // Attaches current tournament Id to entrant for database use
 
     const addEntrant = (event) => {
+        // Prevents auto reload of form
         event.preventDefault();
         // post the entrant to the server
         dispatch({ type: 'POST_ENTRANT', payload: {newEntrant, tournament} });
-        // displays entrant number, which is one more than the index
+        // updates counter for table
         const index = setCounter(counter + 1);
-        setNewEntrant({ tourny_id: tournament.id })
-        // Add entrant to entrants reducer
         console.log('tournament in addEntrant button - ', tournament);
-        // Grabs entrants associated with most recently made tournament
-        // dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
+        // Resets newEntrant useState
         setNewEntrant({
             tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
         })
     }
 
     const moveToScores = () => {
-        // dispatch({ type: 'POST_ENTRANT', payload: entrant });
         history.push('/create/scores');
     }
 
@@ -56,7 +54,7 @@ function CreateTournamentEntrants() {
             {/* {JSON.stringify(store.tournaments.selectedEntrants)} */}
             {/* {JSON.stringify(store.tournaments.selectedEntrants)} */}
         <h2 className="create-tournament-header">
-            {store.tournaments.newTournament.name}
+            {tournament.name}
         </h2>
             <h2 className="create-tournament-header">
                 Entrant # {counter}
@@ -64,6 +62,7 @@ function CreateTournamentEntrants() {
             <form 
             className="create-tournament-form"
             onSubmit={addEntrant}>
+                {/* Persona Input */}
                 <input required 
                     type="text" 
                     className="create-tournament-input"
@@ -71,6 +70,7 @@ function CreateTournamentEntrants() {
                     placeholder="Persona"
                     onChange={(event) => setNewEntrant({...newEntrant, persona: event.target.value})}
                 />
+                {/* Kingdom dropdown select */}
                 <select required 
                     className="create-tournament-select"
                     value={newEntrant.kingdom_id}
@@ -80,6 +80,7 @@ function CreateTournamentEntrants() {
                             <option value={kingdom.id}>{kingdom.name}</option>
                         ))}
                 </select>
+                {/* Warriors input */}
                 <input 
                     type="number" 
                     className="create-tournament-input"

@@ -5,10 +5,9 @@ import Button from '@mui/material/Button';
 import { red, grey } from '@mui/material/colors';
 
 function CreateTournament() {
-    const store = useSelector(store => store)
-    const types = store.types;
-    const kingdoms = store.kingdoms;
-    const tournaments = store.tournaments; 
+    const types = useSelector(store => store.types);
+    const kingdoms = useSelector(store => store.kingdoms);
+    const tournaments = useSelector(store => store.tournaments); 
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -37,11 +36,12 @@ function CreateTournament() {
 
     return(
         <div className="container">
-            {/* Base Tournament Information Form */}
-            {/* {JSON.stringify(newTournament)}
-            {JSON.stringify(tournaments.newTournament)} */}
-            <h2 className="create-tournament-header">Complete Base Information</h2>
-            <form className="create-tournament-form" onSubmit={addNewData}>
+             {/* Base Tournament Information Form */}
+            <h2 className="create-tournament-header">
+                Complete Base Information
+            </h2>
+            <form className="create-tournament-form" 
+            onSubmit={addNewData}>
                 {/* Tournament Name Input */}
                 <input required text="text" className="create-tournament-input"
                     placeholder="Tournament Name"
@@ -61,6 +61,9 @@ function CreateTournament() {
                             </option>
                         ))}
                 </select>
+                
+                {/* Streaks are a stretch goal */}
+
                 {/* <select
                     className="create-tournament-select"
                     value={newTournament.type_id}
@@ -73,8 +76,10 @@ function CreateTournament() {
 
                 <br/>
 
-                <h2 className="header">Select Type</h2>
-                {/* {JSON.stringify(types)} */}
+                <h2 className="header">
+                    Select Type
+                </h2>
+                {/* Type button select */}
                 <div className="grid">
                     {types.map((type) => (
                         <div className="select-type">
@@ -86,14 +91,13 @@ function CreateTournament() {
                                 onClick={(event) => setNewTournament({...newTournament, type_id: event.target.value})}>
                                     {type.name}
                                 <br/>
-                                {/* TODO CONDITIONAL RENDERING FOR ICONS */}
                             </Button>
                         </div>
                     ))}
                 </div>
                 <Button type="submit" className="Button"
-                    sx={{ bgcolor: red[900] }}
-                    variant="contained"> 
+                sx={{ bgcolor: red[900] }}
+                variant="contained"> 
                     Next
                 </Button>
             </form>

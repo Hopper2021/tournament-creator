@@ -105,19 +105,23 @@ function App() {
               <LandingPage />
             }
           </Route>
-
+          
+          {/* Tournament Details Page */}
           <Route exact path="/details/:id">
             <TournamentDetail />
           </Route>
 
+          {/* 1st create tournament page */}
           <Route exact path="/create/data">
               <CreateTournament />
           </Route>
 
+          {/* 2nd create tournament page */}
           <Route exact path="/create/entrants">
               <CreateEntrants/>
           </Route>
 
+          {/* 3rd create tournament page */}
           <Route exact path='/create/scores'>
               <CreateScores/>
           </Route>

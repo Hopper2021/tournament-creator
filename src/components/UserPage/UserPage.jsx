@@ -22,18 +22,21 @@ function UserPage() {
       dispatch({ type: 'FETCH_KINGDOMS' })
   }, [])
 
+  // Toggles conditional rendering of user info edit
   const toggleEdit = () => {
     setEditPage(!editPage); 
     console.log('On edit page? - ', editPage);
   }
 
+  // Submits info to the edited and sends user back to profile page
   const submitInfo = (event) => {
     event.preventDefault();
     console.log('Updated info - ', userInfo );
     dispatch({ type: 'UPDATE_USER', payload: userInfo })
     setEditPage(!editPage); 
   }
-  
+
+  // Displays kingdom name based on the kingdom_id passed in
   const displayName = () => {
     for (let i=0; i<kingdoms.length; i++) {
         if ( kingdoms[i].id == user.kingdom_id ) {

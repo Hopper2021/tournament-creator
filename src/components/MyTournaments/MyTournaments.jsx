@@ -6,6 +6,7 @@ function MyTournaments(){
     const tournaments = useSelector(store => store.tournaments.tournamentReducer);
     const dispatch = useDispatch();
 
+    // Grabs all tournaments made by the logged in user
     useEffect(() => {
         dispatch({ type: 'FETCH_MY_TOURNAMENTS' });
     }, []);
