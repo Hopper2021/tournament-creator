@@ -111,18 +111,15 @@ function App() {
           </Route>
 
           <Route exact path="/create/data">
-            {user.id ? 
-              <Redirect to="/create/data"/> : <LoginPage />}
+              <CreateTournament />
           </Route>
 
           <Route exact path="/create/entrants">
-              {user.id ? 
-              <Redirect to="/create/entrants"/> : <LoginPage />}
+              <CreateEntrants/>
           </Route>
 
           <Route exact path='/create/scores'>
-              {user.id ? 
-              <Redirect to="/create/scores"/> : <LoginPage />}
+              <CreateScores/>
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

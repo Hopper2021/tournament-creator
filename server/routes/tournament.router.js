@@ -143,29 +143,48 @@ router.post( '/create/entrant', rejectUnauthenticated, (req, res) => {
             INSERT INTO "tournament_entrant" ("tournament_id", "entrant_id")
             VALUES ($1, $2);`;
 
-        pool.query(assignToTournament, [entrant.tourny_id, createdEntrantId]) })
+        pool.query(assignToTournament, [entrant.tourny_id, createdEntrantId])
+        .then((result) => {
+            res.sendStatus(200); })
+        .catch((error) => {
+            console.log('Error in POST new entrants - ', error);
+            res.sendStatus(500);
+        })
+    })
+})
+
+router.delete ( '/delete/:id', rejectUnauthenticated, async (req, res) => {
+    console.log('req.params in delete tournament - ', req.params.id);
+    const tournamentId = req.params.id;
+    // Delete associated entrants in tournament_entrant table
+    const deleteEntrants = `DELETE FROM "tournament_entrant" WHERE "tournament_id" = $1;`;
+    await pool.query(deleteEntrants, [tournamentId])
+    // Delete tournament itself from tournament table
+    const deleteTournament = `DELETE FROM "tournament" WHERE "id" = $1;`;
+    await pool.query(deleteTournament, [tournamentId])
     .then((result) => {
-        res.sendStatus(200); })
-    .catch((error) => {
-        console.log('Error in POST new entrants - ', error);
+        res.sendStatus(200);
+    }).catch((error) =>{
+        console.log('Error in delete tournament - ', error);
         res.sendStatus(500);
     })
 })
 
-// router.get( '/fetchSelectedEntrants', rejectUnauthenticated, (req, res) => {
-//     const tournamentId = req.body;
-//     console.log('req.body in fetchSelected - ', tournamentId);
-    
-//     const sqlText = `
-//         SELECT * FROM "entrant"
-//         JOIN "tournament_entrant" ON "tournament_entrant"."entrant_id" = "entrant"."id"
-//         WHERE "tournament_id" = $1`;
-//     pool.query(sqlText, [tournamentId])
-//     .then((results) => {
-//         res.send(results.rows) })
-//     .catch((error) => {
-//         res.sendStatus(500)
-//     })
-// })
+router.put( '/score', rejectUnauthenticated, (req, res) => {
+    console.log('Req.body in /score PUT - ', req.body); 
+    const entrant = req.body;
+    const sqlText = `
+        UPDATE "tournament_entrant"
+        SET "score" = $1
+        WHERE "tournament_id" = $2 
+            AND "entrant_id" = $3;`;
+    pool.query(sqlText, [entrant.score, entrant.tournament_id, entrant.entrant_id])
+    .then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('Error in score PUT - ', error);
+        res.sendStatus(500);
+    })
+})
 
 module.exports = router;
