@@ -5,12 +5,17 @@ import Paper from '@mui/material/Paper';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Button from '@mui/material/Button';
+import { red } from '@mui/material/colors';
+import { useHistory } from 'react-router-dom';
+import Modal from '@mui/material/Modal';
 
 function tournamentDetail() {
+    const dispatch = useDispatch();
+    const history = useHistory();
     const tournament = useSelector(store => store.tournaments.selectedTournament);
     const entrants = useSelector(store => store.tournaments.selectedEntrants)
     const store = useReduxStore();
-    const dispatch = useDispatch();
     // This destructured param matched the /:id listed on the route in App.jsx
     const allParams = useParams();
     const tournamentId = allParams.id;
@@ -20,6 +25,11 @@ function tournamentDetail() {
         dispatch({ type: 'FETCH_TOURNAMENT_DETAILS', payload: { id: tournamentId } })
         dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: { id: tournamentId } })
     },[tournamentId])
+
+    const handleDelete = () => {
+        dispatch({ type: 'DELETE_TOURNAMENT', payload: tournamentId })
+        dispatch({ type: 'FETCH_MY_TOURNAMENTS' });
+    }
 
     const placement = (index) => {
         let j = index % 10,
@@ -62,13 +72,18 @@ function tournamentDetail() {
                         <tr>
                             <td>{placement( index + 1 )}</td>
                             <td>{entrant.persona}</td>
-                            <td>{entrant.score}</td>
+                            <td>{entrant.score}placeholder</td>
                             <td>{entrant.warriors}</td>
                         </tr>
                         ))}
                     </table>
                 </div>
             </Paper>
+            <Button variant="contained"
+            sx={{ mt: 5, bgcolor: red[900], float: 'right' }}
+            onClick={handleDelete}>
+                Delete Tournament
+            </Button>
         </div>
     )
 }

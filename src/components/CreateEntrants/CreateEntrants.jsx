@@ -12,6 +12,7 @@ function CreateTournamentEntrants() {
     const store = useSelector(store => store);
     const kingdoms = store.kingdoms;
     const entrants = store.tournaments.selectedEntrants;
+    const selectedEntrants = store.entrants.selectedEntrants;
     const tournament = store.tournaments.newTournament;
     const [counter, setCounter] = useState(1);
     const [newEntrant, setNewEntrant] = useState({
@@ -25,28 +26,23 @@ function CreateTournamentEntrants() {
         dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
         // Grabs entrants associated with most recently made tournament
         dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
-        fetchEntrants();
         setNewEntrant({ tourny_id: tournament.id })
     }, [tournament.id]) // Attaches current tournament Id to entrant for database use
 
     const addEntrant = (event) => {
         event.preventDefault();
+        // post the entrant to the server
+        dispatch({ type: 'POST_ENTRANT', payload: {newEntrant, tournament} });
         // displays entrant number, which is one more than the index
         const index = setCounter(counter + 1);
         setNewEntrant({ tourny_id: tournament.id })
-        // post the entrant to the server
-        dispatch({ type: 'POST_ENTRANT', payload: newEntrant });
         // Add entrant to entrants reducer
         console.log('tournament in addEntrant button - ', tournament);
         // Grabs entrants associated with most recently made tournament
-        fetchEntrants();
+        // dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
         setNewEntrant({
             tourny_id: tournament.id, persona: '', kingdom_id: '', warriors: '', score: ''
         })
-    }
-
-    const fetchEntrants = () => {
-        dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
     }
 
     const moveToScores = () => {
@@ -57,7 +53,7 @@ function CreateTournamentEntrants() {
     return (
         <div className="container">
             {/* {JSON.stringify(store.tournaments.newTournament)} */}
-            {/* {JSON.stringify(store.entrants.entrantList)} */}
+            {/* {JSON.stringify(store.tournaments.selectedEntrants)} */}
             {/* {JSON.stringify(store.tournaments.selectedEntrants)} */}
         <h2 className="create-tournament-header">
             {store.tournaments.newTournament.name}

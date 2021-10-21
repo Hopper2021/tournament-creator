@@ -7,12 +7,8 @@ import { red } from '@mui/material/colors';
 
 function CreateScoresItem({ entrant, index }) {
     const dispatch = useDispatch();
-    const store = useSelector(store => store)
-    const tournament = store.tournaments.newTournament;
+    const tournament = useSelector(store => store.tournaments.newTournament)
     const [newScore, setNewScore] = useState(0);
-    const [entrantScore, setEntrantScore] = useState({
-        tournament_id: tournament.id, entrant_id: entrant.id, score: newScore
-    })
 
     useEffect(() => {
         dispatch({ type: 'FETCH_TOURNAMENT_ENTRANTS', payload: tournament })
@@ -20,16 +16,18 @@ function CreateScoresItem({ entrant, index }) {
 
     const handleMinus = () => { 
         if ( newScore > 0 ) {
-            setNewScore(newScore - 1);
+            dispatch({ type: 'SET_ENTRANT_SCORE', 
+                payload: {tournament_id: tournament.id, entrant_id: entrant.id, score: newScore - 1} }) // This updates the score for the database
+            setNewScore(newScore - 1); // this changes the appearance on the DOM
         }
-        dispatch({ type: 'SET_ENTRANT_SCORE', payload: entrantScore })
     }
 
     const handlePlus = () => {
         if ( newScore >= 0 ) {
-            setNewScore(newScore + 1); 
+            dispatch({ type: 'SET_ENTRANT_SCORE', 
+                payload: {tournament_id: tournament.id, entrant_id: entrant.id, score: newScore + 1} })
+            setNewScore(newScore + 1);
         }
-        dispatch({ type: 'SET_ENTRANT_SCORE', payload: entrantScore })
     }
 
     return(

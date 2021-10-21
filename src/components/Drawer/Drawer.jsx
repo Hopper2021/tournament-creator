@@ -30,6 +30,7 @@ export default function TemporaryDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
+  // Drawer logic for placement
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -37,6 +38,7 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      {/* List of links */}
       <List>
             <ListItem sx={{ mt: 1 }}
             onClick={() => history.push('/user')}>
