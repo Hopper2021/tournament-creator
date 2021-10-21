@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { red, grey } from '@mui/material/colors';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
 function CreateTournament() {
     const types = useSelector(store => store.types);
@@ -35,6 +37,12 @@ function CreateTournament() {
     }
 
     return(
+        <Box
+        component="form"
+        sx={{ '& .MuiTextField-root': { m: 1, width: '20ch' }, }}
+        noValidate
+        autoComplete="off"
+        >
         <div className="container">
              {/* Base Tournament Information Form */}
             <h2 className="create-tournament-header">
@@ -43,8 +51,8 @@ function CreateTournament() {
             <form className="create-tournament-form" 
             onSubmit={addNewData}>
                 {/* Tournament Name Input */}
-                <input required text="text" className="create-tournament-input"
-                    placeholder="Tournament Name"
+                <TextField required text="text" className="create-tournament-input"
+                    label="Tournament Name"
                     value={newTournament.name}
                     onChange={(event) => setNewTournament({...newTournament, name: event.target.value})}
                 />
@@ -102,6 +110,7 @@ function CreateTournament() {
                 </Button>
             </form>
         </div>
+        </Box>
     )
 }
 
