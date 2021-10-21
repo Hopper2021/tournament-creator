@@ -16,7 +16,7 @@ function CreateScoresItem({ entrant, index }) {
 
     const handleMinus = () => { 
         if ( newScore > 0 ) {
-            dispatch({ type: 'SET_ENTRANT_SCORE', 
+            dispatch({ type: 'UPDATE_SCORE', 
                 payload: {tournament_id: tournament.id, entrant_id: entrant.id, score: newScore - 1} }) // This updates the score for the database
             setNewScore(newScore - 1); // this changes the appearance on the DOM
         }
@@ -24,7 +24,7 @@ function CreateScoresItem({ entrant, index }) {
 
     const handlePlus = () => {
         if ( newScore >= 0 ) {
-            dispatch({ type: 'SET_ENTRANT_SCORE', 
+            dispatch({ type: 'UPDATE_SCORE', 
                 payload: {tournament_id: tournament.id, entrant_id: entrant.id, score: newScore + 1} })
             setNewScore(newScore + 1);
         }

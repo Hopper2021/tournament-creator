@@ -170,20 +170,8 @@ router.delete ( '/delete/:id', rejectUnauthenticated, async (req, res) => {
     })
 })
 
-// router.get( '/fetchSelectedEntrants', rejectUnauthenticated, (req, res) => {
-//     const tournamentId = req.body;
-//     console.log('req.body in fetchSelected - ', tournamentId);
-    
-//     const sqlText = `
-//         SELECT * FROM "entrant"
-//         JOIN "tournament_entrant" ON "tournament_entrant"."entrant_id" = "entrant"."id"
-//         WHERE "tournament_id" = $1`;
-//     pool.query(sqlText, [tournamentId])
-//     .then((results) => {
-//         res.send(results.rows) })
-//     .catch((error) => {
-//         res.sendStatus(500)
-//     })
-// })
+router.put( '/score', rejectUnauthenticated, (req, res) => {
+    console.log('Req.body in /score PUT - ', req.body);
+})
 
 module.exports = router;
