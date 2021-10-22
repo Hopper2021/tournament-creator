@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { red, grey } from '@mui/material/colors';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 function CreateTournament() {
     const types = useSelector(store => store.types);
@@ -36,13 +36,11 @@ function CreateTournament() {
         dispatch({ type: 'FETCH_NEW_TOURNAMENT' })
     }
 
+    const handleChange = (event) => {
+        setCurrency(event.target.value);
+    };
+
     return(
-        <Box
-        component="form"
-        sx={{ '& .MuiTextField-root': { m: 1, width: '20ch' }, }}
-        noValidate
-        autoComplete="off"
-        >
         <div className="container">
              {/* Base Tournament Information Form */}
             <h2 className="create-tournament-header">
@@ -52,15 +50,22 @@ function CreateTournament() {
             onSubmit={addNewData}>
                 {/* Tournament Name Input */}
                 <TextField required text="text" className="create-tournament-input"
+                    sx={{ m: 1, width: '20ch' }}
                     label="Tournament Name"
                     value={newTournament.name}
                     onChange={(event) => setNewTournament({...newTournament, name: event.target.value})}
                 />
                 {/* Tournament Kingdom Drop Down Select */}
-                <select required className="create-tournament-select"
+                <TextField required className="create-tournament-select"
+                    sx={{ m: 1, width: '20ch' }}
+                    label="Location"
+                    select
+                    helperText="Select a kingdom or freehold"
                     value={newTournament.kingdom_id}
+                    SelectProps={{ native: true }}
+                    placeholder=""
                     onChange={(event) => setNewTournament({...newTournament, kingdom_id: event.target.value})}>
-                    <option value="" disabled selected>Tournament Location</option>
+                        <option value="" disabled selected></option>
                         {kingdoms.map((kingdom) => (
                             <option 
                                 key={kingdom.id}
@@ -68,7 +73,7 @@ function CreateTournament() {
                                     {kingdom.name}
                             </option>
                         ))}
-                </select>
+                </TextField>
                 
                 {/* Streaks are a stretch goal */}
 
@@ -110,7 +115,6 @@ function CreateTournament() {
                 </Button>
             </form>
         </div>
-        </Box>
     )
 }
 
