@@ -15,7 +15,7 @@ function MyTournaments(){
         <div>
             {/* {JSON.stringify(tournaments)} */}
             {tournaments.map(tournament => (
-            <div id="my-tournament-container">
+            <div key={tournament.id} id="my-tournament-container">
                 <MyTournamentsItem key={tournament.id} tournament={tournament}/>
             </div>
             ))}

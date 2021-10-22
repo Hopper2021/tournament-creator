@@ -1,10 +1,11 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import React from 'react';
 
 // Fetch all tournaments created by logged in user
 function* fetchMyTournaments() {
-    try {        
+    try {
         const response = yield axios.get( '/api/tournament' )
         yield put({ type: 'SET_MY_TOURNAMENTS', payload: response.data })
     } catch (error) {
@@ -68,17 +69,14 @@ function* fetchNewTournament() {
 }
 
 function* deleteTournament(action) {
-    const history = useHistory();
-
     try {
         const tournamentId = action.payload;
         console.log('tournament id in delete tournament saga - ', tournamentId);
-        yield axios.delete( `/api/tournament/delete/${tournamentId}` )
-        yield put({ type: 'FETCH_TOURNAMENTS' })
-        history.push('/info');
+        yield axios.delete( `/api/tournament/delete/${tournamentId}` );
+        yield put({ type: 'FETCH_MY_TOURNAMENTS' });
     } catch (error) {
         console.log('Error in GET new tournament - ', error);
-        alert('Something went wrong! Unable to delete tournament.')
+        alert('Something went wrong! Unable to delete tournament.');
     }
 }
 

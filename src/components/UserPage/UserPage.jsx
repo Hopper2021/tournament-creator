@@ -5,6 +5,7 @@ import Avatar from '@mui/material/Avatar';
 import PersonIcon from '@mui/icons-material/Person';
 import Button from '@mui/material/Button';
 import { red } from '@mui/material/colors';
+import TextField from '@mui/material/TextField';
 import { useHistory } from 'react-router-dom';
 import UserPageEdit from '../UserPageEdit/UserPageEdit';
 
@@ -104,8 +105,10 @@ function UserPage() {
             <tr>
                 <td>Persona:</td>
                 <td>
-                    <input className="user-edit-input"
-                        placeholder={user.persona}
+                    <TextField className="user-edit-input"
+                        sx={{ width: '15ch' }}
+                        variant="standard"
+                        label={user.persona}
                         onChange={(event) => setUserInfo({...userInfo, persona: event.target.value})}
                     />
                 </td>
@@ -113,10 +116,14 @@ function UserPage() {
             <tr>
                 <td>Kingdom:</td>
                 <td>
-                <select className="user-edit-input"
+                <TextField className="user-edit-input"select
+                        sx={{ width: '15ch' }}
+                        SelectProps={{ native: true }}
                         value={userInfo.kingdom_id}
+                        label={displayName(userInfo.kingdom_id)}
+                        variant="standard"
                         onChange={(event) => setUserInfo({...userInfo, kingdom_id: event.target.value})}>
-                        <option value="" disabled selected>Home Kingdom</option>
+                        <option value="" disabled selected></option>
                             {kingdoms.map((kingdom) => (
                                 <option 
                                     key={kingdom.id}
@@ -124,14 +131,16 @@ function UserPage() {
                                         {kingdom.name}
                                 </option>
                             ))}
-                    </select>
+                    </TextField>
                 </td>
             </tr>
             <tr>
                 <td>Park:</td>
                 <td>
-                    <input className="user-edit-input"
-                        placeholder={user.park}
+                    <TextField className="user-edit-input"
+                        sx={{ width: '15ch' }}
+                        variant="standard"
+                        label={user.park}
                         onChange={(event) => setUserInfo({...userInfo, park: event.target.value})}
                     />
                 </td>

@@ -1,3 +1,4 @@
+import React from 'react';
 import moment from 'moment';
 import Paper from '@mui/material/Paper';
 // Client side url params
@@ -27,6 +28,11 @@ function tournamentDetail() {
         // Sends id to use as params to delete selected tournament
         dispatch({ type: 'DELETE_TOURNAMENT', payload: tournamentId })
         dispatch({ type: 'FETCH_MY_TOURNAMENTS' });
+        pushHistory();
+    }
+
+    const pushHistory = () => {
+        history.push('/info');
     }
 
     /* Takes in the index provided and adds st, nd, or rd 
