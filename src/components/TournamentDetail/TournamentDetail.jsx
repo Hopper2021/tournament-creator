@@ -15,6 +15,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EventIcon from '@mui/icons-material/Event';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import DataUsageIcon from '@mui/icons-material/DataUsage';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import CreateIcon from '@mui/icons-material/Create';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 function tournamentDetail() {
     const dispatch = useDispatch();
@@ -61,24 +69,48 @@ function tournamentDetail() {
     return(
         <div class="container">
             {/* {JSON.stringify(entrants)} */}
-            <Paper key={tournament.id} id="my-tournament-paper" elevation={8}>
-                <h4 id="my-tournament-name">
-                    {tournament.tournament_name}
-                </h4>
-                <div id="my-tournament-details">
-                    {/* Moment.js is making the passed in date user friendly and pretty! */}
-                    <p><u>Date:</u> {moment(tournament.date).format('MMMM Do YYYY')}</p>
-                    <p><u>Kingdom:</u> {tournament.kingdom_name}</p>
-                    <p><u>Organizer:</u> {tournament.organizer_persona}</p>
-                    <p><u>Type:</u> {tournament.type}</p>
-                </div>
-            </Paper>
+            <h2 id="my-tournaments-header">
+                {tournament.tournament_name}
+            </h2>
+            <p id="my-tournaments-divider">____________________________________</p>
+            <Table component={Paper} elevation={9}>
+                <TableRow sx={{ bt: grey[900] }}>
+                    <TableCell sx={{ width: '20ch' }}>
+                        <EventIcon sx={{ mb: -1, mr: 1 }}/>
+                        {moment(tournament.date).format('MMMM Do YYYY')}
+                    </TableCell>
+                    <TableCell>
+                        <DataUsageIcon sx={{ mb: -1, mr: 1 }}/>
+                        {tournament.type}
+                    </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>
+                        <AssignmentIndIcon sx={{ mb: -1, mr: 1 }}/>
+                        {tournament.organizer_persona}
+                    </TableCell>
+                    <TableCell>
+                        <LocationOnIcon sx={{ mb: -1, mr: 1 }}/>
+                        {tournament.kingdom_name}
+                    </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>
+                        <EmojiPeopleIcon sx={{ mb: -1, mr: 1 }}/>
+                        {entrants.length}
+                    </TableCell>
+                    <TableCell>
+                        <EmojiEventsIcon sx={{ mb: -1, mr: 1 }}/> 
+                        {entrants[0].persona}
+                    </TableCell>
+                </TableRow>
+            </Table>
             <TableContainer id="my-tournament-paper" component={Paper} elevation={8}>
             <h4 id="my-tournament-name"> Placements </h4>
                 <Table sx={{ fontSize: 16 }}>
                     <TableHead sx={{ lineHeight: 1 }}>
                         <TableRow>
-                            <TableCell></TableCell>
+                            <TableCell><EmojiEventsIcon/></TableCell>
                             <TableCell>Name</TableCell>
                             <TableCell>Score</TableCell>
                             <TableCell>Warriors</TableCell>
@@ -100,7 +132,7 @@ function tournamentDetail() {
             <Button variant="contained"
             sx={{ ml: 5, mt: 2, bgcolor: red[900], float: 'right' }}
             onClick={handleDelete}>
-                Delete Tournament
+                <DeleteForeverIcon/>  Delete Tournament
             </Button>
         </div>
     )

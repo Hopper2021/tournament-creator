@@ -173,6 +173,11 @@ My Tournaments Paper
 
 #my-tournaments-header {
   text-align: center;
+  margin-top: 0;
+}
+
+#my-tournaments-divider {
+  margin-top: -20px;
 }
 
 /* --------------------------------------------------------------------------------
