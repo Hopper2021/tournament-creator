@@ -307,14 +307,15 @@ Tables
 }
 
 #score-counter {
-  margin: 10px; 
-  text-align: center;
   font-size:x-large;
+  margin: 6px;
 }
 
 #score-table-data {
-  margin: 0px;
-  padding: 0px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  vertical-align: middle;
 }
 
 .score {

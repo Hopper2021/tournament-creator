@@ -13,6 +13,7 @@ function UserPage() {
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
   const kingdoms = useSelector(store => store.kingdoms);
+  const tournaments = useSelector(store => store.tournaments.tournamentReducer)
   const [editPage, setEditPage] = useState(false);
   const [userInfo, setUserInfo] = useState({
     persona: '', kingdom_id: '', park: ''
@@ -21,6 +22,7 @@ function UserPage() {
   // Fetches kingdoms page load for dropdown
   useEffect(() => {
       dispatch({ type: 'FETCH_KINGDOMS' })
+      dispatch({ type: 'FETCH_MY_TOURNAMENTS' })
   }, [])
 
   // Toggles conditional rendering of user info edit from edit button
@@ -86,7 +88,7 @@ function UserPage() {
           </tr>
           <tr>
             <td>Tournaments:</td>
-            <td>4</td>
+            <td>{tournaments.length}</td>
           </tr>
         </table>
         <LogOutButton className="btn" /> 
