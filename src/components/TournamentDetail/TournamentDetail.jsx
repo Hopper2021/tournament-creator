@@ -23,6 +23,7 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import CreateIcon from '@mui/icons-material/Create';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import Typography from '@mui/material/Typography';
 
 function tournamentDetail() {
     const dispatch = useDispatch();
@@ -107,20 +108,24 @@ function tournamentDetail() {
             </Table>
             <TableContainer id="my-tournament-paper" component={Paper} elevation={8}>
             <h4 id="my-tournament-name"> Placements </h4>
-                <Table sx={{ fontSize: 16 }}>
-                    <TableHead sx={{ lineHeight: 1 }}>
+                <Table>
+                    <TableHead>
                         <TableRow>
                             <TableCell><EmojiEventsIcon/></TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Score</TableCell>
-                            <TableCell>Warriors</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold', fontSize: 14 }}>
+                                Name</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold', fontSize: 14 }}>
+                                Score</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold', fontSize: 14 }}>
+                                Warriors</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {entrants.map((entrant, index) => (
                         <TableRow sx={{'&:nth-of-type(odd)': {
                             backgroundColor: grey[300] }}}>
-                            <TableCell>{placement( index + 1 )}</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold', fontSize: 14 }}>
+                                {placement( index + 1 )}</TableCell>
                             <TableCell>{entrant.persona}</TableCell>
                             <TableCell align='center'>{entrant.score}</TableCell>
                             <TableCell align='center'>{entrant.warriors}</TableCell>
