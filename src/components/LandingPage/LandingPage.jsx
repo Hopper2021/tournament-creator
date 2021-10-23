@@ -16,10 +16,6 @@ function LandingPage() {
   return (
     <div className="container">
       <h2 className="welcome-header">{heading}!</h2>
-      <p>This app is meant to assist in live score tracking of 
-        Amtgard tournaments and to provide an easy reference 
-        point for past tournament information.</p>
-      <p>Fill out the registration form to get started!</p>
           <RegisterForm /> 
 
           <center>

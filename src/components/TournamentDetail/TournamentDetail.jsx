@@ -6,8 +6,15 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
-import { red } from '@mui/material/colors';
+import { red, grey } from '@mui/material/colors';
 import { useHistory } from 'react-router-dom';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import { styled } from '@mui/material/styles';
 
 function tournamentDetail() {
     const dispatch = useDispatch();
@@ -27,7 +34,6 @@ function tournamentDetail() {
     const handleDelete = () => {
         // Sends id to use as params to delete selected tournament
         dispatch({ type: 'DELETE_TOURNAMENT', payload: tournamentId })
-        dispatch({ type: 'FETCH_MY_TOURNAMENTS' });
         pushHistory();
     }
 
@@ -56,7 +62,9 @@ function tournamentDetail() {
         <div class="container">
             {/* {JSON.stringify(entrants)} */}
             <Paper key={tournament.id} id="my-tournament-paper" elevation={8}>
-                <h4 id="my-tournament-name">{tournament.tournament_name}</h4>
+                <h4 id="my-tournament-name">
+                    {tournament.tournament_name}
+                </h4>
                 <div id="my-tournament-details">
                     {/* Moment.js is making the passed in date user friendly and pretty! */}
                     <p><u>Date:</u> {moment(tournament.date).format('MMMM Do YYYY')}</p>
@@ -65,27 +73,30 @@ function tournamentDetail() {
                     <p><u>Type:</u> {tournament.type}</p>
                 </div>
             </Paper>
-            <Paper id="my-tournament-paper" elevation={8}>
-                <div>
-                    <h4 id="my-tournament-name"> Placements </h4>
-                    <table className="my-tournament-placements">
-                        <tr>
-                            <th>Place</th>
-                            <th>Name</th>
-                            <th>Score</th>
-                            <th>Warriors</th>
-                        </tr>
+            <TableContainer id="my-tournament-paper" component={Paper} elevation={8}>
+            <h4 id="my-tournament-name"> Placements </h4>
+                <Table sx={{ fontSize: 16 }}>
+                    <TableHead sx={{ lineHeight: 1 }}>
+                        <TableRow>
+                            <TableCell></TableCell>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Score</TableCell>
+                            <TableCell>Warriors</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {entrants.map((entrant, index) => (
-                        <tr>
-                            <td>{placement( index + 1 )}</td>
-                            <td id="tournament-details-persona">{entrant.persona}</td>
-                            <td>{entrant.score}</td>
-                            <td>{entrant.warriors}</td>
-                        </tr>
+                        <TableRow sx={{'&:nth-of-type(odd)': {
+                            backgroundColor: grey[300] }}}>
+                            <TableCell>{placement( index + 1 )}</TableCell>
+                            <TableCell>{entrant.persona}</TableCell>
+                            <TableCell align='center'>{entrant.score}</TableCell>
+                            <TableCell align='center'>{entrant.warriors}</TableCell>
+                        </TableRow>
                         ))}
-                    </table>
-                </div>
-            </Paper>
+                    </TableBody>
+                </Table>
+            </TableContainer>
             <Button variant="contained"
             sx={{ ml: 5, mt: 2, bgcolor: red[900], float: 'right' }}
             onClick={handleDelete}>

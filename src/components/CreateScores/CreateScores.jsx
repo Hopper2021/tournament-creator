@@ -40,9 +40,9 @@ function CreateScores () {
             <h2 className="create-tournament-header">
                 {tournament.name}
             </h2>
-            <h5 id="create-tournament-header">
+            {/* <div >
                 {displayName(tournament.type_id)}
-            </h5>
+            </div> */}
             {/* {JSON.stringify(store.tournaments.newTouranment)} */}
             {/* {JSON.stringify(entrants)} */}
             <table className="scores">
