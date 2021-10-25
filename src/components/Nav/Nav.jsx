@@ -10,6 +10,8 @@ function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
+    <>
+    { user.id &&
     <div className="nav">
       <img id="symbol" src="symbol.jpeg"/>
       <Link to="/home">
@@ -56,6 +58,8 @@ function Nav() {
         }
       </div>
     </div>
+    }
+    </>
   );
 }
 

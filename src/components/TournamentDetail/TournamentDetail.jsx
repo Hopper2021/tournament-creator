@@ -100,10 +100,10 @@ function tournamentDetail() {
                         <EmojiPeopleIcon sx={{ mb: -1, mr: 1 }}/>
                         {entrants.length}
                     </TableCell>
-                    <TableCell>
+                    {/* <TableCell>
                         <EmojiEventsIcon sx={{ mb: -1, mr: 1 }}/> 
                         {entrants[0].persona}
-                    </TableCell>
+                    </TableCell> */}
                 </TableRow>
             </Table>
             <TableContainer id="my-tournament-paper" component={Paper} elevation={8}>

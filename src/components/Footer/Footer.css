@@ -1,10 +1,11 @@
 .push {
   min-height: 100%;
+  height: auto;
+  height: 100%;
+  margin: 0 auto 210px;
 }
 
-footer {
-  height: 50px;
+.footer {
+  height: 242px;
   text-align: center;
-  min-height: 100%;
-  margin-top: 50px;
 }

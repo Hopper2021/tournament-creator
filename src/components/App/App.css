@@ -29,6 +29,8 @@ Headers
 
 .welcome-header {
   margin-top: 0;
+  font-size: 30px;
+  color: white;
 }
 
 /* --------------------------------------------------------------------------------
@@ -131,9 +133,20 @@ Alert
 Form Treatment
 -------------------------------------------------------------------------------- */
 
+.registered-question {
+  text-align: center;
+  color: white;
+  font-weight: 600;
+}
+
+.welcome-back {
+  margin-top: 90px;
+  color: white;
+}
 .formPanel {
   box-sizing: border-box;
   width: 400px;
+  opacity: 0.9;
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
@@ -308,7 +321,7 @@ Tables
 
 #score-counter {
   font-size:x-large;
-  margin: 6px;
+  width: 35px;
 }
 
 #score-table-data {

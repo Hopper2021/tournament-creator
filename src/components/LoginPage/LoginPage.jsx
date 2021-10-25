@@ -1,25 +1,34 @@
 import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
+import background from './login1.jpeg';
+import { red, grey } from '@mui/material/colors';
+import Button from '@mui/material/Button';
 
 function LoginPage() {
   const history = useHistory();
 
   return (
-    <div className="container">
-      <h2 >Welcome Back!</h2>
+    <div className="container" style={{ backgroundImage: `url(${background})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    minHeight: 600 }}>
+      <h2 className="welcome-back">Welcome Back!</h2>
       <LoginForm />
 
       <center>
-        <button
+        <Button
+          variant="contained"
           type="button"
-          className="btn btn_asLink"
+          
+          sx={{ bgcolor: red[900], mt: 3, fontSize: 18 }}
           onClick={() => {
             history.push('/registration');
           }}
         >
           Register
-        </button>
+        </Button>
       </center>
     </div>
   );

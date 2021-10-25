@@ -44,7 +44,7 @@ function CreateScoresItem({ entrant, index }) {
                 sx={{ fontSize: 50 }}/>
                 <span id="score-counter"
                 value={entrant.score}>
-                    {newScore}
+                    {newScore}  
                 </span>
             <AddCircleIcon onClick={handlePlus} // plus button
                 sx={{ fontSize: 50 }}/>

@@ -61,7 +61,7 @@ function UserPage() {
         </Avatar>
       </div>
       { !editPage && 
-      <Button variant='contained' sx={{ float: 'right', mb: 2, bgcolor: red[900] }}
+      <Button variant='contained' sx={{ float: 'right', mb: 1, bgcolor: red[900] }}
         onClick={toggleEdit}>
         Edit
       </Button>
@@ -91,14 +91,14 @@ function UserPage() {
             <td>{tournaments.length}</td>
           </tr>
         </table>
-        <LogOutButton className="btn" /> 
+        {/* <LogOutButton className="btn" />  */}
       </div>
       }
 
       { editPage && 
       <div>
         <form onSubmit={submitInfo}>
-          <Button variant='contained' sx={{ float: 'right', mb: 2, bgcolor: red[900] }}
+          <Button variant='contained' sx={{ float: 'right', mb: 1, bgcolor: red[900] }}
             type="submit">
                 Done
           </Button>

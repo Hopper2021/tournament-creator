@@ -8,8 +8,9 @@ import './Footer.css';
 
 function Footer() {
   return (
-    <div className="push">
-      <footer>
+    <div>
+      <div className="push"></div>
+      <footer className="footer">
         &copy; Hopper Applications
       </footer>
     </div>

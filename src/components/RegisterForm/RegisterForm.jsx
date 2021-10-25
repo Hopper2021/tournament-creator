@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
+import { red, grey } from '@mui/material/colors';
+import Button from '@mui/material/Button';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -22,8 +24,7 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <p>New?</p>
-      <h2>Registration Form</h2>
+      <h2>Register Here</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
