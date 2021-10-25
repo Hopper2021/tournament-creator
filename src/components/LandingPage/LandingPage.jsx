@@ -19,18 +19,20 @@ function LandingPage() {
   return (
     <div className="container"
     style={{ backgroundImage: `url(${background})`,
-    backgroundPosition: 'center',
+    backgroundPosition: '-170px 0px',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     minHeight: 600 }}>
       <h2 className="welcome-header">{heading}!</h2>
           {/* <RegisterForm />  */}
-
+          <div className="landing-name-div">
+          <p className="landing-name">Amtgard Tournament Creator</p>
+          </div>
           <center>
             <Button 
             variant="contained"
             sx={{ bgcolor: red[900], fontSize: 18, 
-              borderRadius: 8, width: 270, mb: 3, mt: 52 }}
+              borderRadius: 8, width: 270, mb: 3 }}
             onClick={() => history.push('/registration')}>
               Register
             </Button>

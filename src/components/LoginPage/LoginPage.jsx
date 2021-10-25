@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
-import background from './login1.jpeg';
+import background from './login.jpeg';
 import { red, grey } from '@mui/material/colors';
 import Button from '@mui/material/Button';
 
@@ -10,10 +10,10 @@ function LoginPage() {
 
   return (
     <div className="container" style={{ backgroundImage: `url(${background})`,
-    backgroundPosition: 'center',
+    backgroundPosition: '-450px -80px',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    minHeight: 600 }}>
+    minHeight: 700 }}>
       <h2 className="welcome-back">Welcome Back!</h2>
       <LoginForm />
 

@@ -29,8 +29,18 @@ Headers
 
 .welcome-header {
   margin-top: 0;
-  font-size: 30px;
+  font-size: 32px;
   color: white;
+  margin-bottom: 0;
+}
+
+.landing-name {
+  margin-top: 360px;
+  color: white;
+  text-align: center;
+  font-size: x-large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
 }
 
 /* --------------------------------------------------------------------------------
@@ -321,7 +331,7 @@ Tables
 
 #score-counter {
   font-size:x-large;
-  width: 35px;
+  width: 29px;
 }
 
 #score-table-data {

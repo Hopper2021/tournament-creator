@@ -3,7 +3,7 @@ import { red } from '@mui/material/colors';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
-import background from '../LoginPage/login1.jpeg';
+import background from '../LoginPage/login2.jpeg';
 
 
 function RegisterPage() {
@@ -13,7 +13,7 @@ function RegisterPage() {
     <div 
     className="container" 
     style={{ backgroundImage: `url(${background})`,
-    backgroundPosition: 'center',
+    backgroundPosition: '-150px',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     minHeight: 600 }}
