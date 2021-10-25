@@ -2,6 +2,7 @@ html,
 body,
 #react-root {
   height: 100%;
+  margin: 0;
 }
 
 body {
@@ -27,7 +28,32 @@ Headers
 -------------------------------------------------------------------------------- */
 
 .welcome-header {
+  margin-top: 0;
+  font-size: 32px;
+  color: white;
+  margin-bottom: 0;
+}
+
+.landing-name {
+  margin-top: 360px;
+  color: white;
+  text-align: center;
+  font-size: x-large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+}
+
+/* --------------------------------------------------------------------------------
+p
+-------------------------------------------------------------------------------- */
+
+#tournament-type {
   margin: 0;
+  text-align: center;
+}
+
+td {
+  text-align: center;
 }
 
 /* --------------------------------------------------------------------------------
@@ -117,9 +143,20 @@ Alert
 Form Treatment
 -------------------------------------------------------------------------------- */
 
+.registered-question {
+  text-align: center;
+  color: white;
+  font-weight: 600;
+}
+
+.welcome-back {
+  margin-top: 90px;
+  color: white;
+}
 .formPanel {
   box-sizing: border-box;
   width: 400px;
+  opacity: 0.9;
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
@@ -159,6 +196,11 @@ My Tournaments Paper
 
 #my-tournaments-header {
   text-align: center;
+  margin-top: 0;
+}
+
+#my-tournaments-divider {
+  margin-top: -20px;
 }
 
 /* --------------------------------------------------------------------------------
@@ -169,6 +211,10 @@ Drawer
   padding-right: 20px;
   color: white;
   font-size: larger;
+}
+
+#menu-placeholder {
+  padding-right: 75px;
 }
 
 /* --------------------------------------------------------------------------------
@@ -283,23 +329,48 @@ Tables
   padding: 10px;
 }
 
-/* #persona-table-data {
-  padding: 10px;
-} */
-
 #score-counter {
-  margin: 10px; 
-  text-align: center;
   font-size:x-large;
+  width: 29px;
 }
 
 #score-table-data {
-  margin: 0px;
-  padding: 0px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  vertical-align: middle;
 }
 
 .score {
   padding: 0px;
+}
+
+/*------------------------*/
+
+
+.my-tournament-placements {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.my-tournament-placements th {
+  padding: 10px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-weight: 400;
+}
+
+.my-tournament-placements td {
+  padding: 8px;
+}
+
+#tournament-details-persona {
+  text-align: left;
+}
+
+.my-tournament-placements tr:nth-child(even){
+  background-color: #f2f2f2;
 }
 
 /* --------------------------------------------------------------------------------

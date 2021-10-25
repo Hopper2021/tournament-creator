@@ -1,5 +1,10 @@
+/* .push {
+  min-height: 100%;
+  height: auto;
+  height: 100%;
+  margin: 0 auto 210px;
+}
+*/
 footer {
-  margin-top: 80px;
-  padding: 20px;
   text-align: center;
 }

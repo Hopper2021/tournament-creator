@@ -23,6 +23,7 @@ export default function TemporaryDrawer() {
     right: false,
   });
 
+  // Toggle Drawer
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -38,8 +39,9 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      {/* List of links */}
+      {/* List of links in drawer menu */}
       <List>
+        {/* Profile Link */}
             <ListItem sx={{ mt: 1 }}
             onClick={() => history.push('/user')}>
                 <ListItemIcon>
@@ -49,6 +51,7 @@ export default function TemporaryDrawer() {
                     Profile
                 </ListItemText>
             </ListItem>
+          {/* My Tournaments Link */}
             <ListItem sx={{ mt: 1 }}
             onClick={() => history.push('/info')}>
                 <ListItemIcon>
@@ -58,6 +61,7 @@ export default function TemporaryDrawer() {
                     My Tournaments
                 </ListItemText>
             </ListItem>
+          {/* Create Tournament Link */}
             <ListItem sx={{ mt: 1 }}
             onClick={() => history.push('/create/data')}>
                 <ListItemIcon>
@@ -67,6 +71,7 @@ export default function TemporaryDrawer() {
                     Create Tournament
                 </ListItemText>
             </ListItem> 
+          {/* Search Link */}
             <ListItem sx={{ mt: 1 }}
             onClick={() => history.push('/about')}>
                 <ListItemIcon>
@@ -77,8 +82,10 @@ export default function TemporaryDrawer() {
                 </ListItemText>
             </ListItem>
       </List>
+      {/* Divider line */}
       <Divider />
         <List > 
+          {/* Logout Link */}
             {<ListItem id="logout" button key={'Logout'} sx={{ mt: 2 }}
             onClick={() => dispatch({ type: 'LOGOUT' })}>
                 <ListItemIcon>
@@ -90,6 +97,7 @@ export default function TemporaryDrawer() {
     </Box>
   );
 
+  // Return shows hamburger icon and mapsthrough toggle drawer logic
   return (
     <>
       {['right'].map((anchor) => (

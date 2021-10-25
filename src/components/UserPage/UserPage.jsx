@@ -5,13 +5,15 @@ import Avatar from '@mui/material/Avatar';
 import PersonIcon from '@mui/icons-material/Person';
 import Button from '@mui/material/Button';
 import { red } from '@mui/material/colors';
+import TextField from '@mui/material/TextField';
 import { useHistory } from 'react-router-dom';
 import UserPageEdit from '../UserPageEdit/UserPageEdit';
 
 function UserPage() {
   const dispatch = useDispatch();
-  const user = useSelector( (store) => store.user);
+  const user = useSelector(store => store.user);
   const kingdoms = useSelector(store => store.kingdoms);
+  const tournaments = useSelector(store => store.tournaments.tournamentReducer)
   const [editPage, setEditPage] = useState(false);
   const [userInfo, setUserInfo] = useState({
     persona: '', kingdom_id: '', park: ''
@@ -20,20 +22,24 @@ function UserPage() {
   // Fetches kingdoms page load for dropdown
   useEffect(() => {
       dispatch({ type: 'FETCH_KINGDOMS' })
+      dispatch({ type: 'FETCH_MY_TOURNAMENTS' })
   }, [])
 
+  // Toggles conditional rendering of user info edit from edit button
   const toggleEdit = () => {
     setEditPage(!editPage); 
     console.log('On edit page? - ', editPage);
   }
 
+  // Submits info to the edited and sends user back to profile page
   const submitInfo = (event) => {
     event.preventDefault();
     console.log('Updated info - ', userInfo );
     dispatch({ type: 'UPDATE_USER', payload: userInfo })
     setEditPage(!editPage); 
   }
-  
+
+  // Displays kingdom name based on the kingdom_id passed in
   const displayName = () => {
     for (let i=0; i<kingdoms.length; i++) {
         if ( kingdoms[i].id == user.kingdom_id ) {
@@ -44,7 +50,9 @@ function UserPage() {
 
   return (
     <div className="container">
-      <h2 className="create-tournament-header">Welcome, {user.persona}!</h2>
+      <h2 className="create-tournament-header">
+        Welcome, {user.username}!
+      </h2>
       <div id="avatar-div">
         <Avatar 
           id="avatar"
@@ -53,7 +61,7 @@ function UserPage() {
         </Avatar>
       </div>
       { !editPage && 
-      <Button variant='contained' sx={{ float: 'right', mb: 2, bgcolor: red[900] }}
+      <Button variant='contained' sx={{ float: 'right', mb: 1, bgcolor: red[900] }}
         onClick={toggleEdit}>
         Edit
       </Button>
@@ -67,6 +75,10 @@ function UserPage() {
             <td>{user.username}</td>
           </tr>
           <tr>
+            <td>Persona:</td>
+            <td>{user.persona}</td>
+          </tr>
+          <tr>
             <td>Kingdom:</td>
             <td>{displayName(user.kingdom_id)}</td> 
           </tr>
@@ -76,17 +88,17 @@ function UserPage() {
           </tr>
           <tr>
             <td>Tournaments:</td>
-            <td>4</td>
+            <td>{tournaments.length}</td>
           </tr>
         </table>
-        <LogOutButton className="btn" /> 
+        {/* <LogOutButton className="btn" />  */}
       </div>
       }
 
       { editPage && 
       <div>
         <form onSubmit={submitInfo}>
-          <Button variant='contained' sx={{ float: 'right', mb: 2, bgcolor: red[900] }}
+          <Button variant='contained' sx={{ float: 'right', mb: 1, bgcolor: red[900] }}
             type="submit">
                 Done
           </Button>
@@ -95,8 +107,10 @@ function UserPage() {
             <tr>
                 <td>Persona:</td>
                 <td>
-                    <input className="user-edit-input"
-                        placeholder={user.persona}
+                    <TextField className="user-edit-input"
+                        sx={{ width: '15ch' }}
+                        variant="standard"
+                        label={user.persona}
                         onChange={(event) => setUserInfo({...userInfo, persona: event.target.value})}
                     />
                 </td>
@@ -104,10 +118,14 @@ function UserPage() {
             <tr>
                 <td>Kingdom:</td>
                 <td>
-                <select className="user-edit-input"
+                <TextField className="user-edit-input"select
+                        sx={{ width: '15ch' }}
+                        SelectProps={{ native: true }}
                         value={userInfo.kingdom_id}
+                        label={displayName(userInfo.kingdom_id)}
+                        variant="standard"
                         onChange={(event) => setUserInfo({...userInfo, kingdom_id: event.target.value})}>
-                        <option value="" disabled selected>Home Kingdom</option>
+                        <option value="" disabled selected></option>
                             {kingdoms.map((kingdom) => (
                                 <option 
                                     key={kingdom.id}
@@ -115,14 +133,16 @@ function UserPage() {
                                         {kingdom.name}
                                 </option>
                             ))}
-                    </select>
+                    </TextField>
                 </td>
             </tr>
             <tr>
                 <td>Park:</td>
                 <td>
-                    <input className="user-edit-input"
-                        placeholder={user.park}
+                    <TextField className="user-edit-input"
+                        sx={{ width: '15ch' }}
+                        variant="standard"
+                        label={user.park}
                         onChange={(event) => setUserInfo({...userInfo, park: event.target.value})}
                     />
                 </td>

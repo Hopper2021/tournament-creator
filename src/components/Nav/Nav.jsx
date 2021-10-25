@@ -10,6 +10,8 @@ function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
+    <>
+    { user.id &&
     <div className="nav">
       <img id="symbol" src="symbol.jpeg"/>
       <Link to="/home">
@@ -46,12 +48,18 @@ function Nav() {
         )} */}
 
         {/* TODO If user is NOT logged in, all links in drawer should bring them to the login screen */}
-
+        { user.id &&
         <div id="drawer">
           <Drawer/>
         </div>
+        }
+        { !user.id &&
+        <div id="menu-placeholder"></div>
+        }
       </div>
     </div>
+    }
+    </>
   );
 }
 

@@ -47,6 +47,7 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+// Updates user information from edit user page
 router.put('/', (req, res) => {
   const userData = req.body;
   console.log('Req.body - ', userData);

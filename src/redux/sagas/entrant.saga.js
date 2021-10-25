@@ -4,6 +4,7 @@ import axios from 'axios';
 // Post newly created entrants to database
 function* postEntrant(action) {
     try {
+        console.log('new entrant in POST entrant saga - ', action.payload.newEntrant)
         const entrant = action.payload.newEntrant;
         const tournament = action.payload.tournament;
         yield axios.post( '/api/tournament/create/entrant', entrant )

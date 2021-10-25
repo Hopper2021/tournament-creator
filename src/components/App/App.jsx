@@ -21,7 +21,6 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TournamentDetail from '../TournamentDetail/TournamentDetail';
 import CreateTournament from '../CreateTournament/CreateTournament';
-import CreateType from '../CreateType/CreateType';
 import CreateEntrants from '../CreateEntrants/CreateEntrants';
 import CreateScores from '../CreateScores/CreateScores';
 import UserPageEdit from '../UserPageEdit/UserPageEdit';
@@ -105,29 +104,32 @@ function App() {
               <LandingPage />
             }
           </Route>
-
+          
+          {/* Tournament Details Page */}
           <Route exact path="/details/:id">
             <TournamentDetail />
           </Route>
 
+          {/* 1st create tournament page */}
           <Route exact path="/create/data">
               <CreateTournament />
           </Route>
 
+          {/* 2nd create tournament page */}
           <Route exact path="/create/entrants">
               <CreateEntrants/>
           </Route>
 
+          {/* 3rd create tournament page */}
           <Route exact path='/create/scores'>
               <CreateScores/>
           </Route>
-
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );
