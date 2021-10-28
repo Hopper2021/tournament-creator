@@ -5,6 +5,18 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
+/**
+ * @api {get} /tournament Request All tournaments
+ * @apiName GetMyTournaments
+ * @apiGroup tournament
+ *
+ * @ApiPermission user A user must be logged in
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccess {Array}  tournaments    An array of tournaments that the logged in user has created.
+ * @apiSuccess {Number} tournament.id
+ * @apiSuccess {}
+ */  
 // Get all tournaments and their base information based on the user ID passed ( My Tournaments Page )
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('User - ', req.user.id);
@@ -84,6 +96,16 @@ router.get('/types', rejectUnauthenticated, (req, res) => {
         })
 })
 
+/**
+ * @api {post} /tournament/create Add new tournament
+ * @apiName PostNewTournament
+ * @apiGroup tournament
+ *
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *      HTTP/1.1 201 OK
+ */ 
 // Create new tournament
 router.post('/create', rejectUnauthenticated, (req, res) => {
     const tournament = req.body;

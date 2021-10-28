@@ -31,9 +31,15 @@
     "start": "node server/server.js",
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
+    "apidoc": "apidoc -i server/routes -o apidoc",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "apidoc": {
+    "title": "Amtgard Tournament Creator Documentation",
+    "version" : "1.0",
+    "description": "API documentation for Amtgard Tournament Creator"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
