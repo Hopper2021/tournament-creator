@@ -28,7 +28,7 @@ An example of official paperwork for live score keeping (`left`) and results (`r
 
 Registration currently only requires a username and password. However some other information can be added through the user profile. Once the user either creates a profile or logs in, they are redirected to their profile page.
 
-![registration](public/images/registration.png)  ![login](public/images/login.png)
+![landing-page](public/images/landing-page.png)  ![registration](public/images/registration.png)  ![login](public/images/login.png)
 
 ### Profile / Edit Profile
 
