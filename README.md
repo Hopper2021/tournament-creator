@@ -6,6 +6,11 @@
 
 This application is intended to fill a technology gap for the international non-profit “Amtgard” when tracking live tournament attendance, scores and entrant information. Its purpose is to provide an easy-to-use mobile application to create tournament formats and store results that can be easily referenced at any time by non-profit members.
 
+## Demo
+
+Check out the link below for a demo of the MVP ( 25 October, 2021 )
+https://drive.google.com/file/d/1CC9xdpVxwzG8ufPRuy7Vm3C_yZTs_k_B/view?usp=sharing
+
 ## What is Amtgard?
 
 https://www.amtgard.com/
