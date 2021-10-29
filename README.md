@@ -34,7 +34,7 @@ Registration currently only requires a username and password. However some other
 
 The user's profile can be edited by clicking the edit button. The inputs can then be filled in and one you click the `done` button the user is redirected to their profile page with the updated information.
 
-![profile](public/images/profile.png)  ![editProfile](public/images/edit-profile.png)
+![profile](public/images/profile.png)   ![editProfile](public/images/edit-profile.png)
 
 ### Navigation
 
