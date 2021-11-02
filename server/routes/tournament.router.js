@@ -13,15 +13,15 @@ const {
  * @ApiPermission user A user must be logged in
  * @apiParam {Number} id Users unique ID.
  *
- * @apiSuccess {Array}   tournaments      An array of tournaments that the logged in user has created.
- * @apiSuccess {Number}  tournament.id    Id of each tournament
- * @apiSuccess {String}  tournament.name  Name of each tournament
- * @apiSuccess {Date}    tournament.date  Date the tournament was created
- * @apiSuccess {String}  kingdom.name     Name of the kingdom the tournament was held in
- * @apiSuccess {String}  user.persona     Persona of the user that created the tournament
- * @apiSuccess {String}  tournament.type  Name of the type of tournament that was created ( pits, brackets, etc. )
+ * @apiSuccess {Array}   tournaments       An array of tournaments that the logged in user has created.
+ * @apiSuccess {Number}  id                Id of each tournament
+ * @apiSuccess {String}  tournament_name   Name of each tournament
+ * @apiSuccess {Date}    date              Date the tournament was created
+ * @apiSuccess {String}  kingdom_name      Name of the kingdom the tournament was held in
+ * @apiSuccess {String}  organizer_persona Persona of the user that created the tournament
+ * @apiSuccess {String}  type              Name of the type of tournament that was created ( pits, brackets, etc. )
  * 
- * 
+ * @apiError MyTournamentsError   Error in GET user tournaments
  */  
 // Get all tournaments and their base information based on the user ID passed ( My Tournaments Page )
 router.get('/', rejectUnauthenticated, (req, res) => {
@@ -42,7 +42,25 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
-
+/**
+ * @api {get} /tournament Request All tournaments
+ * @apiName GetTournamentDetails
+ * @apiGroup tournament
+ *
+ * @ApiPermission user      A user must be logged in
+ * @apiParam   {Number} id  Users unique ID.
+ * @apiParam   {Number} id  Tournament's unique ID.
+ *
+ * @apiSuccess {Object}  tournament        An object of the tournament that the logged in user has created.
+ * @apiSuccess {Number}  id                Tournament's unique Id
+ * @apiSuccess {String}  tournament_name   Name of tournament
+ * @apiSuccess {Date}    date              Date the tournament was created
+ * @apiSuccess {String}  kingdom_name      Name of the kingdom the tournament was held in
+ * @apiSuccess {String}  organizer_persona Persona of the user that created the tournament
+ * @apiSuccess {String}  type              Name of the type of tournament that was created ( pits, brackets, etc. )
+ * 
+ * @apiError MyTournamentsError   Error in SELECT tournament query
+ */  
 // Get all base tournament information associate with a passed tournament ID ( Detail Page )
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id - ', req.params.id);
