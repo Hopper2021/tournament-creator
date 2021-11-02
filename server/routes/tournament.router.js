@@ -59,7 +59,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  * @apiSuccess {String}  organizer_persona Persona of the user that created the tournament
  * @apiSuccess {String}  type              Name of the type of tournament that was created ( pits, brackets, etc. )
  * 
- * @apiError MyTournamentsError   Error in SELECT tournament query
+ * @apiError TournamentDetailError   Error in SELECT tournament query
  */  
 // Get all base tournament information associate with a passed tournament ID ( Detail Page )
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
@@ -79,6 +79,24 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
         })
 })
 
+/**
+ * @api {get} /tournament Request All entrants
+ * @apiName GetTournamentEntrants
+ * @apiGroup tournament
+ *
+ * @ApiPermission user      A user must be logged in
+ * @apiParam   {Number} id  Users unique ID.
+ * @apiParam   {Number} id  Tournament's unique ID.
+ * 
+ * @apiSuccess {Array}   entrants       An array of entrants associated with the tournament id provided.
+ * @apiSuccess {Number}  id             Id of each entrant
+ * @apiSuccess {String}  persona        Persona of each entrant
+ * @apiSuccess {number}  score          Score of each entrant associated with the passed tournament id
+ * @apiSuccess {number}  warriors       Number of warriors the entrant has
+ * @apiSuccess {number}  kingdom.id     Home kingdom the entrant belongs to
+ * 
+ * @apiError TournamentDetailError   Error in SELECT tournament query
+ */  
 // Get all tournament Entrants associated with a tournament Id ( Detail Page )
 router.get('/details/entrants/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id - ', req.params.id);
@@ -97,6 +115,19 @@ router.get('/details/entrants/:id', rejectUnauthenticated, (req, res) => {
         })
 })
 
+/**
+ * @api {get} /tournament Request All kingdoms
+ * @apiName GetKingdoms
+ * @apiGroup kingdoms
+ *
+ * @ApiPermission user   A user must be logged in
+ * 
+ * @apiSuccess {Array}   kingdoms       An array of all kingdoms listed in Amtgard
+ * @apiSuccess {Number}  id             Id of each kingdom
+ * @apiSuccess {String}  name           Name of each kingdom
+ * 
+ * @apiError GetKingdomsError   Error in getting all kingdoms
+ */  
 // Select all kingdoms ( kingdom drop down )
 router.get('/kingdoms', rejectUnauthenticated, (req, res) => {
     const sqlText = `SELECT * FROM "kingdom";`;
@@ -108,7 +139,19 @@ router.get('/kingdoms', rejectUnauthenticated, (req, res) => {
             res.sendStatus(500);
         })
 })
-
+/**
+ * @api {get} /tournament Request All types
+ * @apiName GetTypes
+ * @apiGroup types
+ *
+ * @ApiPermission user   A user must be logged in
+ * 
+ * @apiSuccess {Array}   types   An array of all types of tournaments
+ * @apiSuccess {Number}  id      Id of each type
+ * @apiSuccess {String}  name    Name of each type
+ * 
+ * @apiError GetTypesError   Error in getting all types
+ */  
 // Select all tournament types
 router.get('/types', rejectUnauthenticated, (req, res) => {
     const sqlText = `SELECT * FROM "tournament_type";`;
@@ -116,7 +159,7 @@ router.get('/types', rejectUnauthenticated, (req, res) => {
         .then((results) => {
             res.send(results.rows); }) 
         .catch((error) => {
-            console.log('Error in getting all kingdoms - ', error);
+            console.log('Error in getting all types - ', error);
             res.sendStatus(500);
         })
 })
