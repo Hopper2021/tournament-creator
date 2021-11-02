@@ -13,9 +13,15 @@ const {
  * @ApiPermission user A user must be logged in
  * @apiParam {Number} id Users unique ID.
  *
- * @apiSuccess {Array}  tournaments    An array of tournaments that the logged in user has created.
- * @apiSuccess {Number} tournament.id
- * @apiSuccess {}
+ * @apiSuccess {Array}   tournaments      An array of tournaments that the logged in user has created.
+ * @apiSuccess {Number}  tournament.id    Id of each tournament
+ * @apiSuccess {String}  tournament.name  Name of each tournament
+ * @apiSuccess {Date}    tournament.date  Date the tournament was created
+ * @apiSuccess {String}  kingdom.name     Name of the kingdom the tournament was held in
+ * @apiSuccess {String}  user.persona     Persona of the user that created the tournament
+ * @apiSuccess {String}  tournament.type  Name of the type of tournament that was created ( pits, brackets, etc. )
+ * 
+ * 
  */  
 // Get all tournaments and their base information based on the user ID passed ( My Tournaments Page )
 router.get('/', rejectUnauthenticated, (req, res) => {
@@ -35,6 +41,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         res.sendStatus(500);
     });
 });
+
 
 // Get all base tournament information associate with a passed tournament ID ( Detail Page )
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
