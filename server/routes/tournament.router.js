@@ -82,7 +82,7 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
 /**
  * @api {get} /tournament/details/entrants/:id     Request All entrants associated with passed tournament id.
  * @apiName GetTournamentEntrants
- * @apiGroup tournament
+ * @apiGroup entrants
  *
  * @ApiPermission user      A user must be logged in
  * @apiParam   {Number} id  Users unique ID.
@@ -222,21 +222,16 @@ router.get('/new', rejectUnauthenticated, (req, res) => {
 })
 
 /**
- * @api {post} /tournament/create/entrant   Adds new entrants with associated tournament
+ * @api {post} /tournament/create/entrant   Adds new entrants to databases with associated tournament id
  * @apiName PostTournamentEntrants
- * @apiGroup tournament
+ * @apiGroup entrants
  *
- * @ApiPermission user      A user must be logged in
- * @apiParam   {Number} id  Tournament's unique ID.
+ * @ApiPermission user   A user must be logged in
  * 
- * @apiSuccess {Array}   entrants       An array of entrants associated with the tournament id provided.
- * @apiSuccess {Number}  id             Id of each entrant
- * @apiSuccess {String}  persona        Persona of each entrant
- * @apiSuccess {number}  score          Score of each entrant associated with the passed tournament id
- * @apiSuccess {number}  warriors       Number of warriors the entrant has
- * @apiSuccess {number}  kingdom.id     Home kingdom the entrant belongs to
- * 
- * @apiError TournamentDetailError   Error in SELECT tournament query
+ * @apiSuccessExample {json} Success-Response:
+ *      HTTP/1.1 200 OK
+ *
+ * @apiError CreateEntrantError   Error in POST new entrant
  */  
 // Posts new tournament and associated entrants to "tournaments" and "tournament_entrants"
 router.post( '/create/entrant', rejectUnauthenticated, (req, res) => {
@@ -247,7 +242,7 @@ router.post( '/create/entrant', rejectUnauthenticated, (req, res) => {
         INSERT INTO "entrant" ("persona", "kingdom_id", "warriors")
         VALUES ($1, $2, $3)
         RETURNING id;`;
-    // First create the entrant in the entrant table
+    // First, create the entrant in the entrant table
     pool.query(sqlText, 
         [entrant.persona, entrant.kingdom_id, entrant.warriors])
     .then((result) => {
@@ -270,7 +265,20 @@ router.post( '/create/entrant', rejectUnauthenticated, (req, res) => {
     })
 })
 
-// Deletes selected tournament
+/**
+ * @api {delete} /tournament/delete/:id   Deletes tournament associated with passed id
+ * @apiName DeleteTournament
+ * @apiGroup tournament
+ *
+ * @ApiPermission user    A user must be logged in
+ * @apiParam {Number} id  Unique tournament ID.
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ *      HTTP/1.1 200 OK
+ *
+ * @apiError DeleteTournamentError   Error in DELETE tournament
+ */  
+// Deletes selected tournament and associated entrants
 router.delete ( '/delete/:id', rejectUnauthenticated, async (req, res) => {
     console.log('req.params in delete tournament - ', req.params.id);
     const tournamentId = req.params.id;
@@ -288,6 +296,19 @@ router.delete ( '/delete/:id', rejectUnauthenticated, async (req, res) => {
     })
 })
 
+/**
+ * @api {put} /tournament/score   Updates score of passed entrant
+ * @apiName UpdateScore
+ * @apiGroup entrants
+ *
+ * @ApiPermission user    A user must be logged in
+ * @apiParam {Number} id  Unique entrant ID
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ *      HTTP/1.1 200 OK
+ *
+ * @apiError UpdateScoreError   Error in score PUT
+ */  
 // Updates score of entrant associated with a specific tournament
 router.put( '/score', rejectUnauthenticated, (req, res) => {
     console.log('Req.body in /score PUT - ', req.body); 
