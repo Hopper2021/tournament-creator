@@ -43,7 +43,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * @api {get} /tournament Request All tournaments
+ * @api {get} /tournament/details/:id  Request All details of tournament id passed
  * @apiName GetTournamentDetails
  * @apiGroup tournament
  *
@@ -80,7 +80,7 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
 })
 
 /**
- * @api {get} /tournament Request All entrants
+ * @api {get} /tournament/details/entrants/:id     Request All entrants associated with passed tournament id.
  * @apiName GetTournamentEntrants
  * @apiGroup tournament
  *
@@ -116,7 +116,7 @@ router.get('/details/entrants/:id', rejectUnauthenticated, (req, res) => {
 })
 
 /**
- * @api {get} /tournament Request All kingdoms
+ * @api {get} /tournament/kingdoms Request All kingdoms
  * @apiName GetKingdoms
  * @apiGroup kingdoms
  *
@@ -140,7 +140,7 @@ router.get('/kingdoms', rejectUnauthenticated, (req, res) => {
         })
 })
 /**
- * @api {get} /tournament Request All types
+ * @api {get} /tournament/types Request All types
  * @apiName GetTypes
  * @apiGroup types
  *
@@ -194,6 +194,15 @@ router.post('/create', rejectUnauthenticated, (req, res) => {
     }) 
 });
 
+/**
+ * @api {get} /tournament/new  Request newest tournament made by user
+ * @apiName GetNewestTournament
+ * @apiGroup tournament
+ *
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiError GetNewestTournamentError   Error in getting newest tournament
+ */ 
 // Get newest tournament created by logged in user
 router.get('/new', rejectUnauthenticated, (req, res) => {
     console.log('Req.user id - ', req.user.id);
@@ -212,6 +221,23 @@ router.get('/new', rejectUnauthenticated, (req, res) => {
     })
 })
 
+/**
+ * @api {post} /tournament/create/entrant   Adds new entrants with associated tournament
+ * @apiName PostTournamentEntrants
+ * @apiGroup tournament
+ *
+ * @ApiPermission user      A user must be logged in
+ * @apiParam   {Number} id  Tournament's unique ID.
+ * 
+ * @apiSuccess {Array}   entrants       An array of entrants associated with the tournament id provided.
+ * @apiSuccess {Number}  id             Id of each entrant
+ * @apiSuccess {String}  persona        Persona of each entrant
+ * @apiSuccess {number}  score          Score of each entrant associated with the passed tournament id
+ * @apiSuccess {number}  warriors       Number of warriors the entrant has
+ * @apiSuccess {number}  kingdom.id     Home kingdom the entrant belongs to
+ * 
+ * @apiError TournamentDetailError   Error in SELECT tournament query
+ */  
 // Posts new tournament and associated entrants to "tournaments" and "tournament_entrants"
 router.post( '/create/entrant', rejectUnauthenticated, (req, res) => {
     console.log('Req.body in post entrants - ', req.body);
