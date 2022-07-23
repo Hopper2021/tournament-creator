@@ -12,7 +12,8 @@
     "bcryptjs": "^2.4.3",
     "cookie-session": "^2.0.0-rc.1",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
+    "heroku": "^7.59.2",
     "moment": "^2.29.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
@@ -38,7 +39,7 @@
   },
   "apidoc": {
     "title": "Amtgard Tournament Creator Documentation",
-    "version" : "1.0",
+    "version": "1.0",
     "description": "API documentation for Amtgard Tournament Creator"
   },
   "devDependencies": {
