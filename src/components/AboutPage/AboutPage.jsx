@@ -9,7 +9,7 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This search page is for anyone to read!</p>
+        <p>This is the search page!</p>
       </div>
     </div>
   );
