@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MyTournamentsItem from '../MyTournamentsItem/MyTournamentsItem';
+// import { classNames } from 'MyTournaments.css';
 
 function MyTournaments(){
     const tournaments = useSelector(store => store.tournaments.tournamentReducer);
@@ -13,12 +14,17 @@ function MyTournaments(){
 
     return (
         <div>
-            {/* {JSON.stringify(tournaments)} */}
             {tournaments.map(tournament => (
             <div key={tournament.id} id="my-tournament-container">
                 <MyTournamentsItem key={tournament.id} tournament={tournament}/>
             </div>
             ))}
+            {console.log(tournaments)}
+            <div>
+                {tournaments <= 0 && (
+                    <div>No tournaments to display.</div>
+                )}
+            </div>
         </div>
     )
 }
