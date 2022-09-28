@@ -7,6 +7,8 @@ CREATE TABLE "user" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
     "persona" VARCHAR (80)
+	"kingdom_id" integer REFERENCES "kingdom" NOT NULL,
+	"park" VARCHAR (1000) NOT NULL,
 );
 
 CREATE TABLE "kingdom" (
@@ -23,7 +25,7 @@ CREATE TABLE "tournament" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR (80) NOT NULL,
 	"date" DATE DEFAULT CURRENT_DATE NOT NULL,
-	"kingdom_id" integer REFERENCES "kingdom" NOT NULL,
+	"kingdom_id" integer REFERENCES "kingdom" NOT NULL
 	"park_id" integer REFERENCES "park",
 	"user_id" integer REFERENCES "user",
 	"type_id" integer REFERENCES "tournament_type" NOT NULL
@@ -49,6 +51,17 @@ CREATE TABLE "tournament_entrant" (
 	"score" integer -- Score rarely ever gets higher than 30 points.
 );
 
+CREATE TABLE "category" (
+	"id" SERIAL PRIMARY KEY,
+	"name" VARCHAR (200) NOT NULL,
+)
+
+CREATE TABLE "tournament_category" (
+	"id" SERIAL PRIMARY KEY,
+	"tournament_id" integer REFERENCES "tournament",
+	"category_id" integer REFERENCES "category",
+)
+
 INSERT INTO "kingdom" ("name")
 VALUES ('Desert Winds'),
 ('Celestial Kingdom'),
@@ -73,3 +86,16 @@ VALUES ('Desert Winds'),
 ('Viridian Outlands'),
 ('Westmarch'),
 ('Winters Edge')
+
+INSERT INTO "tournament_type" ("name")
+VALUES ('Pits'),
+('Round Robin'),
+('Brackets')
+
+INSERT INTO "category" ("name")
+VALUES ('Single Sword'),
+('Florentine'),
+('Sword and Board'),
+('Great Weapon'),
+('Open'),
+('Closed')
