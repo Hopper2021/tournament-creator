@@ -7,6 +7,7 @@ import kingdomSaga from './kingdom.saga';
 import typeSaga from './type.saga';
 import entrantSaga from './entrant.saga';
 import editSaga from './edit.saga';
+import categorySaga from './category.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     typeSaga(),
     entrantSaga(),
     editSaga(),
+    categorySaga(),
   ]);
 }
